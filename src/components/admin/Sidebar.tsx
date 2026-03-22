@@ -26,7 +26,7 @@ const nav = [
   },
   {
     href: '/admin/listings/new',
-    label: 'New listing',
+    label: 'New',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -38,58 +38,88 @@ const nav = [
 export default function Sidebar() {
   const pathname = usePathname()
 
-  return (
-    <aside className="w-60 flex-shrink-0 bg-brand-dark flex flex-col min-h-screen">
-      {/* Logo */}
-      <div className="px-5 py-5 border-b border-brand-navy/10">
-        <Link href="/" className="flex items-center gap-2">
-          <Image src="/logo.png" alt="NyLya" width={130} height={48} className="flex-shrink-0 object-contain grayscale" />
-        </Link>
-        <p className="text-brand-muted text-xs mt-1 pl-10">Admin</p>
-      </div>
+  const isActive = (href: string) =>
+    href === '/admin' ? pathname === '/admin' : pathname.startsWith(href)
 
-      {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-0.5">
-        {nav.map((item) => {
-          const active =
-            item.href === '/admin'
-              ? pathname === '/admin'
-              : pathname.startsWith(item.href)
-          return (
+  return (
+    <>
+      {/* Desktop sidebar */}
+      <aside className="hidden md:flex w-60 flex-shrink-0 bg-brand-dark flex-col min-h-screen">
+        <div className="px-5 py-5 border-b border-brand-navy/10">
+          <Link href="/" className="flex items-center gap-2">
+            <Image src="/logo.png" alt="NyLya" width={130} height={48} className="flex-shrink-0 object-contain grayscale" />
+          </Link>
+          <p className="text-brand-muted text-xs mt-1 pl-10">Admin</p>
+        </div>
+
+        <nav className="flex-1 px-3 py-4 space-y-0.5">
+          {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold transition ${active ? 'bg-brand-navy/10 text-brand-navy' : 'text-brand-muted hover:text-brand-navy hover:bg-brand-navy/5'}`}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold transition ${isActive(item.href) ? 'bg-brand-navy/10 text-brand-navy' : 'text-brand-muted hover:text-brand-navy hover:bg-brand-navy/5'}`}
             >
               {item.icon}
-              {item.label}
+              {item.label === 'New' ? 'New listing' : item.label}
             </Link>
-          )
-        })}
-      </nav>
+          ))}
+        </nav>
 
-      {/* Footer */}
-      <div className="px-3 py-4 border-t border-brand-navy/10">
+        <div className="px-3 py-4 border-t border-brand-navy/10">
+          <Link
+            href="/"
+            target="_blank"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-brand-muted hover:text-brand-navy hover:bg-brand-navy/5 transition"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            View site
+          </Link>
+          <button
+            onClick={() => signOut({ callbackUrl: '/admin/login' })}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-brand-muted hover:text-brand-navy hover:bg-brand-navy/5 transition"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            Sign out
+          </button>
+        </div>
+      </aside>
+
+      {/* Mobile bottom nav */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-brand-dark border-t border-brand-navy/10 flex items-center">
+        {nav.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={`flex-1 flex flex-col items-center gap-1 py-3 text-[11px] font-semibold transition ${isActive(item.href) ? 'text-brand-navy' : 'text-brand-muted'}`}
+          >
+            {item.icon}
+            {item.label}
+          </Link>
+        ))}
         <Link
           href="/"
           target="_blank"
-          className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-brand-muted hover:text-brand-navy hover:bg-brand-navy/5 transition"
+          className="flex-1 flex flex-col items-center gap-1 py-3 text-[11px] font-semibold text-brand-muted"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
-          View site
+          Site
         </Link>
         <button
           onClick={() => signOut({ callbackUrl: '/admin/login' })}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-brand-muted hover:text-brand-navy hover:bg-brand-navy/5 transition"
+          className="flex-1 flex flex-col items-center gap-1 py-3 text-[11px] font-semibold text-brand-muted"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
           </svg>
           Sign out
         </button>
-      </div>
-    </aside>
+      </nav>
+    </>
   )
 }
