@@ -17,7 +17,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
   const [showMap, setShowMap]         = useState(false)
   const [showFilters, setShowFilters] = useState(false)
   const [heroIndex, setHeroIndex]     = useState(0)
-  const heroImages = ['/hero.jpeg', '/hero2.jpeg', '/hero3.jpeg']
+  const heroImages = ['/hero.jpeg', '/hero2.jpg', '/hero3.jpg']
 
   useEffect(() => {
     const t = setInterval(() => setHeroIndex((i) => (i + 1) % heroImages.length), 5000)
