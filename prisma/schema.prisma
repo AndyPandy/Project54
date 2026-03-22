@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// SQLite for local dev — swap provider to "postgresql" and update DATABASE_URL for production
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Apartment {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String
+  price       Float
+  address     String
+  latitude    Float
+  longitude   Float
+  rooms       Int
+  sizeSqm     Float
+  images        String   @default("[]") // JSON array of relative paths
+  tags          String   @default("[]") // JSON array e.g. ["balkong","hiss"]
+  status        String   @default("draft") // "draft" | "published"
+  listingType   String   @default("rent")  // "rent" | "sale"
+  propertyType  String   @default("")  // e.g. "Lägenhet", "Villa"
+  floor         Int?
+  fee           Float?   // månadsavgift
+  operatingCost Float?   // driftkostnad
+  buildYear     Int?     // byggår
+  tenure        String   @default("")  // boendeform e.g. "Bostadsrätt", "Hyresrätt"
+  floorPlan     String   @default("")  // URL to floor plan image
+  showings      Showing[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Showing {
+  id          String          @id @default(cuid())
+  apartmentId String
+  apartment   Apartment       @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
+  date        String          // "YYYY-MM-DD"
+  startTime   String          // "HH:MM"
+  endTime     String          // "HH:MM"
+  signups     ShowingSignup[]
+  createdAt   DateTime        @default(now())
+}
+
+model ShowingSignup {
+  id        String   @id @default(cuid())
+  showingId String
+  showing   Showing  @relation(fields: [showingId], references: [id], onDelete: Cascade)
+  name      String
+  email     String
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("agent") // "admin" | "agent"
+  createdAt DateTime @default(now())
+}

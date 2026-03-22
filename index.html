@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Duo — Security for your business and more.</title>
+  <style>
+    /* ── Reset & Tokens ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:   #6CC04A;
+      --green-d: #55a336;
+      --navy:    #1b2a3b;
+      --dark:    #0d1b24;
+      --white:   #ffffff;
+      --offwhite:#f4f6f4;
+      --muted:   #6b7a87;
+      --radius:  12px;
+      --transition: 0.22s ease;
+      --font: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Typography helpers ─────────────────────────── */
+    .display {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .headline {
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+    }
+    .label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── Layout ─────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section   { padding: 6rem 0; }
+
+    /* ── NAV ────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      gap: 2rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--green);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo-mark svg { width: 22px; height: 22px; fill: var(--white); }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0.25rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--navy);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .nav-links a:hover { background: var(--offwhite); }
+
+    .nav-cta { display: flex; gap: 0.75rem; align-items: center; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font);
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 0.6rem 1.35rem;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-ghost {
+      color: var(--navy);
+      border-color: transparent;
+      background: transparent;
+    }
+    .btn-ghost:hover { background: var(--offwhite); }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--white);
+      border-color: var(--green);
+    }
+    .btn-primary:hover { background: var(--green-d); border-color: var(--green-d); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(108,192,74,0.35); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border-color: var(--navy);
+    }
+    .btn-outline:hover { background: var(--navy); color: var(--white); }
+
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.5);
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+
+    .btn-lg {
+      font-size: 1rem;
+      padding: 0.85rem 1.85rem;
+      border-radius: 10px;
+    }
+
+    /* ── HERO ───────────────────────────────────────── */
+    .hero {
+      background: var(--dark);
+      color: var(--white);
+      padding: 7rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(108,192,74,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(108,192,74,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.7; }
+    }
+
+    .hero h1 { margin-bottom: 1.5rem; }
+    .hero h1 em { color: var(--green); font-style: normal; }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 3rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero-trust-text {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.05em;
+    }
+
+    .hero-trust-logos {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .trust-logo {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── Hero visual ── */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phone-mockup {
+      width: 220px;
+      background: #1a2535;
+      border-radius: 36px;
+      border: 2px solid rgba(255,255,255,0.1);
+      padding: 1.5rem 1rem;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+      position: relative;
+      z-index: 2;
+    }
+
+    .phone-screen-top {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .phone-notch {
+      width: 80px;
+      height: 20px;
+      background: #0d1b24;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .phone-app-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--green);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .phone-app-icon svg { width: 30px; height: 30px; fill: white; }
+
+    .phone-push-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 0.35rem;
+    }
+
+    .phone-push-sub {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .phone-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    .phone-btn {
+      padding: 0.6rem;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .phone-btn-approve { background: var(--green); color: white; }
+    .phone-btn-deny    { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
+
+    .phone-time {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: white;
+      text-align: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-stat-card {
+      position: absolute;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 0.9rem 1.2rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      color: var(--navy);
+    }
+
+    .hero-stat-card-left {
+      left: -60px;
+      bottom: 60px;
+    }
+
+    .hero-stat-card-right {
+      right: -40px;
+      top: 50px;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      white-space: nowrap;
+    }
+
+    .stat-change {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--green);
+      background: rgba(108,192,74,0.12);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      margin-top: 0.3rem;
+    }
+
+    /* ── LOGOS BAR ──────────────────────────────────── */
+    .logos-bar {
+      background: var(--offwhite);
+      padding: 2.5rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .logos-bar-inner {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .logos-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .logo-item {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #b0bec5;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ── FEATURES ───────────────────────────────────── */
+    .features-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 4rem;
+    }
+
+    .features-header .label {
+      color: var(--green);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .features-header .headline { margin-bottom: 1rem; }
+
+    .features-header p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1.5px solid rgba(0,0,0,0.07);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+
+    .feature-card:hover {
+      border-color: rgba(108,192,74,0.3);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+
+    .feature-card:hover::before { transform: scaleX(1); }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(108,192,74,0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-icon svg { width: 24px; height: 24px; stroke: var(--green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--navy);
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── DARK BANNER ────────────────────────────────── */
+    .dark-banner {
+      background: var(--navy);
+      color: var(--white);
+      padding: 5rem 0;
+    }
+
+    .dark-banner-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .dark-banner h2 { margin-bottom: 1.25rem; }
+    .dark-banner h2 em { color: var(--green); font-style: normal; }
+
+    .dark-banner p {
+      color: rgba(255,255,255,0.6);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .stats-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat-item {}
+
+    .stat-big {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+    }
+
+    /* ── HOW IT WORKS ───────────────────────────────── */
+    .steps-bg { background: var(--offwhite); }
+
+    .steps-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 4rem;
+    }
+
+    .steps-header .label {
+      color: var(--green);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      position: relative;
+    }
+
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 1rem);
+      right: calc(12.5% + 1rem);
+      height: 2px;
+      background: linear-gradient(to right, var(--green) 0%, rgba(108,192,74,0.2) 100%);
+    }
+
+    .step-card {
+      text-align: center;
+      padding: 1.5rem 1rem;
+    }
+
+    .step-number {
+      width: 56px;
+      height: 56px;
+      background: var(--white);
+      border: 2px solid var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--green);
+      margin: 0 auto 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--navy);
+    }
+
+    .step-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── TESTIMONIALS ───────────────────────────────── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border: 1.5px solid rgba(0,0,0,0.07);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 1rem;
+    }
+
+    .star { color: var(--green); font-size: 1rem; }
+
+    .testimonial-quote {
+      font-size: 0.95rem;
+      color: var(--navy);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .author-title {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .testimonials-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 4rem;
+    }
+
+    .testimonials-header .label {
+      color: var(--green);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    /* ── CTA ────────────────────────────────────────── */
+    .cta-section {
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 50%, rgba(108,192,74,0.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      text-align: center;
+      color: var(--white);
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .cta-inner .label {
+      color: var(--green);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .cta-inner h2 { margin-bottom: 1.25rem; color: var(--white); }
+    .cta-inner h2 em { color: var(--green); font-style: normal; }
+
+    .cta-inner p {
+      color: rgba(255,255,255,0.6);
+      font-size: 1.05rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .cta-disclaimer {
+      margin-top: 1.5rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+    footer {
+      background: #080f14;
+      color: rgba(255,255,255,0.5);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand .nav-logo {
+      color: var(--white);
+      margin-bottom: 1rem;
+      display: inline-flex;
+    }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-col h5 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-col a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-col a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p { font-size: 0.8rem; }
+
+    .footer-legal {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-legal a {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+    }
+
+    .footer-legal a:hover { color: var(--white); }
+
+    /* ── Responsive ─────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner       { grid-template-columns: 1fr; }
+      .hero-visual      { display: none; }
+      .features-grid    { grid-template-columns: 1fr 1fr; }
+      .dark-banner-inner{ grid-template-columns: 1fr; gap: 3rem; }
+      .steps-grid       { grid-template-columns: 1fr 1fr; }
+      .steps-grid::before { display: none; }
+      .testimonials-grid{ grid-template-columns: 1fr; }
+      .footer-grid      { grid-template-columns: 1fr 1fr; }
+      .nav-links        { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .features-grid    { grid-template-columns: 1fr; }
+      .steps-grid       { grid-template-columns: 1fr; }
+      .footer-grid      { grid-template-columns: 1fr; }
+      .stats-list       { grid-template-columns: 1fr; }
+    }
+
+    /* ── Green highlight ── */
+    .green { color: var(--green); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────── -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        </div>
+        duo
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#features">Product</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#testimonials">Customers</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Resources</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="#" class="btn btn-ghost">Log in</a>
+        <a href="#" class="btn btn-primary">Start free trial</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow label">
+          <span class="hero-eyebrow-dot"></span>
+          Trusted by 40,000+ organizations
+        </div>
+
+        <h1 class="display">
+          Security for your<br/>
+          business <em>and&nbsp;more.</em>
+        </h1>
+
+        <p class="hero-desc">
+          Duo makes the world a more secure place. We provide simple, trusted technology that protects employees, businesses, and everyone.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary btn-lg">Start free trial</a>
+          <a href="#" class="btn btn-outline-white btn-lg">Watch demo</a>
+        </div>
+
+        <div class="hero-trust">
+          <span class="hero-trust-text">TRUSTED BY</span>
+          <div class="hero-trust-logos">
+            <span class="trust-logo">Toyota</span>
+            <span class="trust-logo">Lyft</span>
+            <span class="trust-logo">Etsy</span>
+            <span class="trust-logo">Kayak</span>
+            <span class="trust-logo">MLB</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-stat-card hero-stat-card-left">
+          <div class="stat-value">99.99%</div>
+          <div class="stat-label">Uptime SLA</div>
+          <div class="stat-change">↑ Always on</div>
+        </div>
+
+        <div class="phone-mockup">
+          <div class="phone-screen-top">
+            <div class="phone-notch"></div>
+          </div>
+          <div class="phone-time">3:56</div>
+          <div class="phone-push-sub" style="margin-bottom:1.25rem;">Thursday, March 20</div>
+          <div class="phone-app-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+          </div>
+          <div class="phone-push-title">Login Request</div>
+          <div class="phone-push-sub">Are you signing in to<br/>your account?</div>
+          <div class="phone-actions">
+            <div class="phone-btn phone-btn-approve">Approve</div>
+            <div class="phone-btn phone-btn-deny">Deny</div>
+          </div>
+        </div>
+
+        <div class="hero-stat-card hero-stat-card-right">
+          <div class="stat-value">1B+</div>
+          <div class="stat-label">Authentications/year</div>
+          <div class="stat-change">↑ 34% YoY</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LOGO BAR ──────────────────────────────────────── -->
+<div class="logos-bar">
+  <div class="container">
+    <div class="logos-bar-inner">
+      <span class="logos-label">Trusted by the world's best teams</span>
+      <span class="logo-item">Toyota</span>
+      <span class="logo-item">Lyft</span>
+      <span class="logo-item">Etsy</span>
+      <span class="logo-item">Kayak</span>
+      <span class="logo-item">MLB</span>
+      <span class="logo-item">Zendesk</span>
+      <span class="logo-item">Box</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── FEATURES ─────────────────────────────────────── -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="features-header">
+      <span class="label">Everything you need</span>
+      <h2 class="headline">So many ways to<br/> <span class="green">verify it's you</span></h2>
+      <p>From push notifications to hardware tokens, Duo supports every method your team needs to stay secure — without the friction.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Multi-Factor Authentication</h3>
+        <p>Add a powerful second layer of security to every login. Push, SMS, phone call, or hardware token — users choose what works best.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Device Trust</h3>
+        <p>Continuously assess device health before granting access. Block outdated, compromised, or unknown devices — automatically.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Single Sign-On</h3>
+        <p>One login for everything. Give employees secure, one-click access to all their apps — cloud or on-prem — from any device.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>Remote Access</h3>
+        <p>Secure your workforce wherever they are. Duo's VPN-less access solution ensures only the right people reach the right resources.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Risk-Based Authentication</h3>
+        <p>Intelligently step up authentication based on risk signals. Frictionless for low-risk, harder for suspicious logins.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Ask Duo Anything</h3>
+        <p>AI-powered security assistant that answers questions, diagnoses issues, and guides your team through incidents in plain English.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DARK BANNER ───────────────────────────────────── -->
+<div class="dark-banner">
+  <div class="container">
+    <div class="dark-banner-inner">
+      <div>
+        <h2 class="headline">Security that <em>actually&nbsp;works.</em></h2>
+        <p>We believe that security should be intuitive — for IT teams and for end users. Duo's Zero Trust framework protects every user, device, and application without slowing anyone down.</p>
+        <a href="#" class="btn btn-primary btn-lg">See how Duo works</a>
+      </div>
+      <div class="stats-list">
+        <div class="stat-item">
+          <div class="stat-big">4×</div>
+          <div class="stat-desc">Faster security incident response</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-big">60%</div>
+          <div class="stat-desc">Reduction in helpdesk tickets</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-big">$3.2M</div>
+          <div class="stat-desc">Average annual savings per deployment</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-big">95%</div>
+          <div class="stat-desc">User adoption rate within 30 days</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── HOW IT WORKS ──────────────────────────────────── -->
+<section class="section steps-bg" id="how-it-works">
+  <div class="container">
+    <div class="steps-header">
+      <span class="label" style="color:var(--green);display:block;margin-bottom:1rem;">Simple by design</span>
+      <h2 class="headline">It's easy to<br/> <span class="green">deploy, too.</span></h2>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h4>Connect your directory</h4>
+        <p>Sync users from Active Directory, Azure AD, Okta, or any LDAP source in minutes.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h4>Enroll your users</h4>
+        <p>Self-service enrollment via email — no IT hand-holding required. Works on any device.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h4>Set your policies</h4>
+        <p>Define access policies by user, group, app, and device trust level with a visual editor.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <h4>Protect everything</h4>
+        <p>Go live. Every login is verified. Every device is assessed. Zero Trust, achieved.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ──────────────────────────────────── -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <span class="label">Customer stories</span>
+      <h2 class="headline">Don't take our<br/><span class="green">word for it</span></h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonial-quote">"Duo has transformed how we think about security. Our users actually like using it — that's something I never thought I'd say about an MFA tool."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:#2563eb;">JM</div>
+          <div>
+            <div class="author-name">Jamie Mitchell</div>
+            <div class="author-title">CISO, TechCorp Global</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonial-quote">"We deployed Duo across 8,000 employees in three weeks. The admin console is intuitive and the support team was exceptional throughout."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:#7c3aed;">SR</div>
+          <div>
+            <div class="author-name">Sarah Rodriguez</div>
+            <div class="author-title">VP of IT, FinanceHub</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonial-quote">"Since switching to Duo, we've had zero successful phishing attacks. The device trust feature caught three compromised laptops we didn't even know about."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:#059669;">DK</div>
+          <div>
+            <div class="author-name">David Kim</div>
+            <div class="author-title">Head of Security, Retail Co.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ───────────────────────────────────────────── -->
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <span class="label">Get started today</span>
+      <h2 class="headline">Zero Trusts Given.<br/><em>Zero breaches either.</em></h2>
+      <p>Join 40,000+ organizations that trust Duo to secure their workforce. Start with a free 30-day trial — no credit card required.</p>
+      <div class="cta-actions">
+        <a href="#" class="btn btn-primary btn-lg">Start free trial</a>
+        <a href="#" class="btn btn-outline-white btn-lg">Talk to sales</a>
+      </div>
+      <p class="cta-disclaimer">30-day free trial &nbsp;·&nbsp; No credit card &nbsp;·&nbsp; Cancel anytime</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-mark">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          </div>
+          duo
+        </a>
+        <p>Part of Cisco. Duo makes the world a more secure place — protecting people, businesses, and the connections between them.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#">MFA</a></li>
+          <li><a href="#">Device Trust</a></li>
+          <li><a href="#">Single Sign-On</a></li>
+          <li><a href="#">Remote Access</a></li>
+          <li><a href="#">Pricing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <ul>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">Security Blog</a></li>
+          <li><a href="#">Trust Center</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Cisco Systems, Inc. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
