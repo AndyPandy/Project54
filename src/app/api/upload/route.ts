@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: `File too large (max 8 MB): ${file.name}` }, { status: 400 })
     }
 
-    const blob = await put(file.name, file, { access: 'public' })
+    const blob = await put(file.name, file, { access: 'public', addRandomSuffix: true })
     paths.push(blob.url)
   }
 
