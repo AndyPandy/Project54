@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import ApartmentCard from '@/components/ApartmentCard'
 import ApartmentFilters from '@/components/ApartmentFilters'
@@ -16,6 +16,13 @@ interface Props {
 export default function ListingsClient({ apartments, searchParams }: Props) {
   const [showMap, setShowMap]         = useState(false)
   const [showFilters, setShowFilters] = useState(false)
+  const [heroIndex, setHeroIndex]     = useState(0)
+  const heroImages = ['/hero.jpeg', '/hero2.jpeg', '/hero3.jpeg']
+
+  useEffect(() => {
+    const t = setInterval(() => setHeroIndex((i) => (i + 1) % heroImages.length), 5000)
+    return () => clearInterval(t)
+  }, [])
   const mapKey = apartments.map((a) => a.id).join(',')
 
   const hasFilters = !!(
@@ -42,8 +49,16 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
             <ListingsMap key={mapKey} apartments={apartments} />
           ) : (
             <div className="relative w-full h-52 md:h-72 rounded-2xl overflow-hidden bg-brand-dark/30">
-              <img src="/hero.jpeg" alt="Stockholm" className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/40 to-transparent" />
+              {heroImages.map((src, i) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt="Hero"
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+                  style={{ opacity: i === heroIndex ? 1 : 0 }}
+                />
+              ))}
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/50 to-transparent" />
               <HeroTypewriter count={apartments.length} />
             </div>
           )}
