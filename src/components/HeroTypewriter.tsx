@@ -36,7 +36,7 @@ export default function HeroTypewriter({ count }: Props) {
   }, [displayed1, displayed2, phase, LINE2])
 
   return (
-    <div className="absolute bottom-12 left-5 right-5">
+    <div className="absolute top-6 left-5 right-5">
       <p className="text-white font-black text-3xl md:text-4xl font-sans drop-shadow leading-tight">
         {displayed1}
         {phase === 'line1' && <span className="animate-pulse">|</span>}
