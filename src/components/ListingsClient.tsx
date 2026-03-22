@@ -5,6 +5,7 @@ import Link from 'next/link'
 import ApartmentCard from '@/components/ApartmentCard'
 import ApartmentFilters from '@/components/ApartmentFilters'
 import ListingsMap from '@/components/ListingsMap'
+import HeroTypewriter from '@/components/HeroTypewriter'
 import type { Apartment } from '@/types'
 
 interface Props {
@@ -43,10 +44,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
             <div className="relative w-full h-52 md:h-72 rounded-2xl overflow-hidden bg-brand-dark/30">
               <img src="/hero.jpeg" alt="Stockholm" className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/40 to-transparent" />
-              <div className="absolute bottom-4 left-4">
-                <p className="text-white font-black text-xl md:text-2xl font-sans drop-shadow">Hitta din nästa bostad</p>
-                <p className="text-white/80 text-sm mt-0.5 drop-shadow">{apartments.length} {apartments.length === 1 ? 'annons' : 'annonser'}</p>
-              </div>
+              <HeroTypewriter count={apartments.length} />
             </div>
           )}
 
