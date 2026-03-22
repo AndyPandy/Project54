@@ -11,6 +11,20 @@ interface Props {
 export default function ImageGallery({ images, title }: Props) {
   const [selected, setSelected] = useState(0)
   const [lightbox, setLightbox] = useState(false)
+  const touchStartX = useState<number | null>(null)
+
+  function handleTouchStart(e: React.TouchEvent) {
+    touchStartX[1](e.touches[0].clientX)
+  }
+  function handleTouchEnd(e: React.TouchEvent) {
+    if (touchStartX[0] === null) return
+    const diff = touchStartX[0] - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) setSelected((s) => (s + 1) % images.length)
+      else setSelected((s) => (s - 1 + images.length) % images.length)
+    }
+    touchStartX[1](null)
+  }
 
   if (!images.length) {
     return (
@@ -31,6 +45,8 @@ export default function ImageGallery({ images, title }: Props) {
       <div
         className="relative aspect-[16/9] rounded-xl overflow-hidden bg-brand-offwhite cursor-zoom-in"
         onClick={() => setLightbox(true)}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
         <Image
           src={images[selected]}

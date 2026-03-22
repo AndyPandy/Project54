@@ -56,7 +56,7 @@ export default async function ApartmentPage({ params }: { params: { slug: string
     <>
       <Suspense fallback={null}><Navbar /></Suspense>
 
-      <main className="max-w-6xl mx-auto px-4 py-10">
+      <main className="max-w-6xl mx-auto px-4 py-10 pb-28 lg:pb-10">
         {/* Breadcrumb */}
         <nav className="text-base text-brand-muted mb-6">
           <a href="/" className="hover:text-brand-navy">Annonser</a>
@@ -204,7 +204,7 @@ export default async function ApartmentPage({ params }: { params: { slug: string
           </div>
 
           {/* Right column — contact + showings */}
-          <div className="lg:col-span-1">
+          <div id="contact" className="lg:col-span-1">
             <div className="sticky top-24 space-y-4">
               <ContactForm apartmentTitle={apt.title} apartmentId={apt.id} />
               <ShowingsList showings={showings} apartmentTitle={apt.title} address={apt.address} />
@@ -212,6 +212,20 @@ export default async function ApartmentPage({ params }: { params: { slug: string
           </div>
         </div>
       </main>
+
+      {/* Mobile sticky bottom bar */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-100 px-4 py-3 flex items-center gap-4">
+        <div className="flex-1 min-w-0">
+          <p className="text-xs text-brand-muted truncate">{apt.title}</p>
+          <p className="text-base font-black text-brand-green">{priceLabel}</p>
+        </div>
+        <a
+          href="#contact"
+          className="flex-shrink-0 bg-brand-navy text-white font-bold text-sm px-5 py-3 rounded-xl"
+        >
+          Kontakta
+        </a>
+      </div>
     </>
   )
 }
