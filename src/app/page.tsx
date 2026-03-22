@@ -10,7 +10,8 @@ function parseApartment(raw: {
   price: number; address: string; latitude: number; longitude: number
   rooms: number; sizeSqm: number; images: string; tags: string; status: string
   listingType: string; propertyType: string; floor: number | null
-  fee: number | null; operatingCost: number | null; createdAt: Date; updatedAt: Date
+  fee: number | null; operatingCost: number | null; buildYear: number | null
+  tenure: string; floorPlan: string; createdAt: Date; updatedAt: Date
 }): Apartment {
   return {
     ...raw,
