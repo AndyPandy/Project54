@@ -96,8 +96,8 @@ export default async function ApartmentPage({ params }: { params: { slug: string
               </div>
 
               {/* Fact box */}
-              <div className="mt-5 border border-brand-dark">
-                <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y divide-brand-dark">
+              <div className="mt-5 bg-brand-dark/20">
+                <div className="grid grid-cols-2 sm:grid-cols-4">
                   {apt.propertyType != null && apt.propertyType !== '' && (
                     <div className="p-3">
                       <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Bostadstyp</p>
