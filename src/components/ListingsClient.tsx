@@ -48,7 +48,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
           {showMap ? (
             <ListingsMap key={mapKey} apartments={apartments} />
           ) : (
-            <div className="relative w-full h-52 md:h-72 rounded-2xl overflow-hidden bg-brand-dark/30">
+            <div className="relative w-full h-[70vh] md:h-72 rounded-2xl overflow-hidden bg-brand-dark/30">
               {heroImages.map((src, i) => (
                 <img
                   key={src}
