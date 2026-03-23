@@ -91,7 +91,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
           {hasFilters && <span className="bg-white text-brand-navy rounded-full w-5 h-5 text-[10px] flex items-center justify-center font-black">!</span>}
         </button>
         <button
-          onClick={() => setShowMap((v) => !v)}
+          onClick={() => { setShowMap((v) => !v); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
           className="flex-1 flex items-center justify-center gap-2 py-3 border border-brand-navy text-brand-navy font-bold text-[11px] uppercase tracking-[0.1em]"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
