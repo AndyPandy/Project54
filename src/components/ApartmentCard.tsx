@@ -20,7 +20,7 @@ export default function ApartmentCard({ apt }: { apt: Apartment }) {
       className="group flex flex-col overflow-hidden hover:opacity-90 transition-opacity duration-200"
     >
       {/* Image */}
-      <div className="relative aspect-[4/3] bg-brand-dark overflow-hidden">
+      <div className="relative aspect-[4/3] md:aspect-[3/2] bg-brand-dark overflow-hidden">
         {cover ? (
           <Image
             src={cover}

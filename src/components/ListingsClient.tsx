@@ -32,8 +32,31 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
   )
 
   return (
-    <div className="max-w-6xl mx-auto pb-24 md:pb-8">
-      <div className="flex flex-col lg:flex-row">
+    <div className="pb-24 md:pb-8">
+
+      {/* Full-width hero / map */}
+      {showMap ? (
+        <div className="w-full h-[60vh]">
+          <ListingsMap key={mapKey} apartments={apartments} />
+        </div>
+      ) : (
+        <div className="relative w-full h-[62vh] md:h-[78vh] overflow-hidden bg-brand-dark">
+          {heroImages.map((src, i) => (
+            <img
+              key={src}
+              src={src}
+              alt="Hero"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+              style={{ opacity: i === heroIndex ? 1 : 0 }}
+            />
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+          <HeroTypewriter count={apartments.length} />
+        </div>
+      )}
+
+      {/* Sidebar + listings */}
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row">
 
         {/* Desktop filters sidebar */}
         <div className="hidden lg:block lg:w-64 flex-shrink-0">
@@ -43,33 +66,15 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
           </div>
         </div>
 
-        {/* Map / Image + Listings */}
-        <div className="flex-1 space-y-6 px-4 lg:px-6 py-6">
-          {showMap ? (
-            <ListingsMap key={mapKey} apartments={apartments} />
-          ) : (
-            <div className="relative w-full h-52 md:h-72 rounded-2xl overflow-hidden bg-brand-dark/30">
-              {heroImages.map((src, i) => (
-                <img
-                  key={src}
-                  src={src}
-                  alt="Hero"
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-                  style={{ opacity: i === heroIndex ? 1 : 0 }}
-                />
-              ))}
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/50 to-transparent" />
-              <HeroTypewriter count={apartments.length} />
-            </div>
-          )}
-
+        {/* Listings grid */}
+        <div className="flex-1 px-4 lg:px-8 py-10">
           {apartments.length === 0 ? (
-            <div className="p-16 text-center">
+            <div className="py-24 text-center">
               <p className="text-brand-muted text-sm">Inga annonser matchar dina filter.</p>
               <Link href="/" className="text-brand-navy text-xs font-bold uppercase tracking-[0.1em] hover:opacity-60 mt-3 inline-block transition-opacity">Rensa filter</Link>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 gap-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-12">
               {apartments.map((apt) => (
                 <ApartmentCard key={apt.id} apt={apt} />
               ))}
@@ -108,10 +113,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
           <div className="relative bg-brand-offwhite max-h-[88vh] flex flex-col">
             <div className="flex items-center justify-between px-5 py-4 border-b border-brand-dark flex-shrink-0">
               <div className="flex items-center gap-3">
-                <button
-                  onClick={() => setShowFilters(false)}
-                  className="text-brand-muted hover:text-brand-navy transition"
-                >
+                <button onClick={() => setShowFilters(false)} className="text-brand-muted hover:text-brand-navy transition">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
