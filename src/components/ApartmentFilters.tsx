@@ -76,9 +76,9 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
   const selectedFeatures = values.features ? values.features.split(',') : []
   const hasFilters = values.search || values.listingType !== 'all' || values.minPrice || values.maxPrice || values.minRooms || values.maxRooms || values.minSize || values.maxSize || values.features
 
-  const selectCls = 'w-full px-3 py-2.5 text-sm text-brand-navy border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green transition bg-white'
-  const inputCls  = 'w-full px-3 py-2.5 text-sm text-brand-navy border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green transition'
-  const labelCls  = 'block text-sm font-bold text-brand-navy uppercase tracking-wide mb-2'
+  const selectCls = 'w-full px-3 py-2 text-sm text-brand-navy border border-brand-dark bg-brand-offwhite focus:outline-none focus:border-brand-navy transition'
+  const inputCls  = 'w-full px-3 py-2 text-sm text-brand-navy border border-brand-dark bg-brand-offwhite focus:outline-none focus:border-brand-navy transition'
+  const labelCls  = 'block text-[10px] font-bold text-brand-muted uppercase tracking-[0.12em] mb-2'
 
   return (
     <aside className="space-y-6">
@@ -86,7 +86,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       <div>
         <label className={labelCls}>Sök</label>
         <div className="relative">
-          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-brand-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="8" strokeWidth="2" /><path d="M21 21l-4.35-4.35" strokeWidth="2" strokeLinecap="round" />
           </svg>
           <input
@@ -94,22 +94,22 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
             value={values.search}
             onChange={(e) => set('search', e.target.value)}
             placeholder="Område, titel…"
-            className="w-full pl-9 pr-3 py-2.5 text-sm text-brand-navy border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green transition"
+            className="w-full pl-9 pr-3 py-2 text-sm text-brand-navy border border-brand-dark bg-brand-offwhite focus:outline-none focus:border-brand-navy transition"
           />
         </div>
       </div>
 
       {/* Listing type */}
       <div>
-        <label className={labelCls}>Annonstyp</label>
-        <div className="flex rounded-lg overflow-hidden border border-gray-200 text-sm">
+        <label className={labelCls}>Typ</label>
+        <div className="flex border border-brand-dark overflow-hidden text-xs">
           {['all', 'rent', 'sale', 'kommande'].map((t) => (
             <button
               key={t}
               onClick={() => set('listingType', t)}
-              className={`${t === 'kommande' ? 'flex-[1.6]' : 'flex-1'} py-2 font-semibold capitalize transition ${values.listingType === t ? 'bg-brand-green text-white' : 'text-brand-navy hover:bg-brand-offwhite'}`}
+              className={`${t === 'kommande' ? 'flex-[1.6]' : 'flex-1'} py-2 font-bold uppercase tracking-[0.06em] transition ${values.listingType === t ? 'bg-brand-navy text-white' : 'text-brand-muted hover:text-brand-navy'}`}
             >
-              {t === 'all' ? 'Alla' : t === 'rent' ? 'Hyra' : t === 'sale' ? 'Köp' : 'Kommande'}
+              {t === 'all' ? 'Alla' : t === 'rent' ? 'Hyra' : t === 'sale' ? 'Köp' : 'Komm.'}
             </button>
           ))}
         </div>
@@ -125,7 +125,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
               <option key={r} value={r}>{r} rum</option>
             ))}
           </select>
-          <span className="text-brand-navy text-sm flex-shrink-0">–</span>
+          <span className="text-brand-muted text-xs flex-shrink-0">–</span>
           <select value={values.maxRooms} onChange={(e) => set('maxRooms', e.target.value)} className={selectCls}>
             <option value="">Max</option>
             {ROOM_OPTIONS.filter(Boolean).map((r) => (
@@ -139,25 +139,9 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       <div>
         <label className={labelCls}>Area (m²)</label>
         <div className="flex gap-2 items-center">
-          <input
-            type="number"
-            placeholder="20"
-            min={20}
-            max={250}
-            value={values.minSize}
-            onChange={(e) => set('minSize', e.target.value)}
-            className={inputCls}
-          />
-          <span className="text-brand-navy text-sm flex-shrink-0">–</span>
-          <input
-            type="number"
-            placeholder="250"
-            min={20}
-            max={250}
-            value={values.maxSize}
-            onChange={(e) => set('maxSize', e.target.value)}
-            className={inputCls}
-          />
+          <input type="number" placeholder="20"  min={20}  max={250} value={values.minSize} onChange={(e) => set('minSize', e.target.value)} className={inputCls} />
+          <span className="text-brand-muted text-xs flex-shrink-0">–</span>
+          <input type="number" placeholder="250" min={20}  max={250} value={values.maxSize} onChange={(e) => set('maxSize', e.target.value)} className={inputCls} />
         </div>
       </div>
 
@@ -165,25 +149,9 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       <div>
         <label className={labelCls}>Pris (SEK)</label>
         <div className="flex gap-2 items-center">
-          <input
-            type="number"
-            placeholder="100 000"
-            min={100000}
-            step={100000}
-            value={values.minPrice}
-            onChange={(e) => set('minPrice', e.target.value)}
-            className={inputCls}
-          />
-          <span className="text-brand-navy text-sm flex-shrink-0">–</span>
-          <input
-            type="number"
-            placeholder="30 000 000"
-            min={100000}
-            step={100000}
-            value={values.maxPrice}
-            onChange={(e) => set('maxPrice', e.target.value)}
-            className={inputCls}
-          />
+          <input type="number" placeholder="100 000"    min={100000} step={100000} value={values.minPrice} onChange={(e) => set('minPrice', e.target.value)} className={inputCls} />
+          <span className="text-brand-muted text-xs flex-shrink-0">–</span>
+          <input type="number" placeholder="30 000 000" min={100000} step={100000} value={values.maxPrice} onChange={(e) => set('maxPrice', e.target.value)} className={inputCls} />
         </div>
       </div>
 
@@ -197,9 +165,9 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
                 type="checkbox"
                 checked={selectedFeatures.includes(f.value)}
                 onChange={() => toggleFeature(f.value)}
-                className="w-4 h-4 rounded border-gray-300 text-brand-green accent-brand-green cursor-pointer"
+                className="w-4 h-4 border-brand-dark text-brand-navy accent-brand-navy cursor-pointer"
               />
-              <span className="text-sm font-medium text-brand-navy group-hover:text-brand-navy/70 transition">{f.label}</span>
+              <span className="text-xs text-brand-navy group-hover:text-brand-muted transition">{f.label}</span>
             </label>
           ))}
         </div>
@@ -208,7 +176,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       {/* Map toggle */}
       <button
         onClick={onToggleMap}
-        className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg border border-brand-green text-brand-green text-sm font-bold hover:bg-brand-green hover:text-white transition"
+        className="w-full flex items-center justify-center gap-2 py-2.5 border border-brand-navy text-brand-navy text-[11px] font-bold uppercase tracking-[0.1em] hover:bg-brand-navy hover:text-white transition"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
@@ -217,11 +185,11 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       </button>
 
       {/* Results count + clear */}
-      <div className="pt-2 border-t border-gray-100 flex items-center justify-between">
-        <p className="text-sm text-brand-navy font-medium">{count} {count !== 1 ? 'annonser' : 'annons'} hittades</p>
+      <div className="pt-3 border-t border-brand-dark flex items-center justify-between">
+        <p className="text-xs text-brand-muted">{count} {count !== 1 ? 'annonser' : 'annons'}</p>
         {hasFilters && (
-          <button onClick={clear} className="text-xs text-brand-green font-bold hover:underline">
-            Rensa alla
+          <button onClick={clear} className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted hover:text-brand-navy transition">
+            Rensa
           </button>
         )}
       </div>

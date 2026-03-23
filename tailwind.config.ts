@@ -11,19 +11,24 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          green:    '#80B5AC',   // sage teal — primary CTA / accent
-          'green-d': '#6A9E96',  // darker teal for hover states
-          navy:     '#404040',   // charcoal — dark text & headings
-          dark:     '#DEDAD5',   // slightly darker than offwhite — card backgrounds
-          muted:    '#9B9EA0',   // cool gray — secondary text
-          offwhite: '#FAF8F6',   // warm light cream — base background
+          green:    '#1A1815',   // near-black — primary CTA / buttons
+          'green-d': '#000000',  // pure black for hover
+          navy:     '#1A1815',   // near-black — text & headings
+          dark:     '#EDE9E4',   // warm light — card backgrounds / borders
+          muted:    '#8A8680',   // warm gray — secondary text
+          offwhite: '#F5F2EE',   // warm cream — base background
+          accent:   '#7BA89F',   // sage teal — used sparingly for badges
         },
       },
       fontFamily: {
         sans:    ['"Darker Grotesque"', 'Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
-        serif:   ['"Darker Grotesque"', 'Georgia', 'serif'],
+        serif:   ['Georgia', 'Times New Roman', 'serif'],
         raleway: ['"Raleway"', 'sans-serif'],
         roboto:  ['"Roboto"', 'sans-serif'],
+      },
+      letterSpacing: {
+        editorial: '0.08em',
+        wide:      '0.05em',
       },
     },
   },

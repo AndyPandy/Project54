@@ -9,10 +9,18 @@
   body {
     @apply bg-brand-offwhite text-brand-navy font-roboto antialiased;
     letter-spacing: 0.01em;
+    font-feature-settings: 'kern' 1, 'liga' 1;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-sans;
+    letter-spacing: -0.01em;
+  }
+
+  /* Uppercase labels — editorial tracking */
+  .label-upper {
+    @apply text-xs font-bold uppercase;
+    letter-spacing: 0.12em;
   }
 }
 

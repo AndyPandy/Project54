@@ -18,20 +18,22 @@ export default function ContactForm({ apartmentTitle }: Props) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setStatus('sending')
-    // In production wire this to an email API (e.g. Resend, SendGrid)
     await new Promise((r) => setTimeout(r, 800))
     setStatus('sent')
   }
 
+  const fieldCls = 'w-full border border-brand-dark bg-brand-offwhite px-3 py-2.5 text-sm focus:outline-none focus:border-brand-navy transition'
+  const labelCls = 'block text-[10px] font-bold text-brand-muted uppercase tracking-[0.12em] mb-1.5'
+
   if (status === 'sent') {
     return (
-      <div className="bg-brand-green/10 border border-brand-green/30 rounded-xl p-6 text-center">
-        <svg className="w-10 h-10 text-brand-green mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <div className="border border-brand-dark p-6 text-center">
+        <svg className="w-8 h-8 text-brand-navy mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <p className="font-bold text-brand-navy">Meddelande skickat!</p>
-        <p className="text-sm text-brand-muted mt-1">Vi återkommer så snart som möjligt.</p>
-        <button onClick={() => setStatus('idle')} className="mt-4 text-xs text-brand-green font-semibold hover:underline">
+        <p className="font-bold text-brand-navy text-sm">Meddelande skickat</p>
+        <p className="text-xs text-brand-muted mt-1">Vi återkommer så snart som möjligt.</p>
+        <button onClick={() => setStatus('idle')} className="mt-4 text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted hover:text-brand-navy transition">
           Skicka ett till
         </button>
       </div>
@@ -39,67 +41,39 @@ export default function ContactForm({ apartmentTitle }: Props) {
   }
 
   return (
-    <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
-      <h3 className="font-black text-brand-navy mb-1">Kontakta mäklaren</h3>
-      <p className="text-xs text-brand-muted mb-5 line-clamp-2">{apartmentTitle}</p>
+    <div className="border border-brand-dark p-5">
+      <h3 className="font-black text-brand-navy mb-0.5 text-sm uppercase tracking-[0.06em]">Kontakta mäklaren</h3>
+      <p className="text-xs text-brand-muted mb-5 line-clamp-1">{apartmentTitle}</p>
 
       <form onSubmit={handleSubmit} className="space-y-3">
         <div>
-          <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1">Namn</label>
-          <input
-            required
-            value={form.name}
-            onChange={(e) => set('name', e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green transition"
-            placeholder="Ditt namn"
-          />
+          <label className={labelCls}>Namn</label>
+          <input required value={form.name} onChange={(e) => set('name', e.target.value)} className={fieldCls} placeholder="Ditt namn" />
         </div>
         <div>
-          <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1">Email</label>
-          <input
-            type="email"
-            required
-            value={form.email}
-            onChange={(e) => set('email', e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green transition"
-            placeholder="you@example.com"
-          />
+          <label className={labelCls}>Email</label>
+          <input type="email" required value={form.email} onChange={(e) => set('email', e.target.value)} className={fieldCls} placeholder="you@example.com" />
         </div>
         <div>
-          <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1">Telefon (valfritt)</label>
-          <input
-            type="tel"
-            value={form.phone}
-            onChange={(e) => set('phone', e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green transition"
-            placeholder="+46 70 000 00 00"
-          />
+          <label className={labelCls}>Telefon (valfritt)</label>
+          <input type="tel" value={form.phone} onChange={(e) => set('phone', e.target.value)} className={fieldCls} placeholder="+46 70 000 00 00" />
         </div>
         <div>
-          <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1">Meddelande</label>
-          <textarea
-            required
-            rows={4}
-            value={form.message}
-            onChange={(e) => set('message', e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green transition resize-none"
-            placeholder="Jag är intresserad av den här bostaden…"
-          />
+          <label className={labelCls}>Meddelande</label>
+          <textarea required rows={4} value={form.message} onChange={(e) => set('message', e.target.value)} className={`${fieldCls} resize-none`} placeholder="Jag är intresserad av den här bostaden…" />
         </div>
 
-        {status === 'error' && (
-          <p className="text-xs text-red-600">Något gick fel. Försök igen.</p>
-        )}
+        {status === 'error' && <p className="text-xs text-red-600">Något gick fel. Försök igen.</p>}
 
         <button
           type="submit"
           disabled={status === 'sending'}
-          className="w-full bg-brand-green hover:bg-brand-green-d text-white font-bold py-3 rounded-lg transition disabled:opacity-60 text-sm"
+          className="w-full bg-brand-navy hover:bg-black text-white font-bold py-3 transition disabled:opacity-60 text-[11px] uppercase tracking-[0.1em]"
         >
           {status === 'sending' ? 'Skickar…' : 'Skicka meddelande'}
         </button>
 
-        <p className="text-xs text-brand-muted text-center">
+        <p className="text-[10px] text-brand-muted text-center">
           Dina kontaktuppgifter delas endast med mäklaren.
         </p>
       </form>

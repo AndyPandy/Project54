@@ -6,7 +6,7 @@ import { useSearchParams, usePathname } from 'next/navigation'
 
 const TABS = [
   { value: 'all',      label: 'Alla' },
-  { value: 'rent',     label: 'Till uthyrning' },
+  { value: 'rent',     label: 'Uthyrning' },
   { value: 'sale',     label: 'Till salu' },
   { value: 'kommande', label: 'Kommande' },
 ]
@@ -18,33 +18,27 @@ export default function Navbar() {
   const isHome = pathname === '/'
 
   return (
-    <header className="sticky top-0 z-50 bg-brand-offwhite/95 backdrop-blur-md border-b border-brand-dark/10">
-      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center gap-6">
+    <header className="sticky top-0 z-50 bg-brand-offwhite/96 backdrop-blur-sm border-b border-brand-dark">
+      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center gap-8">
         <Link href="/" className="flex-shrink-0">
-          <Image src="/logo.png" alt="NyLya" width={160} height={60} className="object-contain grayscale brightness-0" />
+          <Image src="/logo.png" alt="NyLya" width={140} height={52} className="object-contain grayscale brightness-0" />
         </Link>
 
         {isHome && (
-          <nav className="hidden md:flex items-center flex-1 justify-center">
+          <nav className="hidden md:flex items-center flex-1 gap-1">
             {TABS.map((tab) => {
               const isActive = activeTab === tab.value
-              const isKommande = tab.value === 'kommande'
               return (
                 <Link
                   key={tab.value}
                   href={tab.value === 'all' ? '/' : `/?listingType=${tab.value}`}
-                  className={`px-5 h-16 flex flex-col items-center justify-center gap-0.5 transition whitespace-nowrap font-raleway font-black text-lg ${
+                  className={`px-4 h-14 flex items-center text-xs font-bold uppercase tracking-[0.1em] transition-colors whitespace-nowrap border-b-2 -mb-px ${
                     isActive
-                      ? isKommande ? 'text-amber-700' : 'text-brand-navy'
-                      : 'text-brand-muted hover:text-brand-navy'
+                      ? 'text-brand-navy border-brand-navy'
+                      : 'text-brand-muted border-transparent hover:text-brand-navy'
                   }`}
                 >
                   {tab.label}
-                  <span className={`h-0.5 w-full rounded-full transition-colors ${
-                    isActive
-                      ? isKommande ? 'bg-amber-500' : 'bg-brand-navy'
-                      : 'bg-transparent group-hover:bg-gray-300'
-                  }`} />
                 </Link>
               )
             })}
@@ -55,9 +49,9 @@ export default function Navbar() {
 
         <Link
           href="/admin"
-          className="flex-shrink-0 text-xs font-bold text-brand-muted hover:text-brand-navy border border-gray-200 px-3 py-1.5 rounded-lg hover:border-gray-300 transition"
+          className="flex-shrink-0 text-[11px] font-bold uppercase tracking-[0.1em] text-brand-muted hover:text-brand-navy transition-colors"
         >
-          Admin →
+          Admin
         </Link>
       </div>
     </header>

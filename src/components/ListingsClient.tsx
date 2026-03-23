@@ -32,19 +32,19 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
   )
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 pb-24 md:pb-8">
-      <div className="flex flex-col lg:flex-row gap-6">
+    <div className="max-w-6xl mx-auto pb-24 md:pb-8">
+      <div className="flex flex-col lg:flex-row">
 
         {/* Desktop filters sidebar */}
-        <div className="hidden lg:block lg:w-72 flex-shrink-0">
-          <div className="bg-white rounded-xl border border-brand-dark/8 p-5 sticky top-24">
-            <h2 className="text-sm font-black text-brand-navy uppercase tracking-wide mb-5">Filtrera annonser</h2>
+        <div className="hidden lg:block lg:w-64 flex-shrink-0">
+          <div className="bg-brand-offwhite border-r border-brand-dark p-5 sticky top-14 min-h-screen">
+            <h2 className="text-[11px] font-bold text-brand-muted uppercase tracking-[0.12em] mb-5">Filtrera</h2>
             <ApartmentFilters searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => setShowMap((v) => !v)} />
           </div>
         </div>
 
         {/* Map / Image + Listings */}
-        <div className="flex-1 space-y-4">
+        <div className="flex-1 space-y-6 px-4 lg:px-6 py-6">
           {showMap ? (
             <ListingsMap key={mapKey} apartments={apartments} />
           ) : (
@@ -64,15 +64,12 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
           )}
 
           {apartments.length === 0 ? (
-            <div className="bg-white rounded-xl border border-gray-100 p-16 text-center">
-              <svg className="w-12 h-12 text-gray-200 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-              </svg>
-              <p className="text-brand-muted font-medium">Inga annonser matchar dina filter.</p>
-              <Link href="/" className="text-brand-green font-bold text-sm hover:underline mt-2 inline-block">Rensa filter</Link>
+            <div className="p-16 text-center">
+              <p className="text-brand-muted text-sm">Inga annonser matchar dina filter.</p>
+              <Link href="/" className="text-brand-navy text-xs font-bold uppercase tracking-[0.1em] hover:opacity-60 mt-3 inline-block transition-opacity">Rensa filter</Link>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 gap-y-8">
               {apartments.map((apt) => (
                 <ApartmentCard key={apt.id} apt={apt} />
               ))}
@@ -82,20 +79,20 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
       </div>
 
       {/* Mobile bottom bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-100 px-4 py-3 flex gap-3">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-offwhite border-t border-brand-dark px-4 py-3 flex gap-3">
         <button
           onClick={() => setShowFilters(true)}
-          className="flex-1 flex items-center justify-center gap-2 py-3 bg-brand-navy text-white rounded-xl font-bold text-sm"
+          className="flex-1 flex items-center justify-center gap-2 py-3 bg-brand-navy text-white font-bold text-[11px] uppercase tracking-[0.1em]"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h18M6 8h12M9 12h6M11 16h2" />
           </svg>
           Filtrera
-          {hasFilters && <span className="bg-brand-green text-white rounded-full w-5 h-5 text-[10px] flex items-center justify-center font-black">!</span>}
+          {hasFilters && <span className="bg-white text-brand-navy rounded-full w-5 h-5 text-[10px] flex items-center justify-center font-black">!</span>}
         </button>
         <button
           onClick={() => setShowMap((v) => !v)}
-          className="flex-1 flex items-center justify-center gap-2 py-3 border border-brand-navy text-brand-navy rounded-xl font-bold text-sm"
+          className="flex-1 flex items-center justify-center gap-2 py-3 border border-brand-navy text-brand-navy font-bold text-[11px] uppercase tracking-[0.1em]"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
@@ -108,22 +105,22 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
       {showFilters && (
         <div className="lg:hidden fixed inset-0 z-50 flex flex-col justify-end">
           <div className="absolute inset-0 bg-black/50" onClick={() => setShowFilters(false)} />
-          <div className="relative bg-white rounded-t-2xl max-h-[88vh] flex flex-col">
-            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 flex-shrink-0">
+          <div className="relative bg-brand-offwhite max-h-[88vh] flex flex-col">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-brand-dark flex-shrink-0">
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setShowFilters(false)}
-                  className="text-brand-navy hover:text-brand-muted transition"
+                  className="text-brand-muted hover:text-brand-navy transition"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
-                <h2 className="text-base font-black text-brand-navy">Filtrera annonser</h2>
+                <h2 className="text-[11px] font-bold text-brand-navy uppercase tracking-[0.12em]">Filtrera</h2>
               </div>
               <button
                 onClick={() => setShowFilters(false)}
-                className="bg-brand-navy text-white text-sm font-bold px-4 py-1.5 rounded-full"
+                className="bg-brand-navy text-white text-[11px] font-bold uppercase tracking-[0.1em] px-4 py-2"
               >
                 Visa {apartments.length} {apartments.length === 1 ? 'annons' : 'annonser'}
               </button>

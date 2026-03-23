@@ -214,14 +214,14 @@ export default async function ApartmentPage({ params }: { params: { slug: string
       </main>
 
       {/* Mobile sticky bottom bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-100 px-4 py-3 flex items-center gap-4">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-offwhite border-t border-brand-dark px-4 py-3 flex items-center gap-4">
         <div className="flex-1 min-w-0">
-          <p className="text-xs text-brand-muted truncate">{apt.title}</p>
-          <p className="text-base font-black text-brand-green">{priceLabel}</p>
+          <p className="text-[10px] text-brand-muted uppercase tracking-[0.08em] truncate">{apt.title}</p>
+          <p className="text-base font-black text-brand-navy">{priceLabel}</p>
         </div>
         <a
           href="#contact"
-          className="flex-shrink-0 bg-brand-navy text-white font-bold text-sm px-5 py-3 rounded-xl"
+          className="flex-shrink-0 bg-brand-navy text-white font-bold text-[11px] uppercase tracking-[0.1em] px-6 py-3"
         >
           Kontakta
         </a>
