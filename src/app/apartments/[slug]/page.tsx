@@ -56,21 +56,18 @@ export default async function ApartmentPage({ params }: { params: { slug: string
     <>
       <Suspense fallback={null}><Navbar /></Suspense>
 
-      <main className="pb-28 lg:pb-10">
-        {/* Full-width gallery */}
-        <ImageGallery images={apt.images} title={apt.title} />
-
-        <div className="max-w-6xl mx-auto px-4 py-10">
+      <main className="max-w-6xl mx-auto px-4 py-10 pb-28 lg:pb-10">
         {/* Breadcrumb */}
-        <nav className="text-xs text-brand-muted mb-8 uppercase tracking-[0.08em]">
-          <a href="/" className="hover:text-brand-navy transition-colors">Annonser</a>
+        <nav className="text-base text-brand-muted mb-6">
+          <a href="/" className="hover:text-brand-navy">Annonser</a>
           <span className="mx-2">›</span>
-          <span className="text-brand-navy">{apt.title}</span>
+          <span className="text-brand-navy font-medium">{apt.title}</span>
         </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {/* Left column */}
           <div className="lg:col-span-2 space-y-8">
+            <ImageGallery images={apt.images} title={apt.title} />
 
             {/* Title + price */}
             <div>
@@ -214,7 +211,6 @@ export default async function ApartmentPage({ params }: { params: { slug: string
             </div>
           </div>
         </div>
-        </div>{/* /max-w-6xl */}
       </main>
 
       {/* Mobile sticky bottom bar */}
