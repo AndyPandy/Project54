@@ -46,6 +46,7 @@ export default function Navbar() {
         )}
 
         {!isHome && <div className="flex-1" />}
+        {isHome && <div className="flex-1 md:hidden" />}
 
         <Link
           href="/admin"
