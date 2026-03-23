@@ -36,7 +36,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
       <div className="flex flex-col lg:flex-row">
 
         {/* Desktop filters sidebar */}
-        <div className="hidden lg:block lg:w-64 flex-shrink-0">
+        <div className="hidden lg:block lg:w-72 flex-shrink-0">
           <div className="bg-brand-offwhite border-r border-brand-dark p-5 sticky top-14 min-h-screen">
             <h2 className="text-[11px] font-bold text-brand-muted uppercase tracking-[0.12em] mb-5">Filtrera</h2>
             <ApartmentFilters searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => setShowMap((v) => !v)} />

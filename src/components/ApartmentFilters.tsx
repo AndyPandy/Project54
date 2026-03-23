@@ -107,9 +107,9 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
             <button
               key={t}
               onClick={() => set('listingType', t)}
-              className={`${t === 'kommande' ? 'flex-[1.6]' : 'flex-1'} py-2 font-bold uppercase tracking-[0.06em] transition ${values.listingType === t ? 'bg-brand-navy text-white' : 'text-brand-muted hover:text-brand-navy'}`}
+              className={`flex-1 py-2 font-bold uppercase tracking-[0.04em] text-[9px] transition ${values.listingType === t ? 'bg-brand-navy text-white' : 'text-brand-muted hover:text-brand-navy'}`}
             >
-              {t === 'all' ? 'Alla' : t === 'rent' ? 'Hyra' : t === 'sale' ? 'Köp' : 'Komm.'}
+              {t === 'all' ? 'Alla' : t === 'rent' ? 'Hyra' : t === 'sale' ? 'Köp' : 'Kommande'}
             </button>
           ))}
         </div>
