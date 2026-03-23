@@ -73,97 +73,73 @@ export default async function ApartmentPage({ params }: { params: { slug: string
             <div>
               <div className="flex gap-2 mb-3">
                 {apt.listingType === 'kommande' ? (
-                  <span className="inline-block text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-amber-100 text-amber-800">
+                  <span className="inline-block text-[10px] font-bold uppercase tracking-[0.1em] px-2.5 py-1 bg-amber-100 text-amber-800">
                     Kommande
                   </span>
                 ) : (
-                  <span className={`inline-block text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full text-white ${apt.listingType === 'rent' ? '' : 'bg-brand-green'}`} style={apt.listingType === 'rent' ? { backgroundColor: '#BE9CB3' } : {}}>
+                  <span className="inline-block text-[10px] font-bold uppercase tracking-[0.1em] px-2.5 py-1 text-white" style={{ backgroundColor: apt.listingType === 'rent' ? '#BE9CB3' : '#1A1815' }}>
                     {apt.listingType === 'rent' ? 'Till uthyrning' : 'Till salu'}
                   </span>
                 )}
               </div>
               <div className="flex items-start justify-between flex-wrap gap-4">
                 <div>
-                  <h1 className="text-3xl font-black text-brand-navy font-serif">{apt.title}</h1>
-                  <p className="text-brand-muted mt-1">{apt.address}</p>
+                  <h1 className="text-3xl font-black text-brand-navy">{apt.title}</h1>
+                  <p className="text-sm text-brand-muted mt-1">{apt.address}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-3xl font-black text-brand-green">{priceLabel}</p>
+                  <p className="text-3xl font-black text-brand-navy">{priceLabel}</p>
                   {apt.listingType === 'sale' && (
-                    <p className="text-xs text-brand-muted mt-1">Utropspris</p>
+                    <p className="text-[10px] uppercase tracking-[0.1em] text-brand-muted mt-1">Utropspris</p>
                   )}
                 </div>
               </div>
 
               {/* Fact box */}
-              <div className="mt-5 bg-brand-dark/30 border border-gray-300 rounded-xl p-4">
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-3">
+              <div className="mt-5 border border-brand-dark">
+                <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y divide-brand-dark">
                   {apt.propertyType != null && apt.propertyType !== '' && (
-                    <div className="flex items-center gap-2">
-                      <svg className="w-5 h-5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 22V12h6v10" /></svg>
-                      <div>
-                        <p className="text-xs text-brand-muted leading-none">Bostadstyp</p>
-                        <p className="text-sm font-bold text-brand-navy mt-0.5">{apt.propertyType}</p>
-                      </div>
+                    <div className="p-3">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Bostadstyp</p>
+                      <p className="text-sm font-bold text-brand-navy">{apt.propertyType}</p>
                     </div>
                   )}
-                  <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M4 12h16M12 4v16" /></svg>
-                    <div>
-                      <p className="text-xs text-brand-muted leading-none">Antal rum</p>
-                      <p className="text-sm font-bold text-brand-navy mt-0.5">{apt.rooms} rum</p>
-                    </div>
+                  <div className="p-3">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Rum</p>
+                    <p className="text-sm font-bold text-brand-navy">{apt.rooms} rum</p>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
-                    <div>
-                      <p className="text-xs text-brand-muted leading-none">Boarea</p>
-                      <p className="text-sm font-bold text-brand-navy mt-0.5">{apt.sizeSqm} m²</p>
-                    </div>
+                  <div className="p-3">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Boarea</p>
+                    <p className="text-sm font-bold text-brand-navy">{apt.sizeSqm} m²</p>
                   </div>
                   {apt.floor != null && (
-                    <div className="flex items-center gap-2">
-                      <svg className="w-5 h-5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0H5m14 0h2M5 21H3M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 8v-4a1 1 0 011-1h2a1 1 0 011 1v4m-4 0h4" /></svg>
-                      <div>
-                        <p className="text-xs text-brand-muted leading-none">Våning</p>
-                        <p className="text-sm font-bold text-brand-navy mt-0.5">{apt.floor}</p>
-                      </div>
+                    <div className="p-3">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Våning</p>
+                      <p className="text-sm font-bold text-brand-navy">{apt.floor}</p>
                     </div>
                   )}
                   {apt.fee != null && (
-                    <div className="flex items-center gap-2">
-                      <svg className="w-5 h-5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                      <div>
-                        <p className="text-xs text-brand-muted leading-none">Avgift</p>
-                        <p className="text-sm font-bold text-brand-navy mt-0.5">{apt.fee.toLocaleString('sv-SE')} kr/mån</p>
-                      </div>
+                    <div className="p-3">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Avgift</p>
+                      <p className="text-sm font-bold text-brand-navy">{apt.fee.toLocaleString('sv-SE')} kr/mån</p>
                     </div>
                   )}
                   {apt.operatingCost != null && (
-                    <div className="flex items-center gap-2">
-                      <svg className="w-5 h-5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                      <div>
-                        <p className="text-xs text-brand-muted leading-none">Driftkostnad</p>
-                        <p className="text-sm font-bold text-brand-navy mt-0.5">{apt.operatingCost.toLocaleString('sv-SE')} kr/år</p>
-                      </div>
+                    <div className="p-3">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Driftkostnad</p>
+                      <p className="text-sm font-bold text-brand-navy">{apt.operatingCost.toLocaleString('sv-SE')} kr/år</p>
                     </div>
                   )}
                   {apt.buildYear != null && (
-                    <div className="flex items-center gap-2">
-                      <svg className="w-5 h-5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                      <div>
-                        <p className="text-xs text-brand-muted leading-none">Byggår</p>
-                        <p className="text-sm font-bold text-brand-navy mt-0.5">{apt.buildYear}</p>
-                      </div>
+                    <div className="p-3">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Byggår</p>
+                      <p className="text-sm font-bold text-brand-navy">{apt.buildYear}</p>
                     </div>
                   )}
                   {apt.tenure != null && apt.tenure !== '' && (
-                    <div className="flex items-center gap-2">
-                      <svg className="w-5 h-5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                      <div>
-                        <p className="text-xs text-brand-muted leading-none">Boendeform</p>
-                        <p className="text-sm font-bold text-brand-navy mt-0.5">{apt.tenure}</p>
-                      </div>
+                    <div className="p-3">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Boendeform</p>
+                      <p className="text-sm font-bold text-brand-navy">{apt.tenure}</p>
                     </div>
                   )}
                 </div>
@@ -178,7 +154,7 @@ export default async function ApartmentPage({ params }: { params: { slug: string
                     const tag = LISTING_TAGS.find((t) => t.value === value)
                     if (!tag) return null
                     return (
-                      <span key={value} className={`inline-flex items-center text-xs font-medium px-2.5 py-1 rounded-full border border-stone-300 ${tag.color}`}>
+                      <span key={value} className={`inline-flex items-center text-[10px] font-bold uppercase tracking-[0.08em] px-2.5 py-1 border border-brand-dark ${tag.color}`}>
                         {tag.label}
                       </span>
                     )
@@ -189,11 +165,9 @@ export default async function ApartmentPage({ params }: { params: { slug: string
             )}
 
             {/* Description */}
-            <div>
-              <div className="bg-brand-dark/30 border border-gray-300 rounded-xl p-5">
-                <h2 className="text-lg font-bold text-brand-navy mb-3">Om bostaden</h2>
-                <p className="text-brand-muted leading-relaxed whitespace-pre-line">{apt.description}</p>
-              </div>
+            <div className="border-t border-brand-dark pt-6">
+              <h2 className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-muted mb-4">Om bostaden</h2>
+              <p className="text-sm text-brand-navy leading-relaxed whitespace-pre-line">{apt.description}</p>
             </div>
 
             {/* Map */}
