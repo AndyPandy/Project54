@@ -21,7 +21,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-brand-offwhite/96 backdrop-blur-sm border-b border-brand-dark">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center gap-8">
         <Link href="/" className="flex-shrink-0">
-          <Image src="/logo.png" alt="NyLya" width={140} height={52} className="object-contain grayscale brightness-0" />
+          <Image src="/logo.png" alt="Nordhem" width={180} height={60} className="object-contain mix-blend-multiply" />
         </Link>
 
         {isHome && (
