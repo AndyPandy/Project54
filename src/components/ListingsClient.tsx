@@ -55,10 +55,14 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
                   src={src}
                   alt="Hero"
                   className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-                  style={{ opacity: i === heroIndex ? 1 : 0 }}
+                  style={{
+                    opacity: i === heroIndex ? 1 : 0,
+                    filter: 'saturate(0.75) contrast(1.08) brightness(0.84)',
+                  }}
                 />
               ))}
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/50 to-transparent" />
+              {/* Warm charcoal overlay — B&O #191817 */}
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(25,24,23,0.72) 0%, rgba(25,24,23,0.18) 55%, rgba(25,24,23,0.04) 100%)' }} />
               <HeroTypewriter count={apartments.length} />
             </div>
           )}
