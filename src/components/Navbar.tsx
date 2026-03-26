@@ -35,13 +35,13 @@ export default function Navbar() {
                 <Link
                   key={tab.value}
                   href={tab.value === 'all' ? '/' : `/?listingType=${tab.value}`}
-                  className={`px-4 h-14 flex items-center text-xs font-raleway font-light uppercase tracking-[0.15em] transition-colors whitespace-nowrap border-b-2 -mb-px ${
-                    isActive
-                      ? 'text-brand-navy border-brand-sage'
-                      : 'text-brand-muted border-transparent hover:text-brand-navy'
+                  className={`px-4 h-14 flex items-center text-xs font-raleway font-light uppercase tracking-[0.15em] transition-colors whitespace-nowrap ${
+                    isActive ? 'text-brand-navy' : 'text-brand-muted hover:text-brand-navy'
                   }`}
                 >
-                  {tab.label}
+                  <span className={`border-b-2 pb-0.5 ${isActive ? 'border-brand-sage' : 'border-transparent'}`}>
+                    {tab.label}
+                  </span>
                 </Link>
               )
             })}
