@@ -47,7 +47,7 @@ export default function Sidebar() {
       <aside className="hidden md:flex w-60 flex-shrink-0 bg-brand-dark flex-col min-h-screen">
         <div className="px-5 py-5 border-b border-brand-navy/10">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/logo.png" alt="NyLya" width={130} height={48} className="flex-shrink-0 object-contain grayscale" />
+            <Image src="/logo.png" alt="Nordhem" width={130} height={48} className="flex-shrink-0 object-contain grayscale" />
           </Link>
           <p className="text-brand-muted text-xs mt-1 pl-10">Admin</p>
         </div>

@@ -38,7 +38,7 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 mb-2">
-            <Image src="/logo.png" alt="NyLya" width={180} height={68} className="flex-shrink-0 object-contain brightness-0 invert" />
+            <Image src="/logo.png" alt="Nordhem" width={180} height={68} className="flex-shrink-0 object-contain brightness-0 invert" />
           </div>
           <p className="text-brand-offwhite/50 text-sm">Admin portal</p>
         </div>

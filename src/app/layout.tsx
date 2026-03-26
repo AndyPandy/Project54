@@ -3,8 +3,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'NyLya — Hitta din nästa bostad',
-    template: '%s | NyLya',
+    default: 'Nordhem — Hitta din nästa bostad',
+    template: '%s | Nordhem',
   },
   description: 'Hitta din nästa bostad. Bläddra bland verifierade annonser för hyra och köp.',
 }

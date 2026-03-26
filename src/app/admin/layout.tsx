@@ -4,7 +4,7 @@ import AdminProviders from '@/components/admin/AdminProviders'
 import Sidebar from '@/components/admin/Sidebar'
 // Auth protection is handled by src/middleware.ts
 
-export const metadata = { title: 'Admin — NyLya' }
+export const metadata = { title: 'Admin — Nordhem' }
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions)
