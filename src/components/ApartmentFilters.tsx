@@ -47,7 +47,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       if (next.minSize)               params.set('minSize',     next.minSize)
       if (next.maxSize)               params.set('maxSize',     next.maxSize)
       if (next.features)              params.set('features',    next.features)
-      router.push(`${pathname}?${params.toString()}`)
+      router.push(`${pathname}?${params.toString()}`, { scroll: false })
     },
     [router, pathname],
   )
@@ -71,7 +71,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
   function clear() {
     const next = { search: '', listingType: 'all', minPrice: '', maxPrice: '', minRooms: '', maxRooms: '', minSize: '', maxSize: '', features: '' }
     setValues(next)
-    router.push(pathname)
+    router.push(pathname, { scroll: false })
   }
 
   const selectedFeatures = values.features ? values.features.split(',') : []
