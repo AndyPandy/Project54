@@ -58,7 +58,10 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
           {/* Hero text — centered */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
             <p className="font-raleway font-bold text-white uppercase tracking-[0.08em] text-3xl md:text-5xl lg:text-6xl leading-tight max-w-4xl drop-shadow">
-              Hitta din nya bostad.<br />Utan mäklaravgifter.<br />Utan krångel.
+              Hitta din nya bostad.
+            </p>
+            <p className="font-raleway font-normal text-white/85 uppercase tracking-[0.08em] text-base md:text-2xl lg:text-3xl leading-tight max-w-4xl drop-shadow mt-3">
+              Utan mäklaravgifter. Utan krångel.
             </p>
             <a
               href="#listings"
