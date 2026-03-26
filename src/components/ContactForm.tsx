@@ -42,7 +42,7 @@ export default function ContactForm({ apartmentTitle }: Props) {
 
   return (
     <div className="border border-brand-dark p-5">
-      <h3 className="font-black text-brand-navy mb-0.5 text-sm uppercase tracking-[0.06em]">Kontakta mäklaren</h3>
+      <h3 className="text-sm font-bold uppercase tracking-[0.12em] text-brand-muted mb-0.5">Kontakta mäklaren</h3>
       <p className="text-xs text-brand-muted mb-5 line-clamp-1">{apartmentTitle}</p>
 
       <form onSubmit={handleSubmit} className="space-y-3">

@@ -170,13 +170,13 @@ export default async function ApartmentPage({ params }: { params: { slug: string
 
             {/* Description */}
             <div className="border-t border-brand-dark pt-6">
-              <h2 className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-muted mb-4">Om bostaden</h2>
+              <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-brand-muted mb-4">Om bostaden</h2>
               <p className="text-sm text-brand-navy leading-relaxed whitespace-pre-line">{apt.description}</p>
             </div>
 
             {/* Map */}
             <div>
-              <h2 className="text-lg font-bold text-brand-navy mb-3">Läge</h2>
+              <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-brand-muted mb-3">Läge</h2>
               <MapView lat={apt.latitude} lng={apt.longitude} address={apt.address} />
             </div>
           </div>
