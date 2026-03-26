@@ -47,7 +47,7 @@ export default async function HomePage({
     sort === 'size_desc'  ? { sizeSqm: 'desc' as const } :
     sort === 'size_asc'   ? { sizeSqm: 'asc'  as const } :
     sort === 'rooms_desc' ? { rooms: 'desc' as const } :
-                            { createdAt: 'desc' as const }
+                            { sortOrder: 'asc' as const }
 
   const rawApartments = await prisma.apartment.findMany({
     where,

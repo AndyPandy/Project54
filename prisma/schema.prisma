@@ -29,6 +29,7 @@ model Apartment {
   buildYear     Int?     // byggår
   tenure        String   @default("")  // boendeform e.g. "Bostadsrätt", "Hyresrätt"
   floorPlan     String   @default("")  // URL to floor plan image
+  sortOrder     Int      @default(0)
   showings      Showing[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
