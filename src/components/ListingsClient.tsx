@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import ApartmentCard from '@/components/ApartmentCard'
 import ApartmentFilters from '@/components/ApartmentFilters'
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export default function ListingsClient({ apartments, searchParams }: Props) {
+  const router = useRouter()
   const [showMap, setShowMap]         = useState(false)
   const [showFilters, setShowFilters] = useState(false)
   const [heroIndex, setHeroIndex]     = useState(0)
@@ -90,10 +92,27 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
         </div>
 
         {/* Count row — below filter bar, above listings */}
-        <div className="hidden lg:flex items-center pt-6 pb-2">
+        <div className="hidden lg:flex items-center justify-between pt-6 pb-2">
           <span className="text-[9px] font-raleway font-light uppercase tracking-[0.12em] text-brand-muted">
             {apartments.length} {apartments.length !== 1 ? 'annonser' : 'annons'}
           </span>
+          <select
+            value={searchParams.sort ?? ''}
+            onChange={(e) => {
+              const params = new URLSearchParams(window.location.search)
+              if (e.target.value) params.set('sort', e.target.value)
+              else params.delete('sort')
+              router.push(`/?${params.toString()}`, { scroll: false })
+            }}
+            className="text-[9px] font-raleway font-medium text-brand-navy/60 border border-brand-navy/20 bg-brand-offwhite px-2 py-1.5 focus:outline-none focus:border-brand-navy/50 transition"
+          >
+            <option value="">Nyast</option>
+            <option value="price_asc">Pris: lägst</option>
+            <option value="price_desc">Pris: högst</option>
+            <option value="size_desc">Störst</option>
+            <option value="size_asc">Minst</option>
+            <option value="rooms_desc">Flest rum</option>
+          </select>
         </div>
 
         {/* Listings */}

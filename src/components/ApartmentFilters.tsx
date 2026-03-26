@@ -149,19 +149,6 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
         </div>
       </div>
 
-      {/* Sortera */}
-      <div>
-        <span className={barLabel}>Sortera</span>
-        <select value={values.sort} onChange={(e) => set('sort', e.target.value)} className={selectCls}>
-          <option value="">Nyast</option>
-          <option value="price_asc">Pris: lägst</option>
-          <option value="price_desc">Pris: högst</option>
-          <option value="size_desc">Störst</option>
-          <option value="size_asc">Minst</option>
-          <option value="rooms_desc">Flest rum</option>
-        </select>
-      </div>
-
       {/* Rensa */}
       {hasFilters && (
         <button onClick={clear} className="text-[9px] font-raleway font-medium uppercase tracking-[0.1em] text-brand-navy/50 hover:text-brand-navy transition ml-auto self-end pb-1.5">Rensa</button>
