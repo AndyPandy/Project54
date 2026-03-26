@@ -33,40 +33,45 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
 
   return (
     <div className="max-w-6xl mx-auto pb-24 md:pb-8">
+
+      {/* Hero / Map — full container width at top */}
+      {showMap ? (
+        <div className="px-4 lg:px-6 py-6">
+          <ListingsMap key={mapKey} apartments={apartments} />
+        </div>
+      ) : (
+        <div className="relative h-[70vh] lg:h-[28rem] overflow-hidden bg-brand-dark/30">
+          {heroImages.map((src, i) => (
+            <img
+              key={src}
+              src={src}
+              alt="Hero"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+              style={{
+                opacity: i === heroIndex ? 1 : 0,
+                filter: 'saturate(0.75) contrast(1.08) brightness(0.84)',
+              }}
+            />
+          ))}
+          {/* Warm charcoal overlay — B&O #191817 */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(25,24,23,0.72) 0%, rgba(25,24,23,0.18) 55%, rgba(25,24,23,0.04) 100%)' }} />
+          <HeroTypewriter count={apartments.length} />
+        </div>
+      )}
+
+      {/* Filter sidebar + Listings — below hero */}
       <div className="flex flex-col lg:flex-row">
 
         {/* Desktop filters sidebar */}
-        <div className="hidden lg:block lg:w-72 flex-shrink-0">
+        <div className="hidden lg:block lg:w-64 flex-shrink-0">
           <div className="bg-brand-offwhite border-r border-brand-dark p-5 sticky top-14 min-h-screen">
             <h2 className="text-[11px] font-bold text-brand-muted uppercase tracking-[0.12em] mb-5">Filtrera</h2>
             <ApartmentFilters searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => setShowMap((v) => !v)} />
           </div>
         </div>
 
-        {/* Map / Image + Listings */}
-        <div className="flex-1 space-y-6 px-4 lg:px-6 py-6">
-          {showMap ? (
-            <ListingsMap key={mapKey} apartments={apartments} />
-          ) : (
-            <div className="relative h-[70vh] md:h-72 -mx-4 md:mx-0 overflow-hidden bg-brand-dark/30">
-              {heroImages.map((src, i) => (
-                <img
-                  key={src}
-                  src={src}
-                  alt="Hero"
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-                  style={{
-                    opacity: i === heroIndex ? 1 : 0,
-                    filter: 'saturate(0.75) contrast(1.08) brightness(0.84)',
-                  }}
-                />
-              ))}
-              {/* Warm charcoal overlay — B&O #191817 */}
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(25,24,23,0.72) 0%, rgba(25,24,23,0.18) 55%, rgba(25,24,23,0.04) 100%)' }} />
-              <HeroTypewriter count={apartments.length} />
-            </div>
-          )}
-
+        {/* Listings */}
+        <div className="flex-1 px-4 lg:px-6 py-6">
           {apartments.length === 0 ? (
             <div className="p-16 text-center">
               <p className="text-brand-muted text-sm">Inga annonser matchar dina filter.</p>
