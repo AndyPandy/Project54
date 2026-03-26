@@ -7,7 +7,7 @@ interface Props {
   apartments: Apartment[]
 }
 
-const MAPTILER_KEY = process.env.NEXT_PUBLIC_MAPTILER_KEY
+const MAPTILER_KEY = process.env.NEXT_PUBLIC_MAPTILER_KEY ?? 'zUtDrwoCqjB8Qaex3MQp'
 
 export default function ListingsMap({ apartments }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
