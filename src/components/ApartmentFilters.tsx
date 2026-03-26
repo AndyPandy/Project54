@@ -88,7 +88,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       {/* Typ */}
       <div>
         <span className={barLabel}>Typ</span>
-        <div className="flex border border-brand-dark overflow-hidden">
+        <div className="flex border border-brand-navy/20 overflow-hidden">
           {['all', 'rent', 'sale', 'kommande'].map((t) => (
             <button key={t} onClick={() => set('listingType', t)}
               className={`px-3 py-1.5 text-[9px] font-raleway font-medium uppercase tracking-[0.08em] transition whitespace-nowrap ${values.listingType === t ? 'bg-brand-sage text-white' : 'text-brand-navy/60 hover:text-brand-navy'}`}>
