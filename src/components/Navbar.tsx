@@ -19,20 +19,23 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-brand-offwhite/96 backdrop-blur-sm border-b border-brand-dark">
-      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center gap-8">
-        <Link href="/" className="flex-shrink-0">
+      <div className="max-w-6xl mx-auto px-4 h-14 relative flex items-center justify-center">
+
+        {/* Logo — left */}
+        <Link href="/" className="absolute left-4 flex-shrink-0">
           <Image src="/logo.png" alt="Nordhem" width={130} height={44} className="object-contain" />
         </Link>
 
+        {/* Nav tabs — centered */}
         {isHome && (
-          <nav className="hidden md:flex items-center flex-1 gap-1">
+          <nav className="hidden md:flex items-center gap-1">
             {TABS.map((tab) => {
               const isActive = activeTab === tab.value
               return (
                 <Link
                   key={tab.value}
                   href={tab.value === 'all' ? '/' : `/?listingType=${tab.value}`}
-                  className={`px-4 h-14 flex items-center text-xs font-raleway font-bold uppercase tracking-[0.15em] transition-colors whitespace-nowrap border-b-2 -mb-px ${
+                  className={`px-4 h-14 flex items-center text-xs font-raleway font-normal uppercase tracking-[0.15em] transition-colors whitespace-nowrap border-b-2 -mb-px ${
                     isActive
                       ? 'text-brand-navy border-brand-sage'
                       : 'text-brand-muted border-transparent hover:text-brand-navy'
@@ -45,12 +48,10 @@ export default function Navbar() {
           </nav>
         )}
 
-        {!isHome && <div className="flex-1" />}
-        {isHome && <div className="flex-1 md:hidden" />}
-
+        {/* Admin — right */}
         <Link
           href="/admin"
-          className="flex-shrink-0 text-[11px] font-bold uppercase tracking-[0.1em] text-brand-muted hover:text-brand-navy transition-colors"
+          className="absolute right-4 text-[11px] font-normal uppercase tracking-[0.1em] text-brand-muted hover:text-brand-navy transition-colors"
         >
           Admin
         </Link>
