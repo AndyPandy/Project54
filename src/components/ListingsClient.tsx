@@ -165,14 +165,25 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
                 <h2 className="text-[11px] font-bold text-brand-navy uppercase tracking-[0.12em]">Filtrera</h2>
               </div>
               <button
-                onClick={() => setShowFilters(false)}
-                className="bg-brand-navy text-white text-[11px] font-bold uppercase tracking-[0.1em] px-4 py-2"
+                onClick={() => { setShowMap((v) => !v); setShowFilters(false) }}
+                className="border border-brand-sage text-brand-sage text-[11px] font-bold uppercase tracking-[0.1em] px-4 py-2 flex items-center gap-2"
               >
-                Visa {apartments.length} {apartments.length === 1 ? 'annons' : 'annonser'}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+                {showMap ? 'Visa lista' : 'Se på karta'}
               </button>
             </div>
             <div className="overflow-y-auto px-5 py-4">
               <ApartmentFilters searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => { setShowMap((v) => !v); setShowFilters(false) }} />
+            </div>
+            <div className="px-5 py-4 border-t border-brand-dark flex-shrink-0">
+              <button
+                onClick={() => setShowFilters(false)}
+                className="w-full bg-brand-navy text-white text-[11px] font-bold uppercase tracking-[0.1em] py-3"
+              >
+                Visa {apartments.length} {apartments.length === 1 ? 'annons' : 'annonser'}
+              </button>
             </div>
           </div>
         </div>
