@@ -56,43 +56,43 @@ export default async function ApartmentPage({ params }: { params: { slug: string
     <>
       <Suspense fallback={null}><Navbar /></Suspense>
 
-      <main className="max-w-6xl mx-auto px-4 py-10 pb-28 lg:pb-10">
+      <main className="max-w-6xl mx-auto px-4 pt-6 pb-28 lg:pb-10">
         {/* Breadcrumb */}
-        <nav className="text-base text-brand-muted mb-6">
+        <nav className="text-xs text-brand-muted mb-4 font-raleway font-light uppercase tracking-[0.1em]">
           <a href="/" className="hover:text-brand-navy">Annonser</a>
           <span className="mx-2">›</span>
-          <span className="text-brand-navy font-medium">{apt.title}</span>
+          <span className="text-brand-navy">{apt.address}</span>
         </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:items-start">
           {/* Left column */}
-          <div className="lg:col-span-2 space-y-8">
-            <ImageGallery images={apt.images} title={apt.title} />
+          <div className="lg:col-span-2 space-y-6">
 
-            {/* Title + price */}
-            <div>
-              <div className="flex gap-2 mb-3">
+            {/* Image with badge overlay */}
+            <div className="relative">
+              <ImageGallery images={apt.images} title={apt.title} />
+              <div className="absolute top-3 left-3 z-10">
                 {apt.listingType === 'kommande' ? (
-                  <span className="inline-block text-[10px] font-bold uppercase tracking-[0.1em] px-2.5 py-1 bg-amber-100 text-amber-800">
-                    Kommande
-                  </span>
+                  <span className="inline-block text-[10px] font-bold uppercase tracking-[0.1em] px-2.5 py-1 bg-amber-100 text-amber-800">Kommande</span>
                 ) : (
                   <span className="inline-block text-[10px] font-bold uppercase tracking-[0.1em] px-2.5 py-1 text-white" style={{ backgroundColor: apt.listingType === 'rent' ? '#BE9CB3' : '#1A1815' }}>
                     {apt.listingType === 'rent' ? 'Till uthyrning' : 'Till salu'}
                   </span>
                 )}
               </div>
-              <div className="flex items-start justify-between flex-wrap gap-4">
-                <div>
-                  <h1 className="font-raleway font-light text-3xl text-brand-navy uppercase tracking-[0.1em]">{apt.address}</h1>
-                </div>
-                <div className="text-right">
-                  <p className="text-3xl font-black text-brand-navy">{priceLabel}</p>
-                  {apt.listingType === 'sale' && (
-                    <p className="text-[10px] uppercase tracking-[0.1em] text-brand-muted mt-1">Utropspris</p>
-                  )}
-                </div>
+            </div>
+
+            {/* Title + price + separator */}
+            <div>
+              <div className="flex items-start justify-between gap-4">
+                <h1 className="font-raleway font-light text-xl text-brand-navy uppercase tracking-[0.1em]">{apt.address}</h1>
+                {apt.floorPlan && <FloorPlanButton floorPlan={apt.floorPlan} />}
               </div>
+              <p className="font-raleway font-light text-base text-brand-navy mt-1">{priceLabel}</p>
+              {apt.listingType === 'sale' && (
+                <p className="text-[9px] font-raleway uppercase tracking-[0.1em] text-brand-muted mt-0.5">Utropspris</p>
+              )}
+              <div className="border-b border-brand-dark mt-4" />
 
               {/* Fact box */}
               <div className="mt-5 bg-brand-offwhite">
@@ -145,21 +145,18 @@ export default async function ApartmentPage({ params }: { params: { slug: string
               </div>
             </div>
 
-            {/* Tags + floor plan button */}
-            {(apt.tags.length > 0 || apt.floorPlan) && (
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div className="flex flex-wrap gap-2">
-                  {apt.tags.map((value) => {
-                    const tag = LISTING_TAGS.find((t) => t.value === value)
-                    if (!tag) return null
-                    return (
-                      <span key={value} className={`inline-flex items-center text-[10px] font-bold uppercase tracking-[0.08em] px-2.5 py-1 border border-brand-dark ${tag.color}`}>
-                        {tag.label}
-                      </span>
-                    )
-                  })}
-                </div>
-                {apt.floorPlan && <FloorPlanButton floorPlan={apt.floorPlan} />}
+            {/* Tags */}
+            {apt.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {apt.tags.map((value) => {
+                  const tag = LISTING_TAGS.find((t) => t.value === value)
+                  if (!tag) return null
+                  return (
+                    <span key={value} className={`inline-flex items-center text-[10px] font-bold uppercase tracking-[0.08em] px-2.5 py-1 border border-brand-dark ${tag.color}`}>
+                      {tag.label}
+                    </span>
+                  )
+                })}
               </div>
             )}
 
@@ -178,7 +175,7 @@ export default async function ApartmentPage({ params }: { params: { slug: string
 
           {/* Right column — contact + showings */}
           <div id="contact" className="lg:col-span-1">
-            <div className="sticky top-24 space-y-4">
+            <div className="sticky top-[72px] space-y-4">
               <ContactForm apartmentTitle={apt.title} apartmentId={apt.id} />
               <ShowingsList showings={showings} apartmentTitle={apt.title} address={apt.address} />
             </div>
