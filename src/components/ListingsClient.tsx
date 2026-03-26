@@ -79,7 +79,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
               <Link href="/" className="text-brand-navy text-xs font-bold uppercase tracking-[0.1em] hover:opacity-60 mt-3 inline-block transition-opacity">Rensa filter</Link>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 gap-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-10">
               {apartments.map((apt) => (
                 <ApartmentCard key={apt.id} apt={apt} />
               ))}
