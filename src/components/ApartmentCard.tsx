@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Apartment } from '@/types'
+import { LISTING_TAGS } from '@/lib/tags'
 
 export default function ApartmentCard({ apt }: { apt: Apartment }) {
   const cover = apt.images[0] ?? null
@@ -49,10 +50,29 @@ export default function ApartmentCard({ apt }: { apt: Apartment }) {
       {/* Body */}
       <div className="pt-3 pb-4 flex flex-col flex-1">
         <div className="flex items-start justify-between gap-2 mb-0.5">
-          <h3 className="font-raleway text-sm text-brand-navy leading-snug line-clamp-2 flex-1 uppercase tracking-[0.1em]" style={{ fontWeight: 100 }}>{apt.title}</h3>
+          <h3 className="font-raleway text-sm text-brand-navy leading-snug line-clamp-2 flex-1 uppercase tracking-[0.1em]" style={{ fontWeight: 100 }}>{apt.address}</h3>
           <p className="font-raleway text-sm text-brand-navy whitespace-nowrap flex-shrink-0 uppercase tracking-[0.05em]" style={{ fontWeight: 100 }}>{price}</p>
         </div>
-        <p className="text-xs text-brand-muted mb-3">{apt.address}</p>
+
+        {/* Tags where address used to be */}
+        {apt.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1 mb-3">
+            {apt.tags.map((value) => {
+              const tag = LISTING_TAGS.find((t) => t.value === value)
+              if (!tag) return null
+              return (
+                <span key={value} className="text-[9px] font-raleway font-light uppercase tracking-[0.08em] text-brand-muted">
+                  {tag.label}
+                </span>
+              )
+            }).reduce((acc: React.ReactNode[], el, i, arr) => {
+              if (el === null) return acc
+              acc.push(el)
+              if (i < arr.length - 1) acc.push(<span key={`sep-${i}`} className="text-[9px] text-brand-muted/40">·</span>)
+              return acc
+            }, [])}
+          </div>
+        )}
 
         <div className="flex items-center gap-4 text-[11px] text-brand-muted border-t border-brand-dark pt-2.5">
           <span>{apt.rooms} rum</span>

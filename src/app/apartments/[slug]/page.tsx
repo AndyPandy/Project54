@@ -84,8 +84,7 @@ export default async function ApartmentPage({ params }: { params: { slug: string
               </div>
               <div className="flex items-start justify-between flex-wrap gap-4">
                 <div>
-                  <h1 className="font-raleway font-light text-3xl text-brand-navy uppercase tracking-[0.1em]">{apt.title}</h1>
-                  <p className="text-sm text-brand-muted mt-1">{apt.address}</p>
+                  <h1 className="font-raleway font-light text-3xl text-brand-navy uppercase tracking-[0.1em]">{apt.address}</h1>
                 </div>
                 <div className="text-right">
                   <p className="text-3xl font-black text-brand-navy">{priceLabel}</p>
