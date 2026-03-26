@@ -77,10 +77,10 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
   const selectedFeatures = values.features ? values.features.split(',') : []
   const hasFilters = values.search || values.listingType !== 'all' || values.minPrice || values.maxPrice || values.minRooms || values.maxRooms || values.minSize || values.maxSize || values.features
 
-  const selectCls = 'px-2 py-1.5 text-xs text-brand-navy border border-brand-dark bg-brand-offwhite focus:outline-none focus:border-brand-navy transition'
-  const inputCls  = 'w-full px-3 py-2 text-sm text-brand-navy border border-brand-dark bg-brand-offwhite focus:outline-none focus:border-brand-navy transition'
-  const labelCls  = 'block text-[10px] font-bold text-brand-muted uppercase tracking-[0.12em] mb-2'
-  const barLabel  = 'block text-[9px] font-raleway font-light uppercase tracking-[0.12em] text-brand-muted mb-1'
+  const selectCls = 'px-2 py-1.5 text-xs font-medium text-brand-navy border border-brand-navy/30 bg-brand-offwhite focus:outline-none focus:border-brand-navy transition'
+  const inputCls  = 'w-full px-3 py-2 text-sm font-medium text-brand-navy border border-brand-navy/30 bg-brand-offwhite focus:outline-none focus:border-brand-navy transition'
+  const labelCls  = 'block text-[10px] font-bold text-brand-navy uppercase tracking-[0.12em] mb-2'
+  const barLabel  = 'block text-[9px] font-raleway font-normal uppercase tracking-[0.12em] text-brand-navy mb-1'
 
   if (horizontal) return (
     <div className="flex flex-wrap items-end gap-4">
@@ -91,7 +91,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
         <div className="flex border border-brand-dark overflow-hidden">
           {['all', 'rent', 'sale', 'kommande'].map((t) => (
             <button key={t} onClick={() => set('listingType', t)}
-              className={`px-3 py-1.5 text-[9px] font-raleway font-light uppercase tracking-[0.08em] transition whitespace-nowrap ${values.listingType === t ? 'bg-brand-sage text-white' : 'text-brand-muted hover:text-brand-navy'}`}>
+              className={`px-3 py-1.5 text-[9px] font-raleway font-medium uppercase tracking-[0.08em] transition whitespace-nowrap ${values.listingType === t ? 'bg-brand-sage text-white' : 'text-brand-navy/60 hover:text-brand-navy'}`}>
               {t === 'all' ? 'Alla' : t === 'rent' ? 'Hyra' : t === 'sale' ? 'Köp' : 'Kommande'}
             </button>
           ))}
@@ -107,7 +107,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
           </svg>
           <input type="search" value={values.search} onChange={(e) => set('search', e.target.value)}
             placeholder="Område, titel…"
-            className="pl-7 pr-3 py-1.5 text-xs text-brand-navy border border-brand-dark bg-brand-offwhite focus:outline-none focus:border-brand-navy transition w-44" />
+            className="pl-7 pr-3 py-1.5 text-xs font-medium text-brand-navy border border-brand-navy/30 bg-brand-offwhite focus:outline-none focus:border-brand-navy transition w-44" />
         </div>
       </div>
 
@@ -149,7 +149,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
 
       {/* Rensa */}
       {hasFilters && (
-        <button onClick={clear} className="text-[9px] font-raleway font-light uppercase tracking-[0.1em] text-brand-muted hover:text-brand-navy transition ml-auto self-end pb-1.5">Rensa</button>
+        <button onClick={clear} className="text-[9px] font-raleway font-medium uppercase tracking-[0.1em] text-brand-navy/50 hover:text-brand-navy transition ml-auto self-end pb-1.5">Rensa</button>
       )}
     </div>
   )
