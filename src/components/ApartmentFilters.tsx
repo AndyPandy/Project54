@@ -8,6 +8,7 @@ interface Props {
   count: number
   showMap: boolean
   onToggleMap: () => void
+  horizontal?: boolean
 }
 
 const ROOM_OPTIONS = ['', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15']
@@ -18,7 +19,7 @@ const FEATURE_OPTIONS = [
   { value: 'eldstad', label: 'Eldstad',                      tags: ['eldstad'] },
 ]
 
-export default function ApartmentFilters({ searchParams, count, showMap, onToggleMap }: Props) {
+export default function ApartmentFilters({ searchParams, count, showMap, onToggleMap, horizontal }: Props) {
   const router = useRouter()
   const pathname = usePathname()
 
@@ -76,9 +77,94 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
   const selectedFeatures = values.features ? values.features.split(',') : []
   const hasFilters = values.search || values.listingType !== 'all' || values.minPrice || values.maxPrice || values.minRooms || values.maxRooms || values.minSize || values.maxSize || values.features
 
-  const selectCls = 'w-full px-3 py-2 text-sm text-brand-navy border border-brand-dark bg-brand-offwhite focus:outline-none focus:border-brand-navy transition'
+  const selectCls = 'px-2 py-1.5 text-xs text-brand-navy border border-brand-dark bg-brand-offwhite focus:outline-none focus:border-brand-navy transition'
   const inputCls  = 'w-full px-3 py-2 text-sm text-brand-navy border border-brand-dark bg-brand-offwhite focus:outline-none focus:border-brand-navy transition'
   const labelCls  = 'block text-[10px] font-bold text-brand-muted uppercase tracking-[0.12em] mb-2'
+  const barLabel  = 'block text-[9px] font-raleway font-light uppercase tracking-[0.12em] text-brand-muted mb-1'
+
+  if (horizontal) return (
+    <div className="flex flex-wrap items-end gap-4">
+
+      {/* Typ */}
+      <div>
+        <span className={barLabel}>Typ</span>
+        <div className="flex border border-brand-dark overflow-hidden">
+          {['all', 'rent', 'sale', 'kommande'].map((t) => (
+            <button key={t} onClick={() => set('listingType', t)}
+              className={`px-3 py-1.5 text-[9px] font-raleway font-light uppercase tracking-[0.08em] transition whitespace-nowrap ${values.listingType === t ? 'bg-brand-sage text-white' : 'text-brand-muted hover:text-brand-navy'}`}>
+              {t === 'all' ? 'Alla' : t === 'rent' ? 'Hyra' : t === 'sale' ? 'Köp' : 'Kommande'}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Sök */}
+      <div>
+        <span className={barLabel}>Sök</span>
+        <div className="relative">
+          <svg className="absolute left-2 top-1/2 -translate-y-1/2 w-3 h-3 text-brand-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" strokeWidth="2" /><path d="M21 21l-4.35-4.35" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+          <input type="search" value={values.search} onChange={(e) => set('search', e.target.value)}
+            placeholder="Område, titel…"
+            className="pl-7 pr-3 py-1.5 text-xs text-brand-navy border border-brand-dark bg-brand-offwhite focus:outline-none focus:border-brand-navy transition w-44" />
+        </div>
+      </div>
+
+      {/* Rum */}
+      <div>
+        <span className={barLabel}>Rum</span>
+        <div className="flex gap-1 items-center">
+          <select value={values.minRooms} onChange={(e) => set('minRooms', e.target.value)} className={selectCls}>
+            <option value="">Min</option>
+            {ROOM_OPTIONS.filter(Boolean).map((r) => <option key={r} value={r}>{r}</option>)}
+          </select>
+          <span className="text-brand-muted text-xs">–</span>
+          <select value={values.maxRooms} onChange={(e) => set('maxRooms', e.target.value)} className={selectCls}>
+            <option value="">Max</option>
+            {ROOM_OPTIONS.filter(Boolean).map((r) => <option key={r} value={r}>{r}</option>)}
+          </select>
+        </div>
+      </div>
+
+      {/* Area */}
+      <div>
+        <span className={barLabel}>Area m²</span>
+        <div className="flex gap-1 items-center">
+          <input type="number" placeholder="Min" min={20} max={250} value={values.minSize} onChange={(e) => set('minSize', e.target.value)} className={`${selectCls} w-16`} />
+          <span className="text-brand-muted text-xs">–</span>
+          <input type="number" placeholder="Max" min={20} max={250} value={values.maxSize} onChange={(e) => set('maxSize', e.target.value)} className={`${selectCls} w-16`} />
+        </div>
+      </div>
+
+      {/* Pris */}
+      <div>
+        <span className={barLabel}>Pris SEK</span>
+        <div className="flex gap-1 items-center">
+          <input type="number" placeholder="Min" min={100000} step={100000} value={values.minPrice} onChange={(e) => set('minPrice', e.target.value)} className={`${selectCls} w-24`} />
+          <span className="text-brand-muted text-xs">–</span>
+          <input type="number" placeholder="Max" min={100000} step={100000} value={values.maxPrice} onChange={(e) => set('maxPrice', e.target.value)} className={`${selectCls} w-24`} />
+        </div>
+      </div>
+
+      {/* Karta */}
+      <button onClick={onToggleMap}
+        className="flex items-center gap-1.5 px-3 py-1.5 border border-brand-sage text-brand-sage text-[9px] font-raleway font-light uppercase tracking-[0.08em] hover:bg-brand-sage hover:text-white transition">
+        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
+        {showMap ? 'Lista' : 'Karta'}
+      </button>
+
+      {/* Count + clear */}
+      <div className="flex items-center gap-3 ml-auto">
+        <span className="text-[9px] font-raleway font-light uppercase tracking-[0.1em] text-brand-muted">{count} {count !== 1 ? 'annonser' : 'annons'}</span>
+        {hasFilters && (
+          <button onClick={clear} className="text-[9px] font-raleway font-light uppercase tracking-[0.1em] text-brand-muted hover:text-brand-navy transition">Rensa</button>
+        )}
+      </div>
+    </div>
+  )
 
   return (
     <aside className="space-y-6">

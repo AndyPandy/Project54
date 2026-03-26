@@ -59,20 +59,16 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
         </div>
       )}
 
-      {/* Filter sidebar + Listings — below hero, constrained */}
-      <div className="max-w-6xl mx-auto pb-24 md:pb-8">
-      <div className="flex flex-col lg:flex-row">
+      {/* Horizontal filter bar + Listings — centered */}
+      <div className="max-w-5xl mx-auto px-4 lg:px-8 pb-24 md:pb-8">
 
-        {/* Desktop filters sidebar */}
-        <div className="hidden lg:block lg:w-64 flex-shrink-0">
-          <div className="bg-brand-offwhite border-r border-brand-dark p-5 sticky top-14 min-h-screen">
-            <h2 className="text-[11px] font-bold text-brand-muted uppercase tracking-[0.12em] mb-5">Filtrera</h2>
-            <ApartmentFilters searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => setShowMap((v) => !v)} />
-          </div>
+        {/* Desktop horizontal filter bar */}
+        <div className="hidden lg:block border-b border-brand-dark py-5">
+          <ApartmentFilters horizontal searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => setShowMap((v) => !v)} />
         </div>
 
         {/* Listings */}
-        <div className="flex-1 px-4 lg:px-6 py-6">
+        <div className="pt-8">
           {apartments.length === 0 ? (
             <div className="p-16 text-center">
               <p className="text-brand-muted text-sm">Inga annonser matchar dina filter.</p>
@@ -141,7 +137,6 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
           </div>
         </div>
       )}
-      </div>
     </div>
   )
 }
