@@ -5,7 +5,6 @@ import Link from 'next/link'
 import ApartmentCard from '@/components/ApartmentCard'
 import ApartmentFilters from '@/components/ApartmentFilters'
 import ListingsMap from '@/components/ListingsMap'
-import HeroTypewriter from '@/components/HeroTypewriter'
 import type { Apartment } from '@/types'
 
 interface Props {
@@ -40,7 +39,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
           <ListingsMap key={mapKey} apartments={apartments} />
         </div>
       ) : (
-        <div className="relative w-full h-[70vh] lg:h-[28rem] overflow-hidden bg-brand-dark/30">
+        <div className="relative w-full h-[70vh] lg:h-[56rem] overflow-hidden bg-brand-dark/30">
           {heroImages.map((src, i) => (
             <img
               key={src}
@@ -53,9 +52,20 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
               }}
             />
           ))}
-          {/* Warm charcoal overlay — B&O #191817 */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(25,24,23,0.72) 0%, rgba(25,24,23,0.18) 55%, rgba(25,24,23,0.04) 100%)' }} />
-          <HeroTypewriter count={apartments.length} />
+          {/* Warm charcoal overlay */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(25,24,23,0.65) 0%, rgba(25,24,23,0.35) 50%, rgba(25,24,23,0.15) 100%)' }} />
+          {/* Hero text — centered */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+            <p className="font-raleway font-bold text-white uppercase tracking-[0.08em] text-3xl md:text-5xl lg:text-6xl leading-tight max-w-4xl drop-shadow">
+              Hitta din nya bostad.<br />Utan mäklaravgifter.<br />Utan krångel.
+            </p>
+            <a
+              href="#listings"
+              className="mt-8 font-raleway font-light text-white/80 uppercase tracking-[0.2em] text-xs hover:text-white transition border-b border-white/40 pb-0.5 hover:border-white"
+            >
+              Sök här
+            </a>
+          </div>
         </div>
       )}
 
@@ -63,7 +73,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
       <div className="max-w-5xl mx-auto px-4 lg:px-8 pb-24 md:pb-8">
 
         {/* Desktop horizontal filter bar */}
-        <div className="hidden lg:block border-b border-brand-dark py-10">
+        <div id="listings" className="hidden lg:block border-b border-brand-dark py-10">
           <ApartmentFilters horizontal searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => setShowMap((v) => !v)} />
         </div>
 
