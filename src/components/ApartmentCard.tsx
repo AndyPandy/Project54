@@ -49,8 +49,8 @@ export default function ApartmentCard({ apt }: { apt: Apartment }) {
       {/* Body */}
       <div className="pt-3 pb-4 flex flex-col flex-1">
         <div className="flex items-start justify-between gap-2 mb-0.5">
-          <h3 className="font-sans font-black text-sm text-brand-navy leading-snug line-clamp-2 flex-1">{apt.title}</h3>
-          <p className="text-sm font-black text-brand-navy whitespace-nowrap flex-shrink-0">{price}</p>
+          <h3 className="font-serif font-light text-base text-brand-navy leading-snug line-clamp-2 flex-1 tracking-wide">{apt.title}</h3>
+          <p className="font-serif font-light text-base text-brand-navy whitespace-nowrap flex-shrink-0">{price}</p>
         </div>
         <p className="text-xs text-brand-muted mb-3">{apt.address}</p>
 

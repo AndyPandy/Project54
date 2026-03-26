@@ -26,10 +26,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans:    ['"Darker Grotesque"', 'Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
-        serif:   ['Georgia', 'Times New Roman', 'serif'],
-        raleway: ['"Raleway"', 'sans-serif'],
-        roboto:  ['"Roboto"', 'sans-serif'],
+        sans:      ['"Darker Grotesque"', 'Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        serif:     ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        raleway:   ['"Raleway"', 'sans-serif'],
+        roboto:    ['"Roboto"', 'sans-serif'],
       },
       letterSpacing: {
         editorial: '0.08em',

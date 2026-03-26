@@ -8,19 +8,28 @@
   }
   body {
     @apply bg-brand-offwhite text-brand-navy font-roboto antialiased;
-    letter-spacing: 0.01em;
+    font-weight: 300;
+    letter-spacing: 0.02em;
     font-feature-settings: 'kern' 1, 'liga' 1;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-sans;
-    letter-spacing: -0.01em;
+  h1, h2, h3 {
+    @apply font-serif font-light;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h4, h5, h6 {
+    @apply font-raleway font-light;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   /* Uppercase labels — editorial tracking */
   .label-upper {
-    @apply text-xs font-bold uppercase;
-    letter-spacing: 0.12em;
+    @apply font-raleway font-light uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.65rem;
   }
 }
 
