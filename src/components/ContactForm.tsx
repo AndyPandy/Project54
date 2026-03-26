@@ -22,8 +22,8 @@ export default function ContactForm({ apartmentTitle }: Props) {
     setStatus('sent')
   }
 
-  const fieldCls = 'w-full border border-brand-navy/30 bg-brand-offwhite px-3 py-2.5 text-sm font-medium text-brand-navy focus:outline-none focus:border-brand-navy transition'
-  const labelCls = 'block text-[10px] font-bold text-brand-navy uppercase tracking-[0.12em] mb-1.5'
+  const fieldCls = 'w-full border border-brand-dark bg-brand-offwhite px-3 py-2.5 text-sm text-brand-navy/70 focus:outline-none focus:border-brand-navy/40 transition'
+  const labelCls = 'block text-[10px] font-bold text-brand-muted uppercase tracking-[0.12em] mb-1.5'
 
   if (status === 'sent') {
     return (
@@ -43,7 +43,7 @@ export default function ContactForm({ apartmentTitle }: Props) {
   return (
     <div className="border border-brand-dark p-5">
       <h3 className="font-black text-brand-navy mb-0.5 text-sm uppercase tracking-[0.06em]">Kontakta mäklaren</h3>
-      <p className="text-xs font-medium text-brand-navy/60 mb-5 line-clamp-1">{apartmentTitle}</p>
+      <p className="text-xs text-brand-muted mb-5 line-clamp-1">{apartmentTitle}</p>
 
       <form onSubmit={handleSubmit} className="space-y-3">
         <div>
