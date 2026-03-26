@@ -1,9 +1,12 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import type { Apartment } from '@/types'
 import { LISTING_TAGS } from '@/lib/tags'
 
 export default function ApartmentCard({ apt }: { apt: Apartment }) {
+  const [hovered, setHovered] = useState(false)
   const cover = apt.images[0] ?? null
   const price =
     apt.listingType === 'rent'
@@ -18,18 +21,33 @@ export default function ApartmentCard({ apt }: { apt: Apartment }) {
   return (
     <Link
       href={`/apartments/${apt.slug}`}
-      className="group flex flex-col overflow-hidden hover:opacity-90 transition-opacity duration-200"
+      className="flex flex-col"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       {/* Image */}
       <div className="relative aspect-[4/3] lg:aspect-[3/2] bg-brand-dark overflow-hidden">
         {cover ? (
-          <Image
-            src={cover}
-            alt={apt.title}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover group-hover:scale-103 transition-transform duration-500"
-          />
+          <>
+            <img
+              src={cover}
+              alt={apt.title}
+              style={{
+                position: 'absolute', inset: 0,
+                width: '100%', height: '100%',
+                objectFit: 'cover',
+                transform: hovered ? 'scale(1.07)' : 'scale(1)',
+                transition: 'transform 0.7s ease-in-out',
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute', inset: 0,
+                backgroundColor: hovered ? 'rgba(0,0,0,0.18)' : 'rgba(0,0,0,0)',
+                transition: 'background-color 0.7s ease-in-out',
+              }}
+            />
+          </>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
             <svg className="w-10 h-10 text-brand-muted/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
