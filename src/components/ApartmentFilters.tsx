@@ -147,22 +147,10 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
         </div>
       </div>
 
-      {/* Karta */}
-      <button onClick={onToggleMap}
-        className="flex items-center gap-1.5 px-3 py-1.5 border border-brand-sage text-brand-sage text-[9px] font-raleway font-light uppercase tracking-[0.08em] hover:bg-brand-sage hover:text-white transition">
-        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-        </svg>
-        {showMap ? 'Lista' : 'Karta'}
-      </button>
-
-      {/* Count + clear */}
-      <div className="flex items-center gap-3 ml-auto">
-        <span className="text-[9px] font-raleway font-light uppercase tracking-[0.1em] text-brand-muted">{count} {count !== 1 ? 'annonser' : 'annons'}</span>
-        {hasFilters && (
-          <button onClick={clear} className="text-[9px] font-raleway font-light uppercase tracking-[0.1em] text-brand-muted hover:text-brand-navy transition">Rensa</button>
-        )}
-      </div>
+      {/* Rensa */}
+      {hasFilters && (
+        <button onClick={clear} className="text-[9px] font-raleway font-light uppercase tracking-[0.1em] text-brand-muted hover:text-brand-navy transition ml-auto self-end pb-1.5">Rensa</button>
+      )}
     </div>
   )
 

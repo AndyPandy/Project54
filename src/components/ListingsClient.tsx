@@ -63,12 +63,19 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
       <div className="max-w-5xl mx-auto px-4 lg:px-8 pb-24 md:pb-8">
 
         {/* Desktop horizontal filter bar */}
-        <div className="hidden lg:block border-b border-brand-dark py-5">
+        <div className="hidden lg:block border-b border-brand-dark py-10">
           <ApartmentFilters horizontal searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => setShowMap((v) => !v)} />
         </div>
 
+        {/* Count row — below filter bar, above listings */}
+        <div className="hidden lg:flex items-center pt-6 pb-2">
+          <span className="text-[9px] font-raleway font-light uppercase tracking-[0.12em] text-brand-muted">
+            {apartments.length} {apartments.length !== 1 ? 'annonser' : 'annons'}
+          </span>
+        </div>
+
         {/* Listings */}
-        <div className="pt-8">
+        <div className="pt-4 lg:pt-0">
           {apartments.length === 0 ? (
             <div className="p-16 text-center">
               <p className="text-brand-muted text-sm">Inga annonser matchar dina filter.</p>
@@ -83,6 +90,17 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
           )}
         </div>
       </div>
+
+      {/* Floating map button — desktop */}
+      <button
+        onClick={() => { setShowMap((v) => !v); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+        className="hidden lg:flex fixed bottom-8 right-8 z-40 items-center gap-2 bg-brand-navy text-white px-5 py-3 text-[10px] font-raleway font-light uppercase tracking-[0.12em] shadow-lg hover:bg-black transition"
+      >
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
+        {showMap ? 'Visa lista' : 'Visa på karta'}
+      </button>
 
       {/* Mobile bottom bar */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-offwhite border-t border-brand-dark px-4 py-3 flex gap-3">
