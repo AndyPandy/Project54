@@ -68,7 +68,7 @@ export default function ContactForm({ apartmentTitle }: Props) {
         <button
           type="submit"
           disabled={status === 'sending'}
-          className="w-full bg-brand-navy hover:bg-black text-white font-bold py-3 transition disabled:opacity-60 text-[11px] uppercase tracking-[0.1em]"
+          className="w-full bg-brand-sage hover:bg-brand-sage-d text-white font-bold py-3 transition disabled:opacity-60 text-[11px] uppercase tracking-[0.1em]"
         >
           {status === 'sending' ? 'Skickar…' : 'Skicka meddelande'}
         </button>

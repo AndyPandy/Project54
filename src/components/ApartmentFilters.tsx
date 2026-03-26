@@ -107,7 +107,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
             <button
               key={t}
               onClick={() => set('listingType', t)}
-              className={`flex-1 py-2 font-bold uppercase tracking-[0.04em] text-[9px] transition ${values.listingType === t ? 'bg-brand-navy text-white' : 'text-brand-muted hover:text-brand-navy'}`}
+              className={`flex-1 py-2 font-bold uppercase tracking-[0.04em] text-[9px] transition ${values.listingType === t ? 'bg-brand-sage text-white' : 'text-brand-muted hover:text-brand-navy'}`}
             >
               {t === 'all' ? 'Alla' : t === 'rent' ? 'Hyra' : t === 'sale' ? 'Köp' : 'Kommande'}
             </button>
@@ -176,7 +176,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       {/* Map toggle */}
       <button
         onClick={onToggleMap}
-        className="w-full flex items-center justify-center gap-2 py-2.5 border border-brand-navy text-brand-navy text-[11px] font-bold uppercase tracking-[0.1em] hover:bg-brand-navy hover:text-white transition"
+        className="w-full flex items-center justify-center gap-2 py-2.5 border border-brand-sage text-brand-sage text-[11px] font-bold uppercase tracking-[0.1em] hover:bg-brand-sage hover:text-white transition"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />

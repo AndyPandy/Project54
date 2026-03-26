@@ -34,7 +34,7 @@ export default function Navbar() {
                   href={tab.value === 'all' ? '/' : `/?listingType=${tab.value}`}
                   className={`px-4 h-14 flex items-center text-xs font-bold uppercase tracking-[0.1em] transition-colors whitespace-nowrap border-b-2 -mb-px ${
                     isActive
-                      ? 'text-brand-navy border-brand-navy'
+                      ? 'text-brand-navy border-brand-sage'
                       : 'text-brand-muted border-transparent hover:text-brand-navy'
                   }`}
                 >

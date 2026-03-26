@@ -96,7 +96,7 @@ export default function ImageGallery({ images, title }: Props) {
             <button
               key={i}
               onClick={() => setSelected(i)}
-              className={`relative flex-shrink-0 w-20 h-14 overflow-hidden border-2 transition ${i === selected ? 'border-brand-navy' : 'border-transparent opacity-50 hover:opacity-80'}`}
+              className={`relative flex-shrink-0 w-20 h-14 overflow-hidden border-2 transition ${i === selected ? 'border-brand-sage' : 'border-transparent opacity-50 hover:opacity-80'}`}
             >
               <Image src={src} alt={`Thumbnail ${i + 1}`} fill sizes="80px" className="object-cover" />
             </button>
