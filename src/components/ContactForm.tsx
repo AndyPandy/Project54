@@ -22,7 +22,7 @@ export default function ContactForm({ apartmentTitle }: Props) {
     setStatus('sent')
   }
 
-  const fieldCls = 'w-full border border-brand-dark bg-brand-offwhite px-3 py-2.5 text-sm text-brand-navy/70 focus:outline-none focus:border-brand-navy/40 transition'
+  const fieldCls = 'w-full border border-brand-navy/20 bg-brand-offwhite px-3 py-2.5 text-sm text-brand-navy/70 focus:outline-none focus:border-brand-navy/50 transition'
   const labelCls = 'block text-[10px] font-bold text-brand-muted uppercase tracking-[0.12em] mb-1.5'
 
   if (status === 'sent') {
