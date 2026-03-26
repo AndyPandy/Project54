@@ -50,8 +50,8 @@ export default function ApartmentCard({ apt }: { apt: Apartment }) {
       {/* Body */}
       <div className="pt-3 pb-4 flex flex-col flex-1">
         <div className="flex items-start justify-between gap-2 mb-0.5">
-          <h3 className="font-raleway text-sm text-brand-navy leading-snug line-clamp-2 flex-1 uppercase tracking-[0.1em]" style={{ fontWeight: 100 }}>{apt.address}</h3>
-          <p className="font-raleway text-sm text-brand-navy whitespace-nowrap flex-shrink-0 uppercase tracking-[0.05em]" style={{ fontWeight: 100 }}>{price}</p>
+          <h3 className="font-raleway text-sm text-brand-navy leading-snug line-clamp-2 flex-1 uppercase tracking-[0.1em]" style={{ fontWeight: 300 }}>{apt.address}</h3>
+          <p className="font-raleway text-sm text-brand-navy whitespace-nowrap flex-shrink-0 uppercase tracking-[0.05em]" style={{ fontWeight: 300 }}>{price}</p>
         </div>
 
         {/* Tags where address used to be */}
@@ -61,7 +61,7 @@ export default function ApartmentCard({ apt }: { apt: Apartment }) {
               const tag = LISTING_TAGS.find((t) => t.value === value)
               if (!tag) return null
               return (
-                <span key={value} className="text-[9px] font-raleway font-light uppercase tracking-[0.08em] text-brand-muted">
+                <span key={value} className="text-[9px] font-raleway font-normal uppercase tracking-[0.08em] text-brand-navy/60">
                   {tag.label}
                 </span>
               )
@@ -74,7 +74,7 @@ export default function ApartmentCard({ apt }: { apt: Apartment }) {
           </div>
         )}
 
-        <div className="flex items-center gap-4 text-[11px] text-brand-muted border-t border-brand-dark pt-2.5">
+        <div className="flex items-center gap-4 text-[11px] text-brand-navy/70 border-t border-brand-dark pt-2.5">
           <span>{apt.rooms} rum</span>
           <span>{apt.sizeSqm} m²</span>
           {apt.fee != null && <span>{apt.fee.toLocaleString('sv-SE')} kr/mån</span>}
