@@ -100,46 +100,46 @@ export default async function ApartmentPage({ params }: { params: { slug: string
                 <div className="grid grid-cols-2 sm:grid-cols-4">
                   {apt.propertyType != null && apt.propertyType !== '' && (
                     <div className="p-3">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Bostadstyp</p>
-                      <p className="text-sm font-bold text-brand-navy">{apt.propertyType}</p>
+                      <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Bostadstyp</p>
+                      <p className="text-sm font-light text-brand-navy">{apt.propertyType}</p>
                     </div>
                   )}
                   <div className="p-3">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Rum</p>
-                    <p className="text-sm font-bold text-brand-navy">{apt.rooms} rum</p>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Rum</p>
+                    <p className="text-sm font-light text-brand-navy">{apt.rooms} rum</p>
                   </div>
                   <div className="p-3">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Boarea</p>
-                    <p className="text-sm font-bold text-brand-navy">{apt.sizeSqm} m²</p>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Boarea</p>
+                    <p className="text-sm font-light text-brand-navy">{apt.sizeSqm} m²</p>
                   </div>
                   {apt.floor != null && (
                     <div className="p-3">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Våning</p>
-                      <p className="text-sm font-bold text-brand-navy">{apt.floor}</p>
+                      <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Våning</p>
+                      <p className="text-sm font-light text-brand-navy">{apt.floor}</p>
                     </div>
                   )}
                   {apt.fee != null && (
                     <div className="p-3">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Avgift</p>
-                      <p className="text-sm font-bold text-brand-navy">{apt.fee.toLocaleString('sv-SE')} kr/mån</p>
+                      <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Avgift</p>
+                      <p className="text-sm font-light text-brand-navy">{apt.fee.toLocaleString('sv-SE')} kr/mån</p>
                     </div>
                   )}
                   {apt.operatingCost != null && (
                     <div className="p-3">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Driftkostnad</p>
-                      <p className="text-sm font-bold text-brand-navy">{apt.operatingCost.toLocaleString('sv-SE')} kr/år</p>
+                      <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Driftkostnad</p>
+                      <p className="text-sm font-light text-brand-navy">{apt.operatingCost.toLocaleString('sv-SE')} kr/år</p>
                     </div>
                   )}
                   {apt.buildYear != null && (
                     <div className="p-3">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Byggår</p>
-                      <p className="text-sm font-bold text-brand-navy">{apt.buildYear}</p>
+                      <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Byggår</p>
+                      <p className="text-sm font-light text-brand-navy">{apt.buildYear}</p>
                     </div>
                   )}
                   {apt.tenure != null && apt.tenure !== '' && (
                     <div className="p-3">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-muted mb-1">Boendeform</p>
-                      <p className="text-sm font-bold text-brand-navy">{apt.tenure}</p>
+                      <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Boendeform</p>
+                      <p className="text-sm font-light text-brand-navy">{apt.tenure}</p>
                     </div>
                   )}
                 </div>
