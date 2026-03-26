@@ -68,7 +68,7 @@ export default function ApartmentCard({ apt }: { apt: Apartment }) {
       {/* Body */}
       <div className="pt-3 pb-4 flex flex-col flex-1">
         <div className="flex items-start justify-between gap-2 mb-0.5">
-          <h3 className="font-raleway text-sm text-brand-navy leading-snug line-clamp-2 flex-1 uppercase tracking-[0.1em]" style={{ fontWeight: 300 }}>{apt.address}</h3>
+          <h3 className="font-raleway text-[11px] sm:text-sm text-brand-navy leading-snug truncate flex-1 uppercase tracking-[0.1em]" style={{ fontWeight: 300 }}>{apt.address}</h3>
           <p className="font-raleway text-sm text-brand-navy whitespace-nowrap flex-shrink-0 uppercase tracking-[0.05em]" style={{ fontWeight: 300 }}>{price}</p>
         </div>
 
