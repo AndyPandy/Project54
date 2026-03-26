@@ -35,51 +35,52 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
   return (
     <div>
 
-      {/* Hero / Map — full viewport width */}
-      {showMap ? (
-        <div className="max-w-6xl mx-auto px-4 lg:px-6 py-6">
-          <ListingsMap key={mapKey} apartments={apartments} />
-        </div>
-      ) : (
-        <div className="relative w-full h-[70vh] lg:h-[56rem] overflow-hidden bg-brand-dark/30">
-          {heroImages.map((src, i) => (
-            <img
-              key={src}
-              src={src}
-              alt="Hero"
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-              style={{
-                opacity: i === heroIndex ? 1 : 0,
-                filter: 'saturate(0.75) contrast(1.08) brightness(0.84)',
-                transition: 'opacity 2.5s ease-in-out',
-              }}
-            />
-          ))}
-          {/* Warm charcoal overlay */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(25,24,23,0.65) 0%, rgba(25,24,23,0.35) 50%, rgba(25,24,23,0.15) 100%)' }} />
-          {/* Hero text — centered */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <p className="font-raleway font-bold text-white uppercase tracking-[0.08em] text-3xl md:text-5xl lg:text-6xl leading-tight max-w-4xl drop-shadow">
-              Hitta din nya bostad.
-            </p>
-            <p className="font-raleway font-normal text-white/85 uppercase tracking-[0.08em] text-base md:text-2xl lg:text-3xl leading-tight max-w-4xl drop-shadow mt-3">
-              Utan mäklaravgifter. Utan krångel.
-            </p>
-            <a
-              href="#listings"
-              className="mt-8 flex flex-col items-center gap-3 group"
+      {/* Hero — always visible */}
+      <div className="relative w-full h-[70vh] lg:h-[56rem] overflow-hidden bg-brand-dark/30">
+        {heroImages.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt="Hero"
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+            style={{
+              opacity: i === heroIndex ? 1 : 0,
+              filter: 'saturate(0.75) contrast(1.08) brightness(0.84)',
+              transition: 'opacity 2.5s ease-in-out',
+            }}
+          />
+        ))}
+        {/* Warm charcoal overlay */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(25,24,23,0.65) 0%, rgba(25,24,23,0.35) 50%, rgba(25,24,23,0.15) 100%)' }} />
+        {/* Hero text — centered */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+          <p className="font-raleway font-bold text-white uppercase tracking-[0.08em] text-3xl md:text-5xl lg:text-6xl leading-tight max-w-4xl drop-shadow">
+            Hitta din nya bostad.
+          </p>
+          <p className="font-raleway font-normal text-white/85 uppercase tracking-[0.08em] text-base md:text-2xl lg:text-3xl leading-tight max-w-4xl drop-shadow mt-3">
+            Utan mäklaravgifter. Utan krångel.
+          </p>
+          <a
+            href="#listings"
+            className="mt-8 flex flex-col items-center gap-3 group"
+          >
+            <span className="font-raleway font-bold text-white uppercase tracking-[0.2em] text-sm border-b border-white/60 pb-0.5 group-hover:border-white group-hover:text-white transition">
+              Sök här
+            </span>
+            <svg
+              className="w-5 h-5 text-white/70 group-hover:text-white transition animate-bounce"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24"
             >
-              <span className="font-raleway font-bold text-white uppercase tracking-[0.2em] text-sm border-b border-white/60 pb-0.5 group-hover:border-white group-hover:text-white transition">
-                Sök här
-              </span>
-              <svg
-                className="w-5 h-5 text-white/70 group-hover:text-white transition animate-bounce"
-                fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
-              </svg>
-            </a>
-          </div>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      {/* Map — shown below hero when toggled */}
+      {showMap && (
+        <div id="map" className="w-full border-b border-brand-dark">
+          <ListingsMap key={mapKey} apartments={apartments} />
         </div>
       )}
 
@@ -134,7 +135,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
 
       {/* Floating map button — desktop */}
       <button
-        onClick={() => { setShowMap((v) => !v); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+        onClick={() => { setShowMap((v) => !v); setTimeout(() => document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' }), 50) }}
         className="hidden lg:flex fixed bottom-8 right-8 z-40 items-center gap-2 bg-brand-navy text-white px-5 py-3 text-[10px] font-raleway font-light uppercase tracking-[0.12em] shadow-lg hover:bg-black transition"
       >
         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -156,7 +157,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
           {hasFilters && <span className="bg-white text-brand-navy rounded-full w-5 h-5 text-[10px] flex items-center justify-center font-black">!</span>}
         </button>
         <button
-          onClick={() => { setShowMap((v) => !v); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+          onClick={() => { setShowMap((v) => !v); setTimeout(() => document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' }), 50) }}
           className="flex-1 flex items-center justify-center gap-2 py-3 border border-brand-navy text-brand-navy font-bold text-[11px] uppercase tracking-[0.1em]"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -184,7 +185,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
                 <h2 className="text-[11px] font-bold text-brand-navy uppercase tracking-[0.12em]">Filtrera</h2>
               </div>
               <button
-                onClick={() => { setShowMap((v) => !v); setShowFilters(false) }}
+                onClick={() => { setShowMap((v) => !v); setShowFilters(false); setTimeout(() => document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' }), 50) }}
                 className="border border-brand-sage text-brand-sage text-[11px] font-bold uppercase tracking-[0.1em] px-4 py-2 flex items-center gap-2"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
