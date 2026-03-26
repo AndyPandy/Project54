@@ -49,6 +49,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
               style={{
                 opacity: i === heroIndex ? 1 : 0,
                 filter: 'saturate(0.75) contrast(1.08) brightness(0.84)',
+                transition: 'opacity 2.5s ease-in-out',
               }}
             />
           ))}
@@ -61,9 +62,17 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
             </p>
             <a
               href="#listings"
-              className="mt-8 font-raleway font-light text-white/80 uppercase tracking-[0.2em] text-xs hover:text-white transition border-b border-white/40 pb-0.5 hover:border-white"
+              className="mt-8 flex flex-col items-center gap-3 group"
             >
-              Sök här
+              <span className="font-raleway font-bold text-white uppercase tracking-[0.2em] text-sm border-b border-white/60 pb-0.5 group-hover:border-white group-hover:text-white transition">
+                Sök här
+              </span>
+              <svg
+                className="w-5 h-5 text-white/70 group-hover:text-white transition animate-bounce"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
+              </svg>
             </a>
           </div>
         </div>
