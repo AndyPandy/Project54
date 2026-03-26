@@ -79,7 +79,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
 
       {/* Map — shown below hero when toggled */}
       {showMap && (
-        <div id="map" className="w-full border-b border-brand-dark">
+        <div id="map" className="max-w-5xl mx-auto px-4 lg:px-8 pt-10 pb-6">
           <ListingsMap key={mapKey} apartments={apartments} />
         </div>
       )}
