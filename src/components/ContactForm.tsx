@@ -42,7 +42,7 @@ export default function ContactForm({ apartmentTitle }: Props) {
 
   return (
     <div className="border border-brand-dark p-5">
-      <h3 className="text-sm font-bold uppercase tracking-[0.12em] text-brand-muted mb-0.5">Kontakta mäklaren</h3>
+      <h3 className="text-sm font-bold uppercase tracking-[0.12em] text-brand-muted mb-0.5">Kontakta Nordhem</h3>
       <p className="text-xs text-brand-muted mb-5 line-clamp-1">{apartmentTitle}</p>
 
       <form onSubmit={handleSubmit} className="space-y-3">
@@ -74,7 +74,7 @@ export default function ContactForm({ apartmentTitle }: Props) {
         </button>
 
         <p className="text-[10px] text-brand-muted text-center">
-          Dina kontaktuppgifter delas endast med mäklaren.
+          Dina kontaktuppgifter delas endast med Nordhem.
         </p>
       </form>
     </div>
