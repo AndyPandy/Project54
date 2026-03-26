@@ -98,46 +98,54 @@ export default async function ApartmentPage({ params }: { params: { slug: string
               <div className="mt-5 bg-brand-offwhite">
                 <div className="grid grid-cols-2 sm:grid-cols-4">
                   {apt.propertyType != null && apt.propertyType !== '' && (
-                    <div className="p-3">
-                      <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Bostadstyp</p>
+                    <div className="p-4">
+                      <svg className="w-5 h-5 text-brand-muted mb-2" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+                      <p className="text-[9px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-0.5">Bostadstyp</p>
                       <p className="text-sm font-light text-brand-navy">{apt.propertyType}</p>
                     </div>
                   )}
-                  <div className="p-3">
-                    <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Rum</p>
+                  <div className="p-4">
+                    <svg className="w-5 h-5 text-brand-muted mb-2" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    <p className="text-[9px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-0.5">Rum</p>
                     <p className="text-sm font-light text-brand-navy">{apt.rooms} rum</p>
                   </div>
-                  <div className="p-3">
-                    <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Boarea</p>
+                  <div className="p-4">
+                    <svg className="w-5 h-5 text-brand-muted mb-2" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M4 8V4m0 0h4M4 4l5 5M20 8V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5M20 16v4m0 0h-4m4 0l-5-5"/></svg>
+                    <p className="text-[9px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-0.5">Boarea</p>
                     <p className="text-sm font-light text-brand-navy">{apt.sizeSqm} m²</p>
                   </div>
                   {apt.floor != null && (
-                    <div className="p-3">
-                      <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Våning</p>
+                    <div className="p-4">
+                      <svg className="w-5 h-5 text-brand-muted mb-2" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5"/></svg>
+                      <p className="text-[9px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-0.5">Våning</p>
                       <p className="text-sm font-light text-brand-navy">{apt.floor}</p>
                     </div>
                   )}
                   {apt.fee != null && (
-                    <div className="p-3">
-                      <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Avgift</p>
+                    <div className="p-4">
+                      <svg className="w-5 h-5 text-brand-muted mb-2" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M2 11h20M6 15h.01M10 15h4"/></svg>
+                      <p className="text-[9px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-0.5">Avgift</p>
                       <p className="text-sm font-light text-brand-navy">{apt.fee.toLocaleString('sv-SE')} kr/mån</p>
                     </div>
                   )}
                   {apt.operatingCost != null && (
-                    <div className="p-3">
-                      <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Driftkostnad</p>
+                    <div className="p-4">
+                      <svg className="w-5 h-5 text-brand-muted mb-2" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                      <p className="text-[9px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-0.5">Driftkostnad</p>
                       <p className="text-sm font-light text-brand-navy">{apt.operatingCost.toLocaleString('sv-SE')} kr/år</p>
                     </div>
                   )}
                   {apt.buildYear != null && (
-                    <div className="p-3">
-                      <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Byggår</p>
+                    <div className="p-4">
+                      <svg className="w-5 h-5 text-brand-muted mb-2" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                      <p className="text-[9px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-0.5">Byggår</p>
                       <p className="text-sm font-light text-brand-navy">{apt.buildYear}</p>
                     </div>
                   )}
                   {apt.tenure != null && apt.tenure !== '' && (
-                    <div className="p-3">
-                      <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-1">Boendeform</p>
+                    <div className="p-4">
+                      <svg className="w-5 h-5 text-brand-muted mb-2" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6M7 3H4a1 1 0 00-1 1v16a1 1 0 001 1h16a1 1 0 001-1V8l-5-5H7z"/><path d="M14 3v5h5"/></svg>
+                      <p className="text-[9px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-0.5">Boendeform</p>
                       <p className="text-sm font-light text-brand-navy">{apt.tenure}</p>
                     </div>
                   )}
