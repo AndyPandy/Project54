@@ -33,6 +33,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
     minSize:     searchParams.minSize     ?? '',
     maxSize:     searchParams.maxSize     ?? '',
     features:    searchParams.features   ?? '',
+    sort:        searchParams.sort        ?? '',
   })
 
   const apply = useCallback(
@@ -47,6 +48,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       if (next.minSize)               params.set('minSize',     next.minSize)
       if (next.maxSize)               params.set('maxSize',     next.maxSize)
       if (next.features)              params.set('features',    next.features)
+      if (next.sort)                  params.set('sort',        next.sort)
       router.push(`${pathname}?${params.toString()}`, { scroll: false })
     },
     [router, pathname],
@@ -69,13 +71,13 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
   }
 
   function clear() {
-    const next = { search: '', listingType: 'all', minPrice: '', maxPrice: '', minRooms: '', maxRooms: '', minSize: '', maxSize: '', features: '' }
+    const next = { search: '', listingType: 'all', minPrice: '', maxPrice: '', minRooms: '', maxRooms: '', minSize: '', maxSize: '', features: '', sort: '' }
     setValues(next)
     router.push(pathname, { scroll: false })
   }
 
   const selectedFeatures = values.features ? values.features.split(',') : []
-  const hasFilters = values.search || values.listingType !== 'all' || values.minPrice || values.maxPrice || values.minRooms || values.maxRooms || values.minSize || values.maxSize || values.features
+  const hasFilters = values.search || values.listingType !== 'all' || values.minPrice || values.maxPrice || values.minRooms || values.maxRooms || values.minSize || values.maxSize || values.features || values.sort
 
   const selectCls = 'px-2 py-1.5 text-[9px] font-raleway font-medium text-brand-navy/60 border border-brand-navy/20 bg-brand-offwhite focus:outline-none focus:border-brand-navy/50 transition'
   const inputCls  = 'w-full px-3 py-2 text-[9px] font-raleway font-medium text-brand-navy/60 border border-brand-navy/20 bg-brand-offwhite focus:outline-none focus:border-brand-navy/50 transition'
@@ -145,6 +147,19 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
           <span className="text-brand-muted text-xs">–</span>
           <input type="number" placeholder="Max" min={100000} step={100000} value={values.maxPrice} onChange={(e) => set('maxPrice', e.target.value)} className={`${selectCls} w-24`} />
         </div>
+      </div>
+
+      {/* Sortera */}
+      <div>
+        <span className={barLabel}>Sortera</span>
+        <select value={values.sort} onChange={(e) => set('sort', e.target.value)} className={selectCls}>
+          <option value="">Nyast</option>
+          <option value="price_asc">Pris: lägst</option>
+          <option value="price_desc">Pris: högst</option>
+          <option value="size_desc">Störst</option>
+          <option value="size_asc">Minst</option>
+          <option value="rooms_desc">Flest rum</option>
+        </select>
       </div>
 
       {/* Rensa */}
@@ -227,6 +242,19 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
           <span className="text-brand-muted text-xs flex-shrink-0">–</span>
           <input type="number" placeholder="30 000 000" min={100000} step={100000} value={values.maxPrice} onChange={(e) => set('maxPrice', e.target.value)} className={inputCls} />
         </div>
+      </div>
+
+      {/* Sort */}
+      <div>
+        <label className={labelCls}>Sortera</label>
+        <select value={values.sort} onChange={(e) => set('sort', e.target.value)} className={`${inputCls}`}>
+          <option value="">Nyast</option>
+          <option value="price_asc">Pris: lägst</option>
+          <option value="price_desc">Pris: högst</option>
+          <option value="size_desc">Störst</option>
+          <option value="size_asc">Minst</option>
+          <option value="rooms_desc">Flest rum</option>
+        </select>
       </div>
 
       {/* Features */}

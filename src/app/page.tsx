@@ -29,7 +29,7 @@ export default async function HomePage({
 }: {
   searchParams: { [key: string]: string | undefined }
 }) {
-  const { search, listingType, minPrice, maxPrice, minRooms, maxRooms, minSize, maxSize, features } = searchParams
+  const { search, listingType, minPrice, maxPrice, minRooms, maxRooms, minSize, maxSize, features, sort } = searchParams
 
   const where: Record<string, unknown> = { status: 'published' }
 
@@ -41,9 +41,17 @@ export default async function HomePage({
   if (minSize)   where.sizeSqm  = { ...(where.sizeSqm  as object ?? {}), gte: parseFloat(minSize) }
   if (maxSize)   where.sizeSqm  = { ...(where.sizeSqm  as object ?? {}), lte: parseFloat(maxSize) }
 
+  const orderBy =
+    sort === 'price_asc'  ? { price: 'asc'  as const } :
+    sort === 'price_desc' ? { price: 'desc' as const } :
+    sort === 'size_desc'  ? { sizeSqm: 'desc' as const } :
+    sort === 'size_asc'   ? { sizeSqm: 'asc'  as const } :
+    sort === 'rooms_desc' ? { rooms: 'desc' as const } :
+                            { createdAt: 'desc' as const }
+
   const rawApartments = await prisma.apartment.findMany({
     where,
-    orderBy: { createdAt: 'desc' },
+    orderBy,
   })
 
   let apartments = rawApartments.map(parseApartment)
