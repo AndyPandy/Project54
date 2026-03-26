@@ -32,15 +32,15 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
   )
 
   return (
-    <div className="max-w-6xl mx-auto pb-24 md:pb-8">
+    <div>
 
-      {/* Hero / Map — full container width at top */}
+      {/* Hero / Map — full viewport width */}
       {showMap ? (
-        <div className="px-4 lg:px-6 py-6">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 py-6">
           <ListingsMap key={mapKey} apartments={apartments} />
         </div>
       ) : (
-        <div className="relative h-[70vh] lg:h-[28rem] overflow-hidden bg-brand-dark/30">
+        <div className="relative w-full h-[70vh] lg:h-[28rem] overflow-hidden bg-brand-dark/30">
           {heroImages.map((src, i) => (
             <img
               key={src}
@@ -59,7 +59,8 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
         </div>
       )}
 
-      {/* Filter sidebar + Listings — below hero */}
+      {/* Filter sidebar + Listings — below hero, constrained */}
+      <div className="max-w-6xl mx-auto pb-24 md:pb-8">
       <div className="flex flex-col lg:flex-row">
 
         {/* Desktop filters sidebar */}
@@ -140,6 +141,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
           </div>
         </div>
       )}
+      </div>
     </div>
   )
 }
