@@ -18,7 +18,7 @@ export default function Navbar() {
   const isHome = pathname === '/'
 
   return (
-    <header className="sticky top-0 z-50 bg-brand-offwhite/96 backdrop-blur-sm border-b border-brand-dark">
+    <header className="sticky top-0 z-50 bg-brand-offwhite border-b border-brand-dark">
       <div className="max-w-6xl mx-auto px-4 h-14 relative flex items-center justify-center">
 
         {/* Logo — left */}
