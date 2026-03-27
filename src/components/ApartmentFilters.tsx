@@ -27,23 +27,25 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
   const isRent = mode === 'rent'
 
   const [values, setValues] = useState({
-    search:   searchParams.search   ?? '',
-    minPrice: searchParams.minPrice ?? '',
-    maxPrice: searchParams.maxPrice ?? '',
-    minRooms: searchParams.minRooms ?? '',
-    maxRooms: searchParams.maxRooms ?? '',
-    minSize:  searchParams.minSize  ?? '',
-    maxSize:  searchParams.maxSize  ?? '',
-    features: searchParams.features ?? '',
-    sort:     searchParams.sort     ?? '',
+    search:      searchParams.search      ?? '',
+    listingType: searchParams.listingType ?? '',
+    minPrice:    searchParams.minPrice    ?? '',
+    maxPrice:    searchParams.maxPrice    ?? '',
+    minRooms:    searchParams.minRooms    ?? '',
+    maxRooms:    searchParams.maxRooms    ?? '',
+    minSize:     searchParams.minSize     ?? '',
+    maxSize:     searchParams.maxSize     ?? '',
+    features:    searchParams.features    ?? '',
+    sort:        searchParams.sort        ?? '',
   })
 
   const apply = useCallback(
     (next: typeof values) => {
       const params = new URLSearchParams()
-      if (next.search)   params.set('search',   next.search)
-      if (next.minPrice) params.set('minPrice',  next.minPrice)
-      if (next.maxPrice) params.set('maxPrice',  next.maxPrice)
+      if (next.search)      params.set('search',      next.search)
+      if (next.listingType) params.set('listingType', next.listingType)
+      if (next.minPrice)    params.set('minPrice',    next.minPrice)
+      if (next.maxPrice)    params.set('maxPrice',    next.maxPrice)
       if (next.minRooms) params.set('minRooms',  next.minRooms)
       if (next.maxRooms) params.set('maxRooms',  next.maxRooms)
       if (next.minSize)  params.set('minSize',   next.minSize)
@@ -72,13 +74,13 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
   }
 
   function clear() {
-    const next = { search: '', minPrice: '', maxPrice: '', minRooms: '', maxRooms: '', minSize: '', maxSize: '', features: '', sort: '' }
+    const next = { search: '', listingType: '', minPrice: '', maxPrice: '', minRooms: '', maxRooms: '', minSize: '', maxSize: '', features: '', sort: '' }
     setValues(next)
     router.push(pathname, { scroll: false })
   }
 
   const selectedFeatures = values.features ? values.features.split(',') : []
-  const hasFilters = values.search || values.minPrice || values.maxPrice || values.minRooms || values.maxRooms || values.minSize || values.maxSize || values.features || values.sort
+  const hasFilters = values.search || values.listingType || values.minPrice || values.maxPrice || values.minRooms || values.maxRooms || values.minSize || values.maxSize || values.features || values.sort
 
   const priceLabel   = isRent ? 'Månadshyra' : 'Pris SEK'
   const priceLabelSb = isRent ? 'Månadshyra (kr/mån)' : 'Pris (SEK)'
@@ -107,6 +109,28 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
             className="pl-7 pr-3 py-1.5 text-[9px] font-raleway font-medium text-brand-navy/60 border border-brand-navy/20 bg-brand-offwhite focus:outline-none focus:border-brand-navy/50 transition w-44" />
         </div>
       </div>
+
+      {/* Typ — only on sale mode */}
+      {!isRent && (
+        <div>
+          <span className={barLabel}>Typ</span>
+          <div className="flex gap-1">
+            {[{ value: '', label: 'Alla' }, { value: 'sale', label: 'Till Salu' }, { value: 'kommande', label: 'Kommande' }].map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => set('listingType', opt.value)}
+                className={`px-2.5 py-1.5 text-[9px] font-raleway font-medium uppercase tracking-[0.08em] border transition whitespace-nowrap ${
+                  values.listingType === opt.value
+                    ? 'bg-brand-navy text-white border-brand-navy'
+                    : 'border-brand-navy/20 text-brand-navy/60 hover:border-brand-navy/40'
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Rum */}
       <div>
@@ -169,6 +193,28 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
           />
         </div>
       </div>
+
+      {/* Typ — only on sale mode */}
+      {!isRent && (
+        <div>
+          <label className={labelCls}>Typ</label>
+          <div className="flex gap-1.5">
+            {[{ value: '', label: 'Alla' }, { value: 'sale', label: 'Till Salu' }, { value: 'kommande', label: 'Kommande' }].map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => set('listingType', opt.value)}
+                className={`px-2.5 py-1.5 text-[9px] font-raleway font-medium uppercase tracking-[0.08em] border transition whitespace-nowrap ${
+                  values.listingType === opt.value
+                    ? 'bg-brand-navy text-white border-brand-navy'
+                    : 'border-brand-navy/20 text-brand-navy/60 hover:border-brand-navy/40'
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Rooms */}
       <div>

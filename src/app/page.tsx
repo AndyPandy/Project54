@@ -29,11 +29,13 @@ export default async function HomePage({
 }: {
   searchParams: { [key: string]: string | undefined }
 }) {
-  const { search, minPrice, maxPrice, minRooms, maxRooms, minSize, maxSize, features, sort } = searchParams
+  const { search, listingType, minPrice, maxPrice, minRooms, maxRooms, minSize, maxSize, features, sort } = searchParams
 
   const where: Record<string, unknown> = {
     status: 'published',
-    listingType: { in: ['sale', 'kommande'] },
+    listingType: listingType === 'sale' || listingType === 'kommande'
+      ? listingType
+      : { in: ['sale', 'kommande'] },
   }
 
   if (minRooms)  where.rooms    = { ...(where.rooms    as object ?? {}), gte: parseInt(minRooms) }
