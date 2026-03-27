@@ -97,10 +97,10 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
   const barLabel  = 'block text-[9px] font-raleway font-normal uppercase tracking-[0.12em] text-brand-muted mb-1'
 
   if (horizontal) return (
-    <div className="flex flex-wrap items-end justify-center gap-4">
+    <div className="flex flex-wrap items-center justify-center gap-3">
 
       {/* Sök */}
-      <div>
+      <div className="flex flex-col items-center bg-brand-dark px-3 py-2.5">
         <span className={barLabel}>Sök</span>
         <div className="relative">
           <svg className="absolute left-2 top-1/2 -translate-y-1/2 w-3 h-3 text-brand-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -114,7 +114,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
 
       {/* Status — only on sale mode */}
       {!isRent && (
-        <div>
+        <div className="flex flex-col items-center bg-brand-dark px-3 py-2.5">
           <span className={barLabel}>Status</span>
           <div className="flex gap-1">
             {[{ value: '', label: 'Alla' }, { value: 'sale', label: 'Till Salu' }, { value: 'kommande', label: 'Kommande' }].map((opt) => (
@@ -135,7 +135,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       )}
 
       {/* Bostadstyp */}
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center bg-brand-dark px-3 py-2.5">
         <span className={barLabel}>Bostadstyp</span>
         <div className="flex gap-1">
           {[{ value: '', label: 'Alla' }, { value: 'Lägenhet', label: 'Lägenhet' }, { value: 'Villa', label: 'Villa' }, { value: 'Radhus', label: 'Radhus' }].map((opt) => (
@@ -152,7 +152,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       </div>
 
       {/* Rum */}
-      <div>
+      <div className="flex flex-col items-center bg-brand-dark px-3 py-2.5">
         <span className={barLabel}>Rum</span>
         <div className="flex gap-1 items-center">
           <select value={values.minRooms} onChange={(e) => set('minRooms', e.target.value)} className={selectCls}>
@@ -168,7 +168,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       </div>
 
       {/* Area */}
-      <div>
+      <div className="flex flex-col items-center bg-brand-dark px-3 py-2.5">
         <span className={barLabel}>Area m²</span>
         <div className="flex gap-1 items-center">
           <input type="number" placeholder="Min" min={20} max={250} value={values.minSize} onChange={(e) => set('minSize', e.target.value)} className={`${selectCls} w-16`} />
@@ -178,7 +178,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       </div>
 
       {/* Pris / Månadshyra */}
-      <div>
+      <div className="flex flex-col items-center bg-brand-dark px-3 py-2.5">
         <span className={barLabel}>{priceLabel}</span>
         <div className="flex gap-1 items-center">
           <input type="number" placeholder={pricePlMin} min={priceMin} step={priceStep} value={values.minPrice} onChange={(e) => set('minPrice', e.target.value)} className={`${selectCls} w-24`} />
@@ -188,7 +188,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       </div>
 
       {/* Egenskaper */}
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center bg-brand-dark px-3 py-2.5">
         <span className={barLabel}>Egenskaper</span>
         <div className="flex gap-1">
           {FEATURE_OPTIONS.map((f) => (
@@ -209,7 +209,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
 
       {/* Rensa */}
       {hasFilters && (
-        <button onClick={clear} className="text-[9px] font-raleway font-medium uppercase tracking-[0.1em] text-brand-navy/50 hover:text-brand-navy transition self-end pb-1.5">Rensa</button>
+        <button onClick={clear} className="text-[9px] font-raleway font-medium uppercase tracking-[0.1em] text-brand-navy/50 hover:text-brand-navy transition">Rensa</button>
       )}
     </div>
   )

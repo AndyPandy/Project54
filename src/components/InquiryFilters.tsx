@@ -86,7 +86,7 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
     <div className="flex flex-wrap items-end justify-center gap-4">
 
       {/* Sök */}
-      <div>
+      <div className="flex flex-col items-center">
         <span className={barLabel}>Sök</span>
         <div className="relative">
           <svg className="absolute left-2 top-1/2 -translate-y-1/2 w-3 h-3 text-brand-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -116,7 +116,7 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
       </div>
 
       {/* Rum */}
-      <div>
+      <div className="flex flex-col items-center">
         <span className={barLabel}>Rum</span>
         <div className="flex gap-1 items-center">
           <select value={values.minRooms} onChange={(e) => set('minRooms', e.target.value)} className={selectCls}>
@@ -132,7 +132,7 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
       </div>
 
       {/* Area */}
-      <div>
+      <div className="flex flex-col items-center">
         <span className={barLabel}>Area m²</span>
         <div className="flex gap-1 items-center">
           <input type="number" placeholder="Min" min={20} max={500} value={values.minSize} onChange={(e) => set('minSize', e.target.value)} className={`${selectCls} w-16`} />
@@ -142,7 +142,7 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
       </div>
 
       {/* Avgift */}
-      <div>
+      <div className="flex flex-col items-center">
         <span className={barLabel}>Avgift</span>
         <div className="flex gap-1 items-center">
           <input type="number" placeholder="2000" min={0} step={500} value={values.minFee} onChange={(e) => set('minFee', e.target.value)} className={`${selectCls} w-24`} />
