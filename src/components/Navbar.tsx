@@ -64,7 +64,7 @@ export default function Navbar() {
             <Link
               key={tab.href}
               href={tab.href}
-              className={`flex-1 flex items-center justify-center h-14 text-[10px] font-raleway font-bold uppercase tracking-[0.1em] transition-colors ${
+              className={`flex-1 flex items-center justify-center h-14 text-[11px] font-raleway font-medium uppercase tracking-[0.1em] transition-colors ${
                 active ? 'text-brand-navy' : 'text-brand-navy/50'
               }`}
             >
