@@ -28,11 +28,12 @@ export default function InquiryCard({ inquiry }: Props) {
   return (
     <Link
       href={`/kopforfragan/${inquiry.slug}`}
-      className="group block border border-brand-dark bg-brand-offwhite hover:border-brand-navy transition"
+      className="group block border border-brand-dark hover:border-brand-navy transition"
+      style={{ backgroundColor: 'rgba(143, 176, 130, 0.08)' }}
     >
-      {/* Header strip */}
+      {/* Header */}
       <div className="px-5 pt-5 pb-4 border-b border-brand-dark">
-        <span className="inline-block text-[9px] font-bold uppercase tracking-[0.12em] text-brand-muted mb-2">
+        <span className="inline-block text-[9px] font-bold uppercase tracking-[0.12em] text-brand-sage mb-2">
           Köpförfrågan
         </span>
         <h2 className="font-raleway font-medium text-sm uppercase tracking-[0.1em] text-brand-navy group-hover:text-brand-sage transition line-clamp-1">
@@ -45,32 +46,41 @@ export default function InquiryCard({ inquiry }: Props) {
         )}
       </div>
 
-      {/* Details */}
-      <div className="px-5 py-4 space-y-2">
-        <p className="text-xs text-brand-navy/70 leading-relaxed line-clamp-2">{inquiry.description}</p>
-
-        <div className="flex flex-wrap gap-x-4 gap-y-1 pt-1">
+      {/* Stats row with icons */}
+      <div className="px-5 py-4">
+        <div className="flex flex-wrap gap-x-5 gap-y-2 mb-3">
           {hasRooms && (
-            <span className="text-[10px] text-brand-muted">
-              {range(inquiry.minRooms, inquiry.maxRooms, 'rum')}
-            </span>
+            <div className="flex items-center gap-1.5">
+              <svg className="w-3.5 h-3.5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+              </svg>
+              <span className="text-[10px] text-brand-navy/70">{range(inquiry.minRooms, inquiry.maxRooms, 'rum')}</span>
+            </div>
           )}
           {hasSize && (
-            <span className="text-[10px] text-brand-muted">
-              {range(inquiry.minSize, inquiry.maxSize, 'm²')}
-            </span>
+            <div className="flex items-center gap-1.5">
+              <svg className="w-3.5 h-3.5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                <path d="M4 8V4m0 0h4M4 4l5 5M20 8V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5M20 16v4m0 0h-4m4 0l-5-5"/>
+              </svg>
+              <span className="text-[10px] text-brand-navy/70">{range(inquiry.minSize, inquiry.maxSize, 'm²')}</span>
+            </div>
           )}
           {hasFee && (
-            <span className="text-[10px] text-brand-muted">
-              Avgift: {range(inquiry.minFee, inquiry.maxFee, 'kr/mån')}
-            </span>
+            <div className="flex items-center gap-1.5">
+              <svg className="w-3.5 h-3.5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                <rect x="2" y="7" width="20" height="14" rx="1"/><path d="M2 11h20M6 15h.01M10 15h4"/>
+              </svg>
+              <span className="text-[10px] text-brand-navy/70">Avgift: {range(inquiry.minFee, inquiry.maxFee, 'kr/mån')}</span>
+            </div>
           )}
         </div>
 
+        <p className="text-xs text-brand-navy/60 leading-relaxed line-clamp-2">{inquiry.description}</p>
+
         {features.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 pt-1">
+          <div className="flex flex-wrap gap-1.5 pt-3">
             {features.map((f) => (
-              <span key={f} className="text-[9px] font-bold uppercase tracking-[0.08em] px-2 py-0.5 border border-brand-dark text-brand-muted">
+              <span key={f} className="text-[9px] font-raleway font-medium uppercase tracking-[0.08em] px-2 py-0.5 border border-brand-sage/40 text-brand-sage">
                 {f}
               </span>
             ))}
