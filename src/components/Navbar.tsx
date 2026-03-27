@@ -2,20 +2,21 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useSearchParams, usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 const TABS = [
-  { value: 'all',      label: 'Alla' },
-  { value: 'rent',     label: 'Uthyrning' },
-  { value: 'sale',     label: 'Till salu' },
-  { value: 'kommande', label: 'Kommande' },
+  { label: 'Till Salu',        href: '/' },
+  { label: 'Köpförfrågningar', href: '/kopforfragan' },
+  { label: 'Uthyrning',        href: '/uthyrning' },
 ]
 
 export default function Navbar() {
-  const searchParams = useSearchParams()
   const pathname = usePathname()
-  const activeTab = searchParams.get('listingType') ?? 'all'
-  const isHome = pathname === '/'
+
+  function isActive(href: string) {
+    if (href === '/') return pathname === '/'
+    return pathname.startsWith(href)
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-brand-offwhite border-b border-brand-dark">
@@ -27,26 +28,24 @@ export default function Navbar() {
         </Link>
 
         {/* Nav tabs — centered */}
-        {isHome && (
-          <nav className="hidden md:flex items-center gap-1">
-            {TABS.map((tab) => {
-              const isActive = activeTab === tab.value
-              return (
-                <Link
-                  key={tab.value}
-                  href={tab.value === 'all' ? '/' : `/?listingType=${tab.value}`}
-                  className={`px-4 h-14 flex items-center text-xs font-raleway font-light uppercase tracking-[0.15em] transition-colors whitespace-nowrap ${
-                    isActive ? 'text-brand-navy' : 'text-brand-muted hover:text-brand-navy'
-                  }`}
-                >
-                  <span className={`border-b-2 pb-0.5 ${isActive ? 'border-brand-sage' : 'border-transparent'}`}>
-                    {tab.label}
-                  </span>
-                </Link>
-              )
-            })}
-          </nav>
-        )}
+        <nav className="hidden md:flex items-center gap-1">
+          {TABS.map((tab) => {
+            const active = isActive(tab.href)
+            return (
+              <Link
+                key={tab.href}
+                href={tab.href}
+                className={`px-4 h-14 flex items-center text-xs font-raleway font-light uppercase tracking-[0.15em] transition-colors whitespace-nowrap ${
+                  active ? 'text-brand-navy' : 'text-brand-muted hover:text-brand-navy'
+                }`}
+              >
+                <span className={`border-b-2 pb-0.5 ${active ? 'border-brand-sage' : 'border-transparent'}`}>
+                  {tab.label}
+                </span>
+              </Link>
+            )
+          })}
+        </nav>
 
         {/* Admin — right */}
         <Link

@@ -1,7 +1,6 @@
 import { Suspense } from 'react'
 import { prisma } from '@/lib/prisma'
 import Navbar from '@/components/Navbar'
-import ApartmentCard from '@/components/ApartmentCard'
 import ListingsClient from '@/components/ListingsClient'
 import type { Apartment } from '@/types'
 
@@ -24,7 +23,7 @@ function parseApartment(raw: {
   }
 }
 
-export default async function HomePage({
+export default async function UthyrningPage({
   searchParams,
 }: {
   searchParams: { [key: string]: string | undefined }
@@ -33,15 +32,15 @@ export default async function HomePage({
 
   const where: Record<string, unknown> = {
     status: 'published',
-    listingType: { in: ['sale', 'kommande'] },
+    listingType: 'rent',
   }
 
-  if (minRooms)  where.rooms    = { ...(where.rooms    as object ?? {}), gte: parseInt(minRooms) }
-  if (maxRooms)  where.rooms    = { ...(where.rooms    as object ?? {}), lte: parseInt(maxRooms) }
-  if (minPrice)  where.price    = { ...(where.price    as object ?? {}), gte: parseFloat(minPrice) }
-  if (maxPrice)  where.price    = { ...(where.price    as object ?? {}), lte: parseFloat(maxPrice) }
-  if (minSize)   where.sizeSqm  = { ...(where.sizeSqm  as object ?? {}), gte: parseFloat(minSize) }
-  if (maxSize)   where.sizeSqm  = { ...(where.sizeSqm  as object ?? {}), lte: parseFloat(maxSize) }
+  if (minRooms) where.rooms   = { ...(where.rooms   as object ?? {}), gte: parseInt(minRooms) }
+  if (maxRooms) where.rooms   = { ...(where.rooms   as object ?? {}), lte: parseInt(maxRooms) }
+  if (minPrice) where.price   = { ...(where.price   as object ?? {}), gte: parseFloat(minPrice) }
+  if (maxPrice) where.price   = { ...(where.price   as object ?? {}), lte: parseFloat(maxPrice) }
+  if (minSize)  where.sizeSqm = { ...(where.sizeSqm as object ?? {}), gte: parseFloat(minSize) }
+  if (maxSize)  where.sizeSqm = { ...(where.sizeSqm as object ?? {}), lte: parseFloat(maxSize) }
 
   const orderBy =
     sort === 'price_asc'  ? { price: 'asc'  as const } :
@@ -51,11 +50,7 @@ export default async function HomePage({
     sort === 'rooms_desc' ? { rooms: 'desc' as const } :
                             { sortOrder: 'asc' as const }
 
-  const rawApartments = await prisma.apartment.findMany({
-    where,
-    orderBy,
-  })
-
+  const rawApartments = await prisma.apartment.findMany({ where, orderBy })
   let apartments = rawApartments.map(parseApartment)
 
   if (search) {
@@ -83,7 +78,7 @@ export default async function HomePage({
   return (
     <>
       <Suspense fallback={null}><Navbar /></Suspense>
-      <ListingsClient apartments={apartments} searchParams={searchParams} mode="sale" />
+      <ListingsClient apartments={apartments} searchParams={searchParams} mode="rent" />
     </>
   )
 }

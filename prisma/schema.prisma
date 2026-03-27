@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -62,4 +62,27 @@ model User {
   name      String
   role      String   @default("agent") // "admin" | "agent"
   createdAt DateTime @default(now())
+}
+
+model Inquiry {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  description      String
+  desiredLocation  String   @default("")
+  minSize          Float?
+  maxSize          Float?
+  minFee           Float?
+  maxFee           Float?
+  minRooms         Int?
+  maxRooms         Int?
+  desiredFloor     String   @default("")
+  fireplaceReq     Boolean  @default(false)
+  elevatorReq      Boolean  @default(false)
+  terraceReq       Boolean  @default(false)
+  patioReq         Boolean  @default(false)
+  balconyReq       Boolean  @default(false)
+  status           String   @default("draft")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }

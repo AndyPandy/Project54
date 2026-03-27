@@ -11,9 +11,10 @@ import type { Apartment } from '@/types'
 interface Props {
   apartments: Apartment[]
   searchParams: { [key: string]: string | undefined }
+  mode?: 'sale' | 'rent'
 }
 
-export default function ListingsClient({ apartments, searchParams }: Props) {
+export default function ListingsClient({ apartments, searchParams, mode }: Props) {
   const router = useRouter()
   const [showMap, setShowMap]         = useState(false)
   const [showFilters, setShowFilters] = useState(false)
@@ -89,7 +90,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
 
         {/* Desktop horizontal filter bar */}
         <div className="hidden lg:block border-b border-brand-dark py-10">
-          <ApartmentFilters horizontal searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => setShowMap((v) => !v)} />
+          <ApartmentFilters horizontal searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => setShowMap((v) => !v)} mode={mode} />
         </div>
 
         {/* Count row — below filter bar, above listings */}
@@ -186,7 +187,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
               </div>
             </div>
             <div className="overflow-y-auto px-5 py-4">
-              <ApartmentFilters searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => { setShowMap((v) => !v); setShowFilters(false) }} />
+              <ApartmentFilters searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => { setShowMap((v) => !v); setShowFilters(false) }} mode={mode} />
             </div>
             <div className="px-5 py-4 border-t border-brand-dark flex-shrink-0">
               <button

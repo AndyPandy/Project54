@@ -33,6 +33,29 @@ export interface Showing {
   createdAt:   string
 }
 
+export interface Inquiry {
+  id:              string
+  slug:            string
+  title:           string
+  description:     string
+  desiredLocation: string
+  minSize:         number | null
+  maxSize:         number | null
+  minFee:          number | null
+  maxFee:          number | null
+  minRooms:        number | null
+  maxRooms:        number | null
+  desiredFloor:    string
+  fireplaceReq:    boolean
+  elevatorReq:     boolean
+  terraceReq:      boolean
+  patioReq:        boolean
+  balconyReq:      boolean
+  status:          'draft' | 'published'
+  createdAt:       string
+  updatedAt:       string
+}
+
 export interface ApartmentFilters {
   search:      string
   listingType: string
