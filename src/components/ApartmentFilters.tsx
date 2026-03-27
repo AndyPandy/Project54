@@ -197,7 +197,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
               onClick={() => toggleFeature(f.value)}
               className={`px-2.5 py-1.5 text-[9px] font-raleway font-medium uppercase tracking-[0.08em] border transition whitespace-nowrap ${
                 selectedFeatures.includes(f.value)
-                  ? 'bg-brand-sage text-white border-brand-sage'
+                  ? 'bg-brand-navy text-white border-brand-navy'
                   : 'border-brand-navy/20 text-brand-navy/60 hover:border-brand-navy/40'
               }`}
             >
@@ -340,7 +340,7 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
       {/* Map toggle */}
       <button
         onClick={onToggleMap}
-        className="w-full flex items-center justify-center gap-2 py-2.5 border border-brand-sage text-brand-sage text-[11px] font-bold uppercase tracking-[0.1em] hover:bg-brand-sage hover:text-white transition"
+        className="w-full flex items-center justify-center gap-2 py-2.5 border border-brand-navy text-brand-navy text-[11px] font-bold uppercase tracking-[0.1em] hover:bg-brand-navy hover:text-white transition"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />

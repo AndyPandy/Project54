@@ -83,27 +83,27 @@ export default function InquiryCard({ inquiry }: Props) {
       style={{ backgroundColor: 'rgba(143, 176, 130, 0.07)' }}
     >
       {/* Top accent bar */}
-      <div className="h-1 bg-brand-sage w-full" />
+      <div className="h-1 bg-brand-navy w-full" />
 
       {/* Header */}
       <div className="px-5 pt-4 pb-4 flex items-start gap-4">
         {/* Property type icon */}
         {PropertyIcon && (
-          <div className="flex-shrink-0 w-10 h-10 border border-brand-sage/40 bg-brand-sage/10 flex items-center justify-center text-brand-sage mt-0.5">
+          <div className="flex-shrink-0 w-10 h-10 border border-brand-dark bg-brand-dark/40 flex items-center justify-center text-brand-navy mt-0.5">
             <PropertyIcon />
           </div>
         )}
 
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-2 mb-1">
-            <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-brand-sage">
+            <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-brand-muted">
               {inquiry.propertyType || 'Köpförfrågan'}
             </span>
             <span className="text-[9px] font-raleway font-light uppercase tracking-[0.1em] text-brand-muted flex-shrink-0">
               {new Date(inquiry.createdAt).toLocaleDateString('sv-SE')}
             </span>
           </div>
-          <h2 className="font-raleway font-medium text-sm uppercase tracking-[0.1em] text-brand-navy group-hover:text-brand-sage transition line-clamp-1">
+          <h2 className="font-raleway font-medium text-sm uppercase tracking-[0.1em] text-brand-navy group-hover:text-brand-navy/70 transition line-clamp-1">
             {inquiry.title}
           </h2>
           {inquiry.desiredLocation && (
@@ -125,7 +125,7 @@ export default function InquiryCard({ inquiry }: Props) {
         <div className="mx-5 mb-4 border border-brand-dark/60 divide-x divide-brand-dark/60 flex">
           {hasRooms && (
             <div className="flex-1 px-3 py-2.5 flex flex-col items-center">
-              <svg className="w-3.5 h-3.5 text-brand-sage mb-1" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-brand-navy/50 mb-1" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                 <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
               </svg>
               <p className="text-sm font-raleway font-light text-brand-navy leading-none">{rangeVal(inquiry.minRooms, inquiry.maxRooms)}</p>
@@ -134,7 +134,7 @@ export default function InquiryCard({ inquiry }: Props) {
           )}
           {hasSize && (
             <div className="flex-1 px-3 py-2.5 flex flex-col items-center">
-              <svg className="w-3.5 h-3.5 text-brand-sage mb-1" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-brand-navy/50 mb-1" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                 <path d="M4 8V4m0 0h4M4 4l5 5M20 8V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5M20 16v4m0 0h-4m4 0l-5-5"/>
               </svg>
               <p className="text-sm font-raleway font-light text-brand-navy leading-none">{rangeVal(inquiry.minSize, inquiry.maxSize)}</p>
@@ -143,7 +143,7 @@ export default function InquiryCard({ inquiry }: Props) {
           )}
           {hasFee && (
             <div className="flex-1 px-3 py-2.5 flex flex-col items-center">
-              <svg className="w-3.5 h-3.5 text-brand-sage mb-1" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-brand-navy/50 mb-1" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                 <rect x="2" y="7" width="20" height="14" rx="1"/><path d="M2 11h20M6 15h.01M10 15h4"/>
               </svg>
               <p className="text-sm font-raleway font-light text-brand-navy leading-none">{rangeVal(inquiry.minFee, inquiry.maxFee)}</p>
@@ -157,7 +157,7 @@ export default function InquiryCard({ inquiry }: Props) {
       <div className="px-5 pb-4">
         {moveInLabel && (
           <div className="flex items-center gap-1.5 mb-3">
-            <svg className="w-3 h-3 text-brand-sage flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <svg className="w-3 h-3 text-brand-navy/50 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
               <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
             </svg>
             <span className="text-[9px] font-raleway font-medium uppercase tracking-[0.08em] text-brand-navy/70">
@@ -171,7 +171,7 @@ export default function InquiryCard({ inquiry }: Props) {
         {features.length > 0 && (
           <div className="flex flex-wrap gap-1.5 pt-3">
             {features.map((f) => (
-              <span key={f} className="text-[9px] font-raleway font-medium uppercase tracking-[0.08em] px-2 py-0.5 border border-brand-sage/60 text-brand-sage bg-brand-sage/5">
+              <span key={f} className="text-[9px] font-raleway font-medium uppercase tracking-[0.08em] px-2 py-0.5 border border-brand-dark text-brand-muted">
                 {f}
               </span>
             ))}
@@ -182,7 +182,7 @@ export default function InquiryCard({ inquiry }: Props) {
       {/* Footer CTA */}
       <div className="px-5 py-3 border-t border-brand-dark/60 flex items-center justify-between">
         <span className="text-[8px] font-raleway uppercase tracking-[0.12em] text-brand-muted">Köpförfrågan</span>
-        <span className="text-[9px] font-raleway font-medium uppercase tracking-[0.15em] text-brand-sage group-hover:text-brand-navy transition">
+        <span className="text-[9px] font-raleway font-medium uppercase tracking-[0.15em] text-brand-navy/60 group-hover:text-brand-navy transition">
           Svara →
         </span>
       </div>

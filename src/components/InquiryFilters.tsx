@@ -161,7 +161,7 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
               onClick={() => toggleFeature(f.value)}
               className={`px-2.5 py-1.5 text-[9px] font-raleway font-medium uppercase tracking-[0.08em] border transition whitespace-nowrap ${
                 selectedFeatures.includes(f.value)
-                  ? 'bg-brand-sage text-white border-brand-sage'
+                  ? 'bg-brand-navy text-white border-brand-navy'
                   : 'border-brand-navy/20 text-brand-navy/60 hover:border-brand-navy/40'
               }`}
             >

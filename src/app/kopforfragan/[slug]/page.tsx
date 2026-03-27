@@ -170,7 +170,7 @@ export default async function InquiryPage({ params }: { params: { slug: string }
         </div>
         <a
           href="#contact"
-          className="flex-shrink-0 bg-brand-sage hover:bg-brand-sage-d text-white font-bold text-[11px] uppercase tracking-[0.1em] px-6 py-3 transition"
+          className="flex-shrink-0 bg-brand-navy hover:bg-black text-white font-bold text-[11px] uppercase tracking-[0.1em] px-6 py-3 transition"
         >
           Kontakta
         </a>

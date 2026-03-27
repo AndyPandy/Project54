@@ -39,7 +39,7 @@ export default function Navbar() {
                   active ? 'text-brand-navy' : 'text-brand-muted hover:text-brand-navy'
                 }`}
               >
-                <span className={`border-b-2 pb-0.5 ${active ? 'border-brand-sage' : 'border-transparent'}`}>
+                <span className={`border-b-2 pb-0.5 ${active ? 'border-brand-navy' : 'border-transparent'}`}>
                   {tab.label}
                 </span>
               </Link>
@@ -68,7 +68,7 @@ export default function Navbar() {
                 active ? 'text-brand-navy' : 'text-brand-navy/50'
               }`}
             >
-              <span className={`border-b-2 pb-0.5 ${active ? 'border-brand-sage' : 'border-transparent'}`}>
+              <span className={`border-b-2 pb-0.5 ${active ? 'border-brand-navy' : 'border-transparent'}`}>
                 {tab.label === 'Köpförfrågningar' ? 'Förfrågningar' : tab.label}
               </span>
             </Link>

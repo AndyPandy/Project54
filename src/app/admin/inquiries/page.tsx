@@ -69,7 +69,7 @@ export default async function InquiriesPage() {
                     <div className="flex items-center gap-2 justify-end">
                       <Link
                         href={`/admin/inquiries/${inq.id}/edit`}
-                        className="text-xs font-semibold text-brand-navy hover:text-brand-sage transition"
+                        className="text-xs font-semibold text-brand-navy hover:text-brand-muted transition"
                       >
                         Edit
                       </Link>
