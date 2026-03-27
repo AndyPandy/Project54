@@ -72,6 +72,16 @@ export default async function InquiryPage({ params }: { params: { slug: string }
                   {inq.desiredLocation}
                 </p>
               )}
+              {(inq.moveInFrom || inq.moveInTo) && (
+                <p className="font-raleway font-light text-sm text-brand-muted mt-1 uppercase tracking-[0.08em]">
+                  Önskad inflyttningsperiod:{' '}
+                  {inq.moveInFrom && inq.moveInTo
+                    ? `${new Date(inq.moveInFrom).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long' })} – ${new Date(inq.moveInTo).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long' })}`
+                    : inq.moveInFrom
+                    ? `Från ${new Date(inq.moveInFrom).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long' })}`
+                    : `Till ${new Date(inq.moveInTo!).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long' })}`}
+                </p>
+              )}
               <div className="border-b border-brand-dark mt-4" />
 
               {/* Fact box */}

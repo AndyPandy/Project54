@@ -82,6 +82,8 @@ model Inquiry {
   terraceReq       Boolean  @default(false)
   patioReq         Boolean  @default(false)
   balconyReq       Boolean  @default(false)
+  moveInFrom       String   @default("")  // "YYYY-MM-DD"
+  moveInTo         String   @default("")  // "YYYY-MM-DD"
   status           String   @default("draft")
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt

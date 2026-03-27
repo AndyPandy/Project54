@@ -28,6 +28,8 @@ export default function InquiryForm({ inquiry }: Props) {
     terraceReq:      inquiry?.terraceReq      ?? false,
     patioReq:        inquiry?.patioReq        ?? false,
     balconyReq:      inquiry?.balconyReq      ?? false,
+    moveInFrom:      inquiry?.moveInFrom      ?? '',
+    moveInTo:        inquiry?.moveInTo        ?? '',
     status:          inquiry?.status          ?? 'draft',
   })
 
@@ -139,6 +141,17 @@ export default function InquiryForm({ inquiry }: Props) {
             <div>
               <label className={labelCls}>Önskad våning</label>
               <input value={form.desiredFloor} onChange={(e) => set('desiredFloor', e.target.value)} className={inputCls} placeholder="t.ex. 2 eller högre, ej bottenvåning" />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className={labelCls}>Inflyttning från</label>
+                <input type="date" value={form.moveInFrom} onChange={(e) => set('moveInFrom', e.target.value)} className={inputCls} />
+              </div>
+              <div>
+                <label className={labelCls}>Inflyttning till</label>
+                <input type="date" value={form.moveInTo} onChange={(e) => set('moveInTo', e.target.value)} className={inputCls} />
+              </div>
             </div>
           </div>
 

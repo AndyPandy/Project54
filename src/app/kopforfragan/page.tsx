@@ -10,7 +10,7 @@ function parseInquiry(raw: {
   minFee: number | null; maxFee: number | null; minRooms: number | null
   maxRooms: number | null; desiredFloor: string; fireplaceReq: boolean
   elevatorReq: boolean; terraceReq: boolean; patioReq: boolean
-  balconyReq: boolean; status: string; createdAt: Date; updatedAt: Date
+  balconyReq: boolean; moveInFrom: string; moveInTo: string; status: string; createdAt: Date; updatedAt: Date
 }): Inquiry {
   return {
     ...raw,
