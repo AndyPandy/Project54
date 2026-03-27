@@ -63,7 +63,10 @@ export default async function InquiryPage({ params }: { params: { slug: string }
 
             {/* Title */}
             <div>
-              <span className="inline-block text-[9px] font-bold uppercase tracking-[0.12em] text-brand-muted mb-2">Köpförfrågan</span>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-brand-muted">Köpförfrågan</span>
+                <span className="text-[9px] font-raleway font-light uppercase tracking-[0.1em] text-brand-muted">{new Date(inq.createdAt).toLocaleDateString('sv-SE')}</span>
+              </div>
               <h1 className="font-raleway font-medium text-base sm:text-xl text-brand-navy uppercase tracking-[0.1em]">
                 {inq.title}
               </h1>
