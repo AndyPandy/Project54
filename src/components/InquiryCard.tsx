@@ -44,6 +44,16 @@ export default function InquiryCard({ inquiry }: Props) {
             {inquiry.desiredLocation}
           </p>
         )}
+        {(inquiry.moveInFrom || inquiry.moveInTo) && (
+          <p className="text-[10px] text-brand-muted mt-0.5 font-raleway uppercase tracking-[0.08em]">
+            Inflyttning:{' '}
+            {inquiry.moveInFrom && inquiry.moveInTo
+              ? `${new Date(inquiry.moveInFrom).toLocaleDateString('sv-SE', { year: 'numeric', month: 'short' })} – ${new Date(inquiry.moveInTo).toLocaleDateString('sv-SE', { year: 'numeric', month: 'short' })}`
+              : inquiry.moveInFrom
+              ? `Från ${new Date(inquiry.moveInFrom).toLocaleDateString('sv-SE', { year: 'numeric', month: 'short' })}`
+              : `Till ${new Date(inquiry.moveInTo!).toLocaleDateString('sv-SE', { year: 'numeric', month: 'short' })}`}
+          </p>
+        )}
       </div>
 
       {/* Stats row with icons */}
