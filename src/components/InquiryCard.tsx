@@ -29,7 +29,7 @@ export default function InquiryCard({ inquiry }: Props) {
     <Link
       href={`/kopforfragan/${inquiry.slug}`}
       className="group block border border-brand-dark hover:border-brand-navy transition"
-      style={{ backgroundColor: 'rgba(143, 176, 130, 0.08)' }}
+      style={{ backgroundColor: 'rgba(143, 176, 130, 0.13)' }}
     >
       {/* Header */}
       <div className="px-5 pt-5 pb-4 border-b border-brand-dark">
@@ -62,36 +62,36 @@ export default function InquiryCard({ inquiry }: Props) {
         <div className="flex flex-wrap gap-x-5 gap-y-2 mb-3">
           {hasRooms && (
             <div className="flex items-center gap-1.5">
-              <svg className="w-3.5 h-3.5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-brand-navy/50 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                 <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
               </svg>
-              <span className="text-[10px] text-brand-navy/70">{range(inquiry.minRooms, inquiry.maxRooms, 'rum')}</span>
+              <span className="text-[10px] text-brand-navy/90">{range(inquiry.minRooms, inquiry.maxRooms, 'rum')}</span>
             </div>
           )}
           {hasSize && (
             <div className="flex items-center gap-1.5">
-              <svg className="w-3.5 h-3.5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-brand-navy/50 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                 <path d="M4 8V4m0 0h4M4 4l5 5M20 8V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5M20 16v4m0 0h-4m4 0l-5-5"/>
               </svg>
-              <span className="text-[10px] text-brand-navy/70">{range(inquiry.minSize, inquiry.maxSize, 'm²')}</span>
+              <span className="text-[10px] text-brand-navy/90">{range(inquiry.minSize, inquiry.maxSize, 'm²')}</span>
             </div>
           )}
           {hasFee && (
             <div className="flex items-center gap-1.5">
-              <svg className="w-3.5 h-3.5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-brand-navy/50 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                 <rect x="2" y="7" width="20" height="14" rx="1"/><path d="M2 11h20M6 15h.01M10 15h4"/>
               </svg>
-              <span className="text-[10px] text-brand-navy/70">Avgift: {range(inquiry.minFee, inquiry.maxFee, 'kr/mån')}</span>
+              <span className="text-[10px] text-brand-navy/90">Avgift: {range(inquiry.minFee, inquiry.maxFee, 'kr/mån')}</span>
             </div>
           )}
         </div>
 
-        <p className="text-xs text-brand-navy/60 leading-relaxed line-clamp-2">{inquiry.description}</p>
+        <p className="text-xs text-brand-navy/80 leading-relaxed line-clamp-2">{inquiry.description}</p>
 
         {features.length > 0 && (
           <div className="flex flex-wrap gap-1.5 pt-3">
             {features.map((f) => (
-              <span key={f} className="text-[9px] font-raleway font-medium uppercase tracking-[0.08em] px-2 py-0.5 border border-brand-sage/40 text-brand-sage">
+              <span key={f} className="text-[9px] font-raleway font-medium uppercase tracking-[0.08em] px-2 py-0.5 border border-brand-sage/70 text-brand-sage">
                 {f}
               </span>
             ))}
