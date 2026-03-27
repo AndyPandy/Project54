@@ -81,7 +81,7 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
   const barLabel  = 'block text-[9px] font-raleway font-normal uppercase tracking-[0.12em] text-brand-muted mb-1'
 
   if (horizontal) return (
-    <div className="flex flex-wrap items-end gap-4">
+    <div className="flex flex-wrap items-end justify-center gap-4">
 
       {/* Sök */}
       <div>
@@ -153,7 +153,7 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
       </div>
 
       {hasFilters && (
-        <button onClick={clear} className="text-[9px] font-raleway font-medium uppercase tracking-[0.1em] text-brand-navy/50 hover:text-brand-navy transition ml-auto self-end pb-1.5">Rensa</button>
+        <button onClick={clear} className="text-[9px] font-raleway font-medium uppercase tracking-[0.1em] text-brand-navy/50 hover:text-brand-navy transition self-end pb-1.5">Rensa</button>
       )}
     </div>
   )
