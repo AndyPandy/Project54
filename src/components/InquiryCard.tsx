@@ -55,6 +55,11 @@ export default function InquiryCard({ inquiry }: Props) {
         <h2 className="font-raleway font-medium text-sm uppercase tracking-[0.1em] text-brand-navy group-hover:text-brand-sage transition line-clamp-1">
           {inquiry.title}
         </h2>
+        {inquiry.propertyType && (
+          <span className="inline-block text-[9px] font-raleway font-medium uppercase tracking-[0.08em] px-2 py-0.5 border border-brand-navy/20 text-brand-navy/60 mt-1">
+            {inquiry.propertyType}
+          </span>
+        )}
         {inquiry.desiredLocation && (
           <p className="text-[10px] text-brand-muted mt-1 font-raleway uppercase tracking-[0.08em]">
             {inquiry.desiredLocation}

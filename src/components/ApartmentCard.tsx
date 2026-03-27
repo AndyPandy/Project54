@@ -72,6 +72,10 @@ export default function ApartmentCard({ apt }: { apt: Apartment }) {
           <p className="font-raleway text-sm text-brand-navy whitespace-nowrap flex-shrink-0 uppercase tracking-[0.05em]" style={{ fontWeight: 300 }}>{price}</p>
         </div>
 
+        {apt.propertyType && (
+          <p className="text-[9px] font-raleway uppercase tracking-[0.08em] text-brand-muted mb-1">{apt.propertyType}</p>
+        )}
+
         {/* Tags where address used to be */}
         {apt.tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-3">

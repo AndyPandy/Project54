@@ -22,22 +22,24 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
   const pathname = usePathname()
 
   const [values, setValues] = useState({
-    search:   searchParams.search   ?? '',
-    minRooms: searchParams.minRooms ?? '',
-    maxRooms: searchParams.maxRooms ?? '',
-    minSize:  searchParams.minSize  ?? '',
-    maxSize:  searchParams.maxSize  ?? '',
-    minFee:   searchParams.minFee   ?? '',
-    maxFee:   searchParams.maxFee   ?? '',
-    features: searchParams.features ?? '',
-    sort:     searchParams.sort     ?? '',
+    search:       searchParams.search       ?? '',
+    propertyType: searchParams.propertyType ?? '',
+    minRooms:     searchParams.minRooms     ?? '',
+    maxRooms:     searchParams.maxRooms     ?? '',
+    minSize:      searchParams.minSize      ?? '',
+    maxSize:      searchParams.maxSize      ?? '',
+    minFee:       searchParams.minFee       ?? '',
+    maxFee:       searchParams.maxFee       ?? '',
+    features:     searchParams.features     ?? '',
+    sort:         searchParams.sort         ?? '',
   })
 
   const apply = useCallback(
     (next: typeof values) => {
       const params = new URLSearchParams()
-      if (next.search)   params.set('search',   next.search)
-      if (next.minRooms) params.set('minRooms',  next.minRooms)
+      if (next.search)       params.set('search',       next.search)
+      if (next.propertyType) params.set('propertyType', next.propertyType)
+      if (next.minRooms)     params.set('minRooms',     next.minRooms)
       if (next.maxRooms) params.set('maxRooms',  next.maxRooms)
       if (next.minSize)  params.set('minSize',   next.minSize)
       if (next.maxSize)  params.set('maxSize',   next.maxSize)
@@ -67,13 +69,13 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
   }
 
   function clear() {
-    const next = { search: '', minRooms: '', maxRooms: '', minSize: '', maxSize: '', minFee: '', maxFee: '', features: '', sort: '' }
+    const next = { search: '', propertyType: '', minRooms: '', maxRooms: '', minSize: '', maxSize: '', minFee: '', maxFee: '', features: '', sort: '' }
     setValues(next)
     router.push(pathname, { scroll: false })
   }
 
   const selectedFeatures = values.features ? values.features.split(',') : []
-  const hasFilters = values.search || values.minRooms || values.maxRooms || values.minSize || values.maxSize || values.minFee || values.maxFee || values.features
+  const hasFilters = values.search || values.propertyType || values.minRooms || values.maxRooms || values.minSize || values.maxSize || values.minFee || values.maxFee || values.features
 
   const selectCls = 'px-2 py-1.5 text-[9px] font-raleway font-medium text-brand-navy/60 border border-brand-navy/20 bg-brand-offwhite focus:outline-none focus:border-brand-navy/50 transition'
   const inputCls  = 'w-full px-3 py-2 text-[9px] font-raleway font-medium text-brand-navy/60 border border-brand-navy/20 bg-brand-offwhite focus:outline-none focus:border-brand-navy/50 transition'
@@ -93,6 +95,23 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
           <input type="search" value={values.search} onChange={(e) => set('search', e.target.value)}
             placeholder="Titel, plats…"
             className="pl-7 pr-3 py-1.5 text-[9px] font-raleway font-medium text-brand-navy/60 border border-brand-navy/20 bg-brand-offwhite focus:outline-none focus:border-brand-navy/50 transition w-44" />
+        </div>
+      </div>
+
+      {/* Bostadstyp */}
+      <div className="flex flex-col items-center">
+        <span className={barLabel}>Bostadstyp</span>
+        <div className="flex gap-1">
+          {[{ value: '', label: 'Alla' }, { value: 'Lägenhet', label: 'Lägenhet' }, { value: 'Villa', label: 'Villa' }, { value: 'Radhus', label: 'Radhus' }].map((opt) => (
+            <button key={opt.value} onClick={() => set('propertyType', opt.value)}
+              className={`px-2.5 py-1.5 text-[9px] font-raleway font-medium uppercase tracking-[0.08em] border transition whitespace-nowrap ${
+                values.propertyType === opt.value
+                  ? 'bg-brand-navy text-white border-brand-navy'
+                  : 'border-brand-navy/20 text-brand-navy/60 hover:border-brand-navy/40'
+              }`}>
+              {opt.label}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -175,6 +194,17 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
             className="w-full pl-9 pr-3 py-2 text-sm text-brand-navy border border-brand-dark bg-brand-offwhite focus:outline-none focus:border-brand-navy transition"
           />
         </div>
+      </div>
+
+      {/* Bostadstyp */}
+      <div>
+        <label className={labelCls}>Bostadstyp</label>
+        <select value={values.propertyType} onChange={(e) => set('propertyType', e.target.value)} className={inputCls}>
+          <option value="">Alla</option>
+          <option value="Lägenhet">Lägenhet</option>
+          <option value="Villa">Villa</option>
+          <option value="Radhus">Radhus</option>
+        </select>
       </div>
 
       {/* Rooms */}

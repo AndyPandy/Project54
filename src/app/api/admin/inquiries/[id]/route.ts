@@ -16,7 +16,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     const {
       title, description, desiredLocation, minSize, maxSize, minFee, maxFee,
       minRooms, maxRooms, desiredFloor, fireplaceReq, elevatorReq, terraceReq,
-      patioReq, balconyReq, moveInFrom, moveInTo, status,
+      patioReq, balconyReq, propertyType, moveInFrom, moveInTo, status,
     } = body
 
     const updated = await prisma.inquiry.update({
@@ -37,6 +37,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
         ...(terraceReq      !== undefined && { terraceReq:      !!terraceReq }),
         ...(patioReq        !== undefined && { patioReq:        !!patioReq }),
         ...(balconyReq      !== undefined && { balconyReq:      !!balconyReq }),
+        ...(propertyType    !== undefined && { propertyType:    propertyType ? String(propertyType).trim() : '' }),
         ...(moveInFrom      !== undefined && { moveInFrom:      moveInFrom ? String(moveInFrom).trim() : '' }),
         ...(moveInTo        !== undefined && { moveInTo:        moveInTo   ? String(moveInTo).trim()   : '' }),
         ...(status          !== undefined && { status:          status === 'published' ? 'published' : 'draft' }),

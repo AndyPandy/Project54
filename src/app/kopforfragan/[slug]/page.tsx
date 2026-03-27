@@ -70,6 +70,11 @@ export default async function InquiryPage({ params }: { params: { slug: string }
               <h1 className="font-raleway font-medium text-base sm:text-xl text-brand-navy uppercase tracking-[0.1em]">
                 {inq.title}
               </h1>
+              {inq.propertyType && (
+                <span className="inline-block text-[9px] font-raleway font-medium uppercase tracking-[0.08em] px-2 py-0.5 border border-brand-navy/20 text-brand-navy/60 mt-1">
+                  {inq.propertyType}
+                </span>
+              )}
               {inq.desiredLocation && (
                 <p className="font-raleway font-light text-sm text-brand-muted mt-1 uppercase tracking-[0.08em]">
                   {inq.desiredLocation}

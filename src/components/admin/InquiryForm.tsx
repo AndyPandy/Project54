@@ -28,6 +28,7 @@ export default function InquiryForm({ inquiry }: Props) {
     terraceReq:      inquiry?.terraceReq      ?? false,
     patioReq:        inquiry?.patioReq        ?? false,
     balconyReq:      inquiry?.balconyReq      ?? false,
+    propertyType:    inquiry?.propertyType    ?? '',
     moveInFrom:      inquiry?.moveInFrom      ?? '',
     moveInTo:        inquiry?.moveInTo        ?? '',
     status:          inquiry?.status          ?? 'draft',
@@ -103,6 +104,16 @@ export default function InquiryForm({ inquiry }: Props) {
             <div>
               <label className={labelCls}>Önskat område</label>
               <input value={form.desiredLocation} onChange={(e) => set('desiredLocation', e.target.value)} className={inputCls} placeholder="t.ex. Södermalm, Vasastan" />
+            </div>
+
+            <div>
+              <label className={labelCls}>Bostadstyp</label>
+              <select value={form.propertyType} onChange={(e) => set('propertyType', e.target.value)} className={inputCls}>
+                <option value="">Ej angiven</option>
+                <option value="Lägenhet">Lägenhet</option>
+                <option value="Villa">Villa</option>
+                <option value="Radhus">Radhus</option>
+              </select>
             </div>
 
             <div className="grid grid-cols-2 gap-4">

@@ -28,12 +28,14 @@ export default async function UthyrningPage({
 }: {
   searchParams: { [key: string]: string | undefined }
 }) {
-  const { search, minPrice, maxPrice, minRooms, maxRooms, minSize, maxSize, features, sort } = searchParams
+  const { search, propertyType, minPrice, maxPrice, minRooms, maxRooms, minSize, maxSize, features, sort } = searchParams
 
   const where: Record<string, unknown> = {
     status: 'published',
     listingType: 'rent',
   }
+
+  if (propertyType) where.propertyType = propertyType
 
   if (minRooms) where.rooms   = { ...(where.rooms   as object ?? {}), gte: parseInt(minRooms) }
   if (maxRooms) where.rooms   = { ...(where.rooms   as object ?? {}), lte: parseInt(maxRooms) }

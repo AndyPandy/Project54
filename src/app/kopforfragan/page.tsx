@@ -10,7 +10,7 @@ function parseInquiry(raw: {
   minFee: number | null; maxFee: number | null; minRooms: number | null
   maxRooms: number | null; desiredFloor: string; fireplaceReq: boolean
   elevatorReq: boolean; terraceReq: boolean; patioReq: boolean
-  balconyReq: boolean; moveInFrom: string; moveInTo: string; status: string; createdAt: Date; updatedAt: Date
+  balconyReq: boolean; propertyType: string; moveInFrom: string; moveInTo: string; status: string; createdAt: Date; updatedAt: Date
 }): Inquiry {
   return {
     ...raw,
@@ -25,9 +25,11 @@ export default async function KopfragningPage({
 }: {
   searchParams: { [key: string]: string | undefined }
 }) {
-  const { search, minRooms, maxRooms, minSize, maxSize, minFee, maxFee, features, sort } = searchParams
+  const { search, propertyType, minRooms, maxRooms, minSize, maxSize, minFee, maxFee, features, sort } = searchParams
 
   const where: Record<string, unknown> = { status: 'published' }
+
+  if (propertyType) where.propertyType = propertyType
 
   if (minRooms) where.minRooms = { ...(where.minRooms as object ?? {}), gte: parseInt(minRooms) }
   if (maxRooms) where.maxRooms = { ...(where.maxRooms as object ?? {}), lte: parseInt(maxRooms) }

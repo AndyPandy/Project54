@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     const {
       title, description, desiredLocation, minSize, maxSize, minFee, maxFee,
       minRooms, maxRooms, desiredFloor, fireplaceReq, elevatorReq, terraceReq,
-      patioReq, balconyReq, moveInFrom, moveInTo, status,
+      patioReq, balconyReq, propertyType, moveInFrom, moveInTo, status,
     } = body
 
     if (!title || !description) {
@@ -55,6 +55,7 @@ export async function POST(req: NextRequest) {
         terraceReq:      !!terraceReq,
         patioReq:        !!patioReq,
         balconyReq:      !!balconyReq,
+        propertyType:    propertyType ? String(propertyType).trim() : '',
         moveInFrom:      moveInFrom ? String(moveInFrom).trim() : '',
         moveInTo:        moveInTo   ? String(moveInTo).trim()   : '',
         status:          status === 'published' ? 'published' : 'draft',

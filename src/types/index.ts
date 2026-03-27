@@ -51,6 +51,7 @@ export interface Inquiry {
   terraceReq:      boolean
   patioReq:        boolean
   balconyReq:      boolean
+  propertyType:    string
   moveInFrom:      string
   moveInTo:        string
   status:          'draft' | 'published'
