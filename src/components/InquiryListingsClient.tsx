@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import InquiryCard from '@/components/InquiryCard'
 import InquiryFilters from '@/components/InquiryFilters'
@@ -13,6 +13,13 @@ interface Props {
 
 export default function InquiryListingsClient({ inquiries, searchParams }: Props) {
   const [showFilters, setShowFilters] = useState(false)
+  const [heroIndex, setHeroIndex]     = useState(0)
+  const heroImages = ['/hero.jpeg', '/hero2.jpg', '/hero3.jpg']
+
+  useEffect(() => {
+    const t = setInterval(() => setHeroIndex((i) => (i + 1) % heroImages.length), 4000)
+    return () => clearInterval(t)
+  }, [])
 
   const hasFilters = !!(
     searchParams.search || searchParams.minRooms || searchParams.maxRooms ||
@@ -22,18 +29,42 @@ export default function InquiryListingsClient({ inquiries, searchParams }: Props
 
   return (
     <div>
-      {/* Page header */}
-      <div className="max-w-5xl mx-auto px-4 lg:px-8 pt-10 pb-6">
-        <h1 className="font-raleway font-light text-2xl md:text-3xl text-brand-navy uppercase tracking-[0.1em]">
-          Köpförfrågningar
-        </h1>
-        <p className="text-xs text-brand-muted mt-2 font-raleway tracking-[0.05em]">
-          Privatpersoner som söker bostad — kontakta dem direkt.
-        </p>
+      {/* Hero */}
+      <div className="relative w-full h-[70vh] lg:h-[56rem] overflow-hidden bg-brand-dark/30">
+        {heroImages.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt="Hero"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              opacity: i === heroIndex ? 1 : 0,
+              filter: 'saturate(0.75) contrast(1.08) brightness(0.84)',
+              transition: 'opacity 2.5s ease-in-out',
+            }}
+          />
+        ))}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(25,24,23,0.65) 0%, rgba(25,24,23,0.35) 50%, rgba(25,24,23,0.15) 100%)' }} />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+          <p className="font-raleway font-bold text-white uppercase tracking-[0.08em] text-3xl md:text-5xl lg:text-6xl leading-tight max-w-4xl drop-shadow">
+            Söker du bostad?
+          </p>
+          <p className="font-raleway font-normal text-white/85 uppercase tracking-[0.08em] text-base md:text-2xl lg:text-3xl leading-tight max-w-4xl drop-shadow mt-3">
+            Lägg upp din förfrågan. Vi hittar rätt.
+          </p>
+          <a href="#inquiries" className="mt-8 flex flex-col items-center gap-3 group">
+            <span className="font-raleway font-bold text-white uppercase tracking-[0.2em] text-sm border-b border-white/60 pb-0.5 group-hover:border-white transition">
+              Se förfrågningar
+            </span>
+            <svg className="w-5 h-5 text-white/70 group-hover:text-white transition animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+        </div>
       </div>
 
       {/* Desktop horizontal filter bar */}
-      <div className="max-w-5xl mx-auto px-4 lg:px-8">
+      <div id="inquiries" className="scroll-mt-14 max-w-5xl mx-auto px-4 lg:px-8">
         <div className="hidden lg:block border-b border-brand-dark py-6">
           <InquiryFilters horizontal searchParams={searchParams} count={inquiries.length} />
         </div>
