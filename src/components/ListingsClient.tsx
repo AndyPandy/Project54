@@ -85,10 +85,10 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
       )}
 
       {/* Horizontal filter bar + Listings — centered */}
-      <div className="max-w-5xl mx-auto px-4 lg:px-8 pb-24 md:pb-8">
+      <div id="listings" className="scroll-mt-14 max-w-5xl mx-auto px-4 lg:px-8 pb-24 md:pb-8">
 
         {/* Desktop horizontal filter bar */}
-        <div id="listings" className="hidden lg:block border-b border-brand-dark py-10">
+        <div className="hidden lg:block border-b border-brand-dark py-10">
           <ApartmentFilters horizontal searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => setShowMap((v) => !v)} />
         </div>
 
