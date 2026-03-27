@@ -98,7 +98,7 @@ export default function InquiryListingsClient({ inquiries, searchParams }: Props
       </div>
 
       {/* Grid */}
-      <div className="max-w-5xl mx-auto px-4 lg:px-8 pb-24 md:pb-8">
+      <div className="max-w-5xl mx-auto px-4 lg:px-8 pb-36 md:pb-8">
         <div className="pt-4 lg:pt-0">
           {inquiries.length === 0 ? (
             <div className="p-16 text-center">
@@ -118,7 +118,7 @@ export default function InquiryListingsClient({ inquiries, searchParams }: Props
       </div>
 
       {/* Mobile bottom bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-offwhite border-t border-brand-dark px-4 py-3 flex gap-3">
+      <div className="lg:hidden fixed bottom-14 left-0 right-0 z-40 bg-brand-offwhite border-t border-brand-dark px-4 py-3 flex gap-3">
         <button
           onClick={() => setShowFilters(true)}
           className="flex-1 flex items-center justify-center gap-2 py-3 bg-brand-navy text-white font-bold text-[11px] uppercase tracking-[0.1em]"

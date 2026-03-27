@@ -33,9 +33,10 @@ export default function InquiryCard({ inquiry }: Props) {
     >
       {/* Header */}
       <div className="px-5 pt-5 pb-4 border-b border-brand-dark">
-        <span className="inline-block text-[9px] font-bold uppercase tracking-[0.12em] text-brand-sage mb-2">
-          Köpförfrågan
-        </span>
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-brand-sage">Köpförfrågan</span>
+          <span className="text-[9px] font-raleway font-light uppercase tracking-[0.1em] text-brand-muted">{new Date(inquiry.createdAt).toLocaleDateString('sv-SE')}</span>
+        </div>
         <h2 className="font-raleway font-medium text-sm uppercase tracking-[0.1em] text-brand-navy group-hover:text-brand-sage transition line-clamp-1">
           {inquiry.title}
         </h2>

@@ -86,7 +86,7 @@ export default function ListingsClient({ apartments, searchParams, mode }: Props
       )}
 
       {/* Horizontal filter bar + Listings — centered */}
-      <div id="listings" className="scroll-mt-14 max-w-5xl mx-auto px-4 lg:px-8 pb-24 md:pb-8">
+      <div id="listings" className="scroll-mt-14 max-w-5xl mx-auto px-4 lg:px-8 pb-36 md:pb-8">
 
         {/* Desktop horizontal filter bar */}
         <div className="hidden lg:block border-b border-brand-dark py-10">
@@ -146,7 +146,7 @@ export default function ListingsClient({ apartments, searchParams, mode }: Props
       </button>
 
       {/* Mobile bottom bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-brand-offwhite border-t border-brand-dark px-4 py-3 flex gap-3">
+      <div className="lg:hidden fixed bottom-14 left-0 right-0 z-40 bg-brand-offwhite border-t border-brand-dark px-4 py-3 flex gap-3">
         <button
           onClick={() => { setShowMap((v) => !v); setTimeout(() => document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' }), 50) }}
           className="flex-1 flex items-center justify-center gap-2 py-3 border border-brand-navy text-brand-navy font-bold text-[11px] uppercase tracking-[0.1em]"

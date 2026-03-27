@@ -55,6 +55,26 @@ export default function Navbar() {
           Admin
         </Link>
       </div>
+
+      {/* Mobile bottom tab bar */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-30 bg-brand-offwhite border-t border-brand-dark flex">
+        {TABS.map((tab) => {
+          const active = isActive(tab.href)
+          return (
+            <Link
+              key={tab.href}
+              href={tab.href}
+              className={`flex-1 flex items-center justify-center h-14 text-[9px] font-raleway font-medium uppercase tracking-[0.1em] transition-colors ${
+                active ? 'text-brand-navy' : 'text-brand-muted'
+              }`}
+            >
+              <span className={`border-b-2 pb-0.5 ${active ? 'border-brand-sage' : 'border-transparent'}`}>
+                {tab.label === 'Köpförfrågningar' ? 'Förfrågningar' : tab.label}
+              </span>
+            </Link>
+          )
+        })}
+      </nav>
     </header>
   )
 }
