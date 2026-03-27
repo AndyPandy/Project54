@@ -61,7 +61,7 @@ export default function InquiryCard({ inquiry }: Props) {
           </p>
         )}
         {moveInLabel && (
-          <span className="inline-block mt-2 px-2 py-0.5 bg-brand-sage/15 border border-brand-sage/40 text-[9px] font-raleway font-medium uppercase tracking-[0.08em] text-brand-sage">
+          <span className="inline-block mt-2 px-2 py-0.5 bg-brand-sage border border-brand-sage text-[9px] font-raleway font-medium uppercase tracking-[0.08em] text-white">
             Inflyttning: {moveInLabel}
           </span>
         )}
