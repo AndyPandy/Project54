@@ -76,19 +76,29 @@ export default async function InquiryPage({ params }: { params: { slug: string }
                 </span>
               )}
               {inq.desiredLocation && (
-                <p className="font-raleway font-light text-sm text-brand-muted mt-1 uppercase tracking-[0.08em]">
-                  {inq.desiredLocation}
-                </p>
+                <div className="flex items-center gap-1.5 mt-1">
+                  <svg className="w-3.5 h-3.5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21s-8-7.5-8-12a8 8 0 1116 0c0 4.5-8 12-8 12z"/>
+                    <circle cx="12" cy="9" r="2.5"/>
+                  </svg>
+                  <p className="font-raleway font-light text-sm text-brand-muted uppercase tracking-[0.08em]">
+                    {inq.desiredLocation}
+                  </p>
+                </div>
               )}
               {(inq.moveInFrom || inq.moveInTo) && (
-                <p className="font-raleway font-light text-sm text-brand-muted mt-1 uppercase tracking-[0.08em]">
-                  Önskad inflyttningsperiod:{' '}
-                  {inq.moveInFrom && inq.moveInTo
-                    ? `${new Date(inq.moveInFrom).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long' })} – ${new Date(inq.moveInTo).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long' })}`
-                    : inq.moveInFrom
-                    ? `Från ${new Date(inq.moveInFrom).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long' })}`
-                    : `Till ${new Date(inq.moveInTo!).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long' })}`}
-                </p>
+                <div className="flex items-center gap-1.5 mt-1">
+                  <svg className="w-3.5 h-3.5 text-brand-muted flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+                  </svg>
+                  <p className="font-raleway font-light text-sm text-brand-muted uppercase tracking-[0.08em]">
+                    {inq.moveInFrom && inq.moveInTo
+                      ? `${new Date(inq.moveInFrom).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long' })} – ${new Date(inq.moveInTo).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long' })}`
+                      : inq.moveInFrom
+                      ? `Från ${new Date(inq.moveInFrom).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long' })}`
+                      : `Till ${new Date(inq.moveInTo!).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long' })}`}
+                  </p>
+                </div>
               )}
               <div className="border-b border-brand-dark mt-4" />
 
