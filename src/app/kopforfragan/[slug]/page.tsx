@@ -75,6 +75,7 @@ export default async function InquiryPage({ params }: { params: { slug: string }
                   {inq.desiredLocation}
                 </p>
               )}
+              <p className="text-[8px] text-red-400">DEBUG: from="{inq.moveInFrom}" to="{inq.moveInTo}"</p>
               {(inq.moveInFrom || inq.moveInTo) && (
                 <p className="font-raleway font-light text-sm text-brand-muted mt-1 uppercase tracking-[0.08em]">
                   Önskad inflyttningsperiod:{' '}
