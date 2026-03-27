@@ -100,7 +100,7 @@ export default async function InquiryPage({ params }: { params: { slug: string }
                       <svg className="w-5 h-5 text-brand-muted mb-2" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                         <rect x="2" y="7" width="20" height="14" rx="1"/><path d="M2 11h20M6 15h.01M10 15h4"/>
                       </svg>
-                      <p className="text-[9px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-0.5">Månadshyra</p>
+                      <p className="text-[9px] font-medium uppercase tracking-[0.1em] text-brand-muted mb-0.5">Avgift</p>
                       <p className="text-sm font-light text-brand-navy">{range(inq.minFee, inq.maxFee, 'kr/mån')}</p>
                     </div>
                   )}

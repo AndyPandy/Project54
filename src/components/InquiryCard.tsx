@@ -62,7 +62,7 @@ export default function InquiryCard({ inquiry }: Props) {
           )}
           {hasFee && (
             <span className="text-[10px] text-brand-muted">
-              {range(inquiry.minFee, inquiry.maxFee, 'kr/mån')}
+              Avgift: {range(inquiry.minFee, inquiry.maxFee, 'kr/mån')}
             </span>
           )}
         </div>

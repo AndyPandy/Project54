@@ -120,9 +120,9 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
         </div>
       </div>
 
-      {/* Månadshyra */}
+      {/* Avgift */}
       <div>
-        <span className={barLabel}>Månadshyra</span>
+        <span className={barLabel}>Avgift</span>
         <div className="flex gap-1 items-center">
           <input type="number" placeholder="2000" min={0} step={500} value={values.minFee} onChange={(e) => set('minFee', e.target.value)} className={`${selectCls} w-24`} />
           <span className="text-brand-muted text-xs">–</span>
@@ -203,7 +203,7 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
 
       {/* Fee */}
       <div>
-        <label className={labelCls}>Månadshyra (kr/mån)</label>
+        <label className={labelCls}>Avgift (kr/mån)</label>
         <div className="flex gap-2 items-center">
           <input type="number" placeholder="2000"  min={0} step={500} value={values.minFee} onChange={(e) => set('minFee', e.target.value)} className={inputCls} />
           <span className="text-brand-muted text-xs flex-shrink-0">–</span>
