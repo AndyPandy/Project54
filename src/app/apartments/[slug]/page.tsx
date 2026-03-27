@@ -174,6 +174,9 @@ export default async function ApartmentPage({ params }: { params: { slug: string
               <p className="text-sm text-brand-navy leading-relaxed whitespace-pre-line">{apt.description}</p>
             </div>
 
+            {/* Showings */}
+            <ShowingsList showings={showings} apartmentTitle={apt.title} address={apt.address} />
+
             {/* Map */}
             <div>
               <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-brand-muted mb-3">Läge</h2>
@@ -181,11 +184,10 @@ export default async function ApartmentPage({ params }: { params: { slug: string
             </div>
           </div>
 
-          {/* Right column — contact + showings */}
+          {/* Right column — contact */}
           <div id="contact" className="lg:col-span-1">
             <div className="sticky top-[72px] space-y-4">
               <ContactForm apartmentTitle={apt.title} apartmentId={apt.id} />
-              <ShowingsList showings={showings} apartmentTitle={apt.title} address={apt.address} />
             </div>
           </div>
         </div>
