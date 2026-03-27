@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import InquiryCard from '@/components/InquiryCard'
 import InquiryFilters from '@/components/InquiryFilters'
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export default function InquiryListingsClient({ inquiries, searchParams }: Props) {
+  const router = useRouter()
   const [showFilters, setShowFilters] = useState(false)
   const [heroIndex, setHeroIndex]     = useState(0)
   const heroImages = ['/hero.jpeg', '/hero2.jpg', '/hero3.jpg']
@@ -72,10 +74,26 @@ export default function InquiryListingsClient({ inquiries, searchParams }: Props
 
       {/* Count row */}
       <div className="max-w-5xl mx-auto px-4 lg:px-8">
-        <div className="hidden lg:flex items-center pt-6 pb-2">
+        <div className="hidden lg:flex items-center justify-between pt-6 pb-2">
           <span className="text-[9px] font-raleway font-light uppercase tracking-[0.12em] text-brand-muted">
             {inquiries.length} {inquiries.length !== 1 ? 'förfrågningar' : 'förfrågan'}
           </span>
+          <select
+            value={searchParams.sort ?? ''}
+            onChange={(e) => {
+              const params = new URLSearchParams(window.location.search)
+              if (e.target.value) params.set('sort', e.target.value)
+              else params.delete('sort')
+              router.push(`/kopforfragan?${params.toString()}`, { scroll: false })
+            }}
+            className="text-[9px] font-raleway font-medium text-brand-navy/60 border border-brand-navy/20 bg-brand-offwhite px-2 py-1.5 focus:outline-none focus:border-brand-navy/50 transition"
+          >
+            <option value="">Nyast</option>
+            <option value="rooms_asc">Minst rum</option>
+            <option value="size_asc">Minst area</option>
+            <option value="fee_asc">Avgift: lägst</option>
+            <option value="fee_desc">Avgift: högst</option>
+          </select>
         </div>
       </div>
 

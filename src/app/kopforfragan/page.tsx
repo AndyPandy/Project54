@@ -25,7 +25,7 @@ export default async function KopfragningPage({
 }: {
   searchParams: { [key: string]: string | undefined }
 }) {
-  const { search, minRooms, maxRooms, minSize, maxSize, minFee, maxFee, features } = searchParams
+  const { search, minRooms, maxRooms, minSize, maxSize, minFee, maxFee, features, sort } = searchParams
 
   const where: Record<string, unknown> = { status: 'published' }
 
@@ -36,9 +36,16 @@ export default async function KopfragningPage({
   if (minFee)   where.minFee   = { ...(where.minFee   as object ?? {}), gte: parseFloat(minFee) }
   if (maxFee)   where.maxFee   = { ...(where.maxFee   as object ?? {}), lte: parseFloat(maxFee) }
 
+  const orderBy =
+    sort === 'rooms_asc'  ? { minRooms: 'asc'  as const } :
+    sort === 'size_asc'   ? { minSize:  'asc'  as const } :
+    sort === 'fee_asc'    ? { minFee:   'asc'  as const } :
+    sort === 'fee_desc'   ? { minFee:   'desc' as const } :
+                            { createdAt: 'desc' as const }
+
   const rawInquiries = await prisma.inquiry.findMany({
     where,
-    orderBy: { createdAt: 'desc' },
+    orderBy,
   })
 
   let inquiries = rawInquiries.map(parseInquiry)

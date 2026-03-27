@@ -30,6 +30,7 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
     minFee:   searchParams.minFee   ?? '',
     maxFee:   searchParams.maxFee   ?? '',
     features: searchParams.features ?? '',
+    sort:     searchParams.sort     ?? '',
   })
 
   const apply = useCallback(
@@ -43,6 +44,7 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
       if (next.minFee)   params.set('minFee',    next.minFee)
       if (next.maxFee)   params.set('maxFee',    next.maxFee)
       if (next.features) params.set('features',  next.features)
+      if (next.sort)     params.set('sort',      next.sort)
       router.push(`${pathname}?${params.toString()}`, { scroll: false })
     },
     [router, pathname],
@@ -65,7 +67,7 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
   }
 
   function clear() {
-    const next = { search: '', minRooms: '', maxRooms: '', minSize: '', maxSize: '', minFee: '', maxFee: '', features: '' }
+    const next = { search: '', minRooms: '', maxRooms: '', minSize: '', maxSize: '', minFee: '', maxFee: '', features: '', sort: '' }
     setValues(next)
     router.push(pathname, { scroll: false })
   }
