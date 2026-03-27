@@ -45,7 +45,7 @@ export default async function InquiriesPage() {
                 <th className="text-left px-4 py-3">Plats</th>
                 <th className="text-left px-4 py-3">Rum</th>
                 <th className="text-left px-4 py-3">Area</th>
-                <th className="text-left px-4 py-3">Hyra</th>
+                <th className="text-left px-4 py-3">Avgift</th>
                 <th className="text-left px-4 py-3">Status</th>
                 <th className="px-4 py-3"></th>
               </tr>

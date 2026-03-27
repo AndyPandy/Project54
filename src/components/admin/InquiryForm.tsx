@@ -127,11 +127,11 @@ export default function InquiryForm({ inquiry }: Props) {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className={labelCls}>Min hyra (kr/mån)</label>
+                <label className={labelCls}>Min avgift (kr/mån)</label>
                 <input type="number" min="0" step="any" value={form.minFee} onChange={(e) => set('minFee', e.target.value)} className={inputCls} placeholder="t.ex. 5000" />
               </div>
               <div>
-                <label className={labelCls}>Max hyra (kr/mån)</label>
+                <label className={labelCls}>Max avgift (kr/mån)</label>
                 <input type="number" min="0" step="any" value={form.maxFee} onChange={(e) => set('maxFee', e.target.value)} className={inputCls} placeholder="t.ex. 15000" />
               </div>
             </div>
