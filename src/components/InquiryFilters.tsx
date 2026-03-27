@@ -133,7 +133,7 @@ export default function InquiryFilters({ searchParams, count, horizontal }: Prop
       </div>
 
       {/* Egenskaper */}
-      <div>
+      <div className="flex flex-col items-center">
         <span className={barLabel}>Egenskaper</span>
         <div className="flex gap-1">
           {INQUIRY_FEATURE_OPTIONS.map((f) => (

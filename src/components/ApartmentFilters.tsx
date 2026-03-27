@@ -168,6 +168,26 @@ export default function ApartmentFilters({ searchParams, count, showMap, onToggl
         </div>
       </div>
 
+      {/* Egenskaper */}
+      <div className="flex flex-col items-center">
+        <span className={barLabel}>Egenskaper</span>
+        <div className="flex gap-1">
+          {FEATURE_OPTIONS.map((f) => (
+            <button
+              key={f.value}
+              onClick={() => toggleFeature(f.value)}
+              className={`px-2.5 py-1.5 text-[9px] font-raleway font-medium uppercase tracking-[0.08em] border transition whitespace-nowrap ${
+                selectedFeatures.includes(f.value)
+                  ? 'bg-brand-sage text-white border-brand-sage'
+                  : 'border-brand-navy/20 text-brand-navy/60 hover:border-brand-navy/40'
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Rensa */}
       {hasFilters && (
         <button onClick={clear} className="text-[9px] font-raleway font-medium uppercase tracking-[0.1em] text-brand-navy/50 hover:text-brand-navy transition self-end pb-1.5">Rensa</button>
