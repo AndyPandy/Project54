@@ -21,7 +21,7 @@ export default function ListingsClient({ apartments, searchParams }: Props) {
   const heroImages = ['/hero.jpeg', '/hero2.jpg', '/hero3.jpg']
 
   useEffect(() => {
-    const t = setInterval(() => setHeroIndex((i) => (i + 1) % heroImages.length), 3000)
+    const t = setInterval(() => setHeroIndex((i) => (i + 1) % heroImages.length), 4000)
     return () => clearInterval(t)
   }, [])
   const mapKey = apartments.map((a) => a.id).join(',')
