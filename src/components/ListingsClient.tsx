@@ -59,7 +59,7 @@ export default function ListingsClient({ apartments, searchParams, mode }: Props
             Hitta din nya bostad.
           </p>
           <p className="font-raleway font-normal text-white/85 uppercase tracking-[0.08em] text-base md:text-2xl lg:text-3xl leading-tight max-w-4xl drop-shadow mt-3">
-            Utan mäklaravgifter. Utan krångel.
+            {mode === 'rent' ? 'Utan mellanhänder. Utan avgifter.' : 'Utan mäklaravgifter. Utan krångel.'}
           </p>
           <a
             href="#listings"
