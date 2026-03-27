@@ -32,7 +32,7 @@ export default function InquiryCard({ inquiry }: Props) {
       style={{ backgroundColor: 'rgba(143, 176, 130, 0.13)' }}
     >
       {/* Header */}
-      <div className="px-5 pt-5 pb-4 border-b border-brand-dark">
+      <div className="px-6 pt-6 pb-5 border-b border-brand-dark">
         <div className="flex items-center justify-between mb-2">
           <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-brand-sage">Köpförfrågan</span>
           <span className="text-[9px] font-raleway font-light uppercase tracking-[0.1em] text-brand-muted">{new Date(inquiry.createdAt).toLocaleDateString('sv-SE')}</span>
@@ -58,7 +58,7 @@ export default function InquiryCard({ inquiry }: Props) {
       </div>
 
       {/* Stats row with icons */}
-      <div className="px-5 py-4">
+      <div className="px-6 py-5">
         <div className="flex flex-wrap gap-x-5 gap-y-2 mb-3">
           {hasRooms && (
             <div className="flex items-center gap-1.5">

@@ -108,7 +108,7 @@ export default function InquiryListingsClient({ inquiries, searchParams }: Props
               </Link>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
               {inquiries.map((inq) => (
                 <InquiryCard key={inq.id} inquiry={inq} />
               ))}
