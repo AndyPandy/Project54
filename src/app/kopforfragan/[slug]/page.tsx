@@ -51,7 +51,7 @@ export default async function InquiryPage({ params }: { params: { slug: string }
 
       <main className="max-w-6xl mx-auto px-4 pt-6 pb-28 lg:pb-10">
         {/* Breadcrumb */}
-        <nav className="text-xs text-brand-muted mb-4 font-raleway font-light uppercase tracking-[0.1em]">
+        <nav className="text-xs text-brand-muted mb-10 font-raleway font-light uppercase tracking-[0.1em]">
           <a href="/kopforfragan" className="hover:text-brand-navy">Köpförfrågningar</a>
           <span className="mx-2">›</span>
           <span className="text-brand-navy">{inq.title}</span>
