@@ -89,7 +89,7 @@ export default function ListingsClient({ apartments, searchParams, mode }: Props
       <div id="listings" className="scroll-mt-14 max-w-5xl mx-auto px-4 lg:px-8 pb-36 md:pb-8">
 
         {/* Desktop horizontal filter bar */}
-        <div className="hidden lg:block border-b border-brand-dark py-10 bg-[#F7F5F0] -mx-4 lg:-mx-8 px-4 lg:px-8">
+        <div className="hidden lg:block border-b border-brand-dark py-10 -mx-4 lg:-mx-8 px-4 lg:px-8">
           <ApartmentFilters horizontal searchParams={searchParams} count={apartments.length} showMap={showMap} onToggleMap={() => setShowMap((v) => !v)} mode={mode} />
         </div>
 
